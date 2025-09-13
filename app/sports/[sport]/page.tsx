@@ -1,9 +1,12 @@
+"use client"
+
+import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Header } from "@/components/header"
-import { ArrowLeft, Users, MapPin, Clock, Calendar, Heart, Search } from "lucide-react"
+import { ArrowLeft, Users, MapPin, Clock, Calendar, Heart, Search, Eye, DollarSign } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { sportsData, matches } from "@/lib/dummy-data"
 import { notFound } from "next/navigation"
@@ -15,6 +18,8 @@ interface SportPageProps {
 }
 
 export default function SportPage({ params }: SportPageProps) {
+  const [followedTeams, setFollowedTeams] = useState<string[]>([])
+
   const sportKey = params.sport.charAt(0).toUpperCase() + params.sport.slice(1)
   const sport = sportsData[sportKey as keyof typeof sportsData]
 
@@ -23,6 +28,28 @@ export default function SportPage({ params }: SportPageProps) {
   }
 
   const sportMatches = matches.filter((match) => match.sport === sportKey)
+
+  const handleFollow = (team: string) => {
+    setFollowedTeams((prev) => (prev.includes(team) ? prev.filter((t) => t !== team) : [...prev, team]))
+  }
+
+  const getFollowerCount = (team: string) => {
+    const counts: { [key: string]: number } = {
+      "APR FC": 15420,
+      "Rayon Sports": 12350,
+      "Kiyovu Sports": 8900,
+      "Mukura Victory": 6750,
+      "REG BBC": 9800,
+      "Patriots BBC": 11200,
+      "APR BBC": 7600,
+      "Espoir BBC": 5400,
+      "Rwanda Energy Group": 4200,
+      "Police VC": 3800,
+      "Gisagara VC": 2900,
+      "University of Rwanda": 5600,
+    }
+    return counts[team] || Math.floor(Math.random() * 5000) + 1000
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -55,20 +82,56 @@ export default function SportPage({ params }: SportPageProps) {
         {/* Teams Section */}
         <section className="mb-12">
           <h2 className="font-serif text-2xl font-bold mb-6">Teams</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {sport.teams.map((team) => (
-              <Card key={team} className="text-center hover:shadow-md transition-all duration-300 hover:scale-105">
-                <CardContent className="pt-6">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Users className="h-8 w-8 text-primary" />
+              <Card key={team} className="overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-105">
+                <div className="h-32 bg-gradient-to-br from-primary/20 to-secondary/20 relative">
+                  <img src="/sports-team-.jpg" alt={team} className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-black/30"></div>
+                  <div className="absolute top-2 right-2">
+                    <Badge variant="secondary" className="bg-white/90 text-black">
+                      {getFollowerCount(team).toLocaleString()} followers
+                    </Badge>
                   </div>
-                  <h3 className="font-semibold mb-2">{team}</h3>
-                  <div className="flex gap-2 justify-center">
-                    <Button variant="outline" size="sm">
-                      <Heart className="h-3 w-3 mr-1" />
-                      Follow
+                </div>
+
+                <CardContent className="pt-6">
+                  <div className="text-center mb-4">
+                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3 -mt-8 border-4 border-white">
+                      <Users className="h-8 w-8 text-primary" />
+                    </div>
+                    <h3 className="font-semibold text-lg mb-1">{team}</h3>
+                    <p className="text-sm text-muted-foreground">Founded 2010 • 25K Members</p>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-2">
+                    <Button
+                      variant={followedTeams.includes(team) ? "default" : "outline"}
+                      size="sm"
+                      onClick={() => handleFollow(team)}
+                      className="flex flex-col items-center gap-1 h-auto py-2"
+                    >
+                      <Heart className={`h-3 w-3 ${followedTeams.includes(team) ? "fill-current" : ""}`} />
+                      <span className="text-xs">{followedTeams.includes(team) ? "Following" : "Follow"}</span>
                     </Button>
-                    <Button size="sm">Donate</Button>
+
+                    <Link href={`/donate/${encodeURIComponent(team)}`}>
+                      <Button size="sm" className="w-full flex flex-col items-center gap-1 h-auto py-2">
+                        <DollarSign className="h-3 w-3" />
+                        <span className="text-xs">Donate</span>
+                      </Button>
+                    </Link>
+
+                    <Link href={`/teams/${encodeURIComponent(team)}/matches`}>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="w-full flex flex-col items-center gap-1 h-auto py-2 bg-transparent"
+                      >
+                        <Eye className="h-3 w-3" />
+                        <span className="text-xs">Matches</span>
+                      </Button>
+                    </Link>
                   </div>
                 </CardContent>
               </Card>
@@ -80,58 +143,87 @@ export default function SportPage({ params }: SportPageProps) {
         <section>
           <h2 className="font-serif text-2xl font-bold mb-6">Upcoming Matches</h2>
           {sportMatches.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {sportMatches.map((match) => (
-                <Card key={match.id} className="hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <div className="flex items-center justify-between">
-                      <Badge variant="secondary">{match.league}</Badge>
-                      <Badge variant="outline">{match.status}</Badge>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {sportMatches.slice(0, 10).map((match) => (
+                <Card key={match.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+                  <div className="h-40 bg-gradient-to-br from-primary/20 to-secondary/20 relative">
+                    <img
+                      src={match.image || "/football-stadium-crowd.png"}
+                      alt={`${match.home_team} vs ${match.away_team}`}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/40"></div>
+                    <div className="absolute bottom-2 left-2 text-white">
+                      <Badge variant="secondary" className="bg-white/90 text-black mb-1">
+                        {match.league}
+                      </Badge>
+                      <div className="font-bold text-sm">
+                        {new Date(match.date).toLocaleDateString("en-US", {
+                          weekday: "short",
+                          month: "short",
+                          day: "numeric",
+                        })}
+                      </div>
                     </div>
-                  </CardHeader>
-                  <CardContent>
+                    <div className="absolute top-2 right-2">
+                      <Badge variant="outline" className="bg-white/90 text-black border-white/90">
+                        {match.status}
+                      </Badge>
+                    </div>
+                  </div>
+
+                  <CardContent className="pt-4">
                     <div className="text-center mb-4">
-                      <div className="flex items-center justify-center gap-4 mb-2">
-                        <div className="text-center">
-                          <div className="font-semibold">{match.home_team}</div>
-                          <div className="text-sm text-muted-foreground">Home</div>
+                      <div className="flex items-center justify-center gap-3 mb-2">
+                        <div className="text-center flex-1">
+                          <div className="font-semibold text-sm">{match.home_team}</div>
+                          <div className="text-xs text-muted-foreground">Home</div>
                         </div>
-                        <div className="text-2xl font-bold text-primary">VS</div>
-                        <div className="text-center">
-                          <div className="font-semibold">{match.away_team || "TBA"}</div>
-                          <div className="text-sm text-muted-foreground">Away</div>
+                        <div className="text-lg font-bold text-primary">VS</div>
+                        <div className="text-center flex-1">
+                          <div className="font-semibold text-sm">{match.away_team || "TBA"}</div>
+                          <div className="text-xs text-muted-foreground">Away</div>
                         </div>
                       </div>
                     </div>
 
-                    <div className="space-y-2 text-sm text-muted-foreground mb-4">
+                    <div className="space-y-1 text-xs text-muted-foreground mb-4">
                       <div className="flex items-center gap-2">
-                        <Calendar className="h-4 w-4" />
-                        <span>{match.date}</span>
+                        <Calendar className="h-3 w-3" />
+                        <span>
+                          {new Date(match.date).toLocaleDateString("en-US", {
+                            weekday: "long",
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          })}
+                        </span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Clock className="h-4 w-4" />
+                        <Clock className="h-3 w-3" />
                         <span>{match.time}</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <MapPin className="h-4 w-4" />
+                        <MapPin className="h-3 w-3" />
                         <span>{match.location}</span>
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between mb-4">
-                      <div>
-                        <div className="text-sm text-muted-foreground">Regular</div>
-                        <div className="font-bold text-lg">{match.price.toLocaleString()} RWF</div>
+                    <div className="flex items-center justify-between mb-4 text-sm">
+                      <div className="text-center">
+                        <div className="text-xs text-muted-foreground">Regular</div>
+                        <div className="font-bold">{match.price.toLocaleString()} RWF</div>
                       </div>
-                      <div>
-                        <div className="text-sm text-muted-foreground">VIP</div>
-                        <div className="font-bold text-lg">{match.vip_price.toLocaleString()} RWF</div>
+                      <div className="text-center">
+                        <div className="text-xs text-muted-foreground">VIP</div>
+                        <div className="font-bold">{match.vip_price.toLocaleString()} RWF</div>
                       </div>
                     </div>
 
                     <Link href={`/tickets/purchase/${match.id}`}>
-                      <Button className="w-full">Buy Tickets</Button>
+                      <Button className="w-full" size="sm">
+                        Buy Tickets
+                      </Button>
                     </Link>
                   </CardContent>
                 </Card>

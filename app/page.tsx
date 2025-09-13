@@ -38,6 +38,40 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Sports Categories Navigation */}
+      <section className="px-4 py-8 bg-muted/20">
+        <div className="container max-w-4xl mx-auto">
+          <h2 className="font-serif text-2xl font-bold text-center mb-6">Browse by Sport</h2>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link href="/sports">
+              <Button variant="outline" size="lg" className="bg-white hover:bg-primary hover:text-white">
+                All Sports
+              </Button>
+            </Link>
+            <Link href="/sports/football">
+              <Button variant="outline" size="lg" className="bg-white hover:bg-primary hover:text-white">
+                ⚽ Football
+              </Button>
+            </Link>
+            <Link href="/sports/basketball">
+              <Button variant="outline" size="lg" className="bg-white hover:bg-primary hover:text-white">
+                🏀 Basketball
+              </Button>
+            </Link>
+            <Link href="/sports/volleyball">
+              <Button variant="outline" size="lg" className="bg-white hover:bg-primary hover:text-white">
+                🏐 Volleyball
+              </Button>
+            </Link>
+            <Link href="/sports/events">
+              <Button variant="outline" size="lg" className="bg-white hover:bg-primary hover:text-white">
+                🎪 Events
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section className="px-4 py-12">
         <div className="container max-w-4xl mx-auto">
@@ -107,28 +141,53 @@ export default function HomePage() {
             </Link>
           </div>
 
+          <div className="flex flex-wrap gap-2 mb-6">
+            <Button variant="default" size="sm">
+              All
+            </Button>
+            <Button variant="outline" size="sm">
+              Football
+            </Button>
+            <Button variant="outline" size="sm">
+              Basketball
+            </Button>
+            <Button variant="outline" size="sm">
+              Volleyball
+            </Button>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {upcomingMatches.map((match) => (
               <Card key={match.id} className="overflow-hidden">
-                <div className="aspect-video bg-muted">
+                <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/20 relative">
                   <img
-                    src={match.image || "/placeholder.svg"}
+                    src={match.image || "/football-stadium-crowd.png"}
                     alt={`${match.home_team} vs ${match.away_team || "Event"}`}
                     className="w-full h-full object-cover"
                   />
+                  <div className="absolute inset-0 bg-black/20"></div>
+                  <div className="absolute bottom-2 left-2 text-white font-bold text-sm bg-black/50 px-2 py-1 rounded">
+                    {match.sport}
+                  </div>
                 </div>
                 <CardHeader>
                   <CardTitle className="text-lg">
                     {match.away_team ? `${match.home_team} vs ${match.away_team}` : match.home_team}
                   </CardTitle>
                   <CardDescription>
-                    {new Date(match.date).toLocaleDateString()} • {match.time} • {match.location}
+                    {new Date(match.date).toLocaleDateString("en-US", {
+                      weekday: "long",
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}{" "}
+                    • {match.time} • {match.location}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="flex items-center justify-between">
                     <span className="text-lg font-semibold text-primary">{match.price.toLocaleString()} RWF</span>
-                    <Link href={`/match/${match.id}`}>
+                    <Link href={`/tickets/purchase/${match.id}`}>
                       <Button size="sm">Buy Ticket</Button>
                     </Link>
                   </div>
