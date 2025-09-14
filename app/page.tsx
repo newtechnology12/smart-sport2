@@ -2,11 +2,13 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Header } from "@/components/header"
 import { Trophy, Calendar, Wallet, Users, Star, ArrowRight } from "lucide-react"
 import { matches } from "@/lib/dummy-data"
+import { getSportImage } from "@/lib/images"
 
 export default function HomePage() {
   const [selectedSport, setSelectedSport] = useState("All")
@@ -185,10 +187,12 @@ export default function HomePage() {
             {filteredMatches.map((match) => (
               <Card key={match.id} className="overflow-hidden">
                 <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/20 relative">
-                  <img
-                    src={match.image || "/football-stadium-crowd.png"}
+                  <Image
+                    src={match.image || getSportImage(match.sport)}
                     alt={`${match.home_team} vs ${match.away_team || "Event"}`}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-black/20"></div>
                   <div className="absolute bottom-2 left-2 text-white font-bold text-sm bg-black/50 px-2 py-1 rounded">

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -12,6 +13,7 @@ import { Badge } from "@/components/ui/badge"
 import { Header } from "@/components/header"
 import { ArrowLeft, Calendar, Clock, MapPin, CreditCard, Smartphone, DollarSign, Trash2, ShoppingCart } from "lucide-react"
 import { matches } from "@/lib/dummy-data"
+import { getSportImage } from "@/lib/images"
 
 export default function MultipleTicketPurchasePage() {
   const searchParams = useSearchParams()
@@ -175,10 +177,12 @@ EBM Receipt will be sent to ${email}`)
                     <Card key={match.id} className="p-4">
                       <div className="flex items-start gap-4">
                         <div className="w-20 h-20 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-lg flex-shrink-0 relative overflow-hidden">
-                          <img
-                            src={match.image || "/football-stadium-crowd.png"}
+                          <Image
+                            src={match.image || getSportImage(match.sport)}
                             alt={`${match.home_team} vs ${match.away_team}`}
-                            className="w-full h-full object-cover"
+                            fill
+                            className="object-cover"
+                            sizes="80px"
                           />
                         </div>
                         

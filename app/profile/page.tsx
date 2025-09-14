@@ -70,7 +70,7 @@ export default function ProfilePage() {
                 <div className="text-center mb-6">
                   <div className="relative inline-block">
                     <Avatar className="w-24 h-24">
-                      <AvatarImage src="/professional-profile.png" />
+                      <AvatarImage src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" />
                       <AvatarFallback className="text-2xl">JU</AvatarFallback>
                     </Avatar>
                     <Button
