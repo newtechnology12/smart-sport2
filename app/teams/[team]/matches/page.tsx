@@ -20,6 +20,7 @@ export default function TeamMatchesPage({ params }: TeamMatchesPageProps) {
   const [selectedMatches, setSelectedMatches] = useState<string[]>([])
   const teamName = decodeURIComponent(params.team)
 
+  // Filter matches for this team (either home or away) and add some additional sample matches
   const teamMatches = [
     ...matches.filter((match) => match.home_team === teamName || match.away_team === teamName),
     // Add more sample matches for demonstration
@@ -67,13 +68,14 @@ export default function TeamMatchesPage({ params }: TeamMatchesPageProps) {
     },
   ]
 
-  const handleMatchSelection = (matchId: string) => {
-    setSelectedMatches((prev) => (prev.includes(matchId) ? prev.filter((id) => id !== matchId) : [...prev, matchId]))
+  const handleMatchSelection = (matchId: string | number) => {
+    const matchIdStr = matchId.toString()
+    setSelectedMatches((prev) => (prev.includes(matchIdStr) ? prev.filter((id) => id !== matchIdStr) : [...prev, matchIdStr]))
   }
 
   const getTotalPrice = () => {
     return selectedMatches.reduce((total, matchId) => {
-      const match = teamMatches.find((m) => m.id === matchId)
+      const match = teamMatches.find((m) => m.id.toString() === matchId)
       return total + (match?.price || 0)
     }, 0)
   }
@@ -135,7 +137,7 @@ export default function TeamMatchesPage({ params }: TeamMatchesPageProps) {
                 <div className="absolute inset-0 bg-black/40"></div>
                 <div className="absolute top-2 left-2">
                   <Checkbox
-                    checked={selectedMatches.includes(match.id)}
+                    checked={selectedMatches.includes(match.id.toString())}
                     onCheckedChange={() => handleMatchSelection(match.id)}
                     className="bg-white border-white data-[state=checked]:bg-primary data-[state=checked]:border-primary"
                   />
@@ -211,7 +213,7 @@ export default function TeamMatchesPage({ params }: TeamMatchesPageProps) {
                     className="flex-1 bg-transparent"
                     onClick={() => handleMatchSelection(match.id)}
                   >
-                    {selectedMatches.includes(match.id) ? "Remove" : "Select"}
+                    {selectedMatches.includes(match.id.toString()) ? "Remove" : "Select"}
                   </Button>
                   <Link href={`/tickets/purchase/${match.id}`} className="flex-1">
                     <Button size="sm" className="w-full">

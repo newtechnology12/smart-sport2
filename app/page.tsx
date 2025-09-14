@@ -1,3 +1,6 @@
+"use client"
+
+import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -6,7 +9,13 @@ import { Trophy, Calendar, Wallet, Users, Star, ArrowRight } from "lucide-react"
 import { matches } from "@/lib/dummy-data"
 
 export default function HomePage() {
-  const upcomingMatches = matches.slice(0, 3)
+  const [selectedSport, setSelectedSport] = useState("All")
+
+  const filteredMatches = selectedSport === "All"
+    ? matches.slice(0, 6)
+    : matches.filter(match => match.sport === selectedSport).slice(0, 6)
+
+  const upcomingMatches = filteredMatches.slice(0, 3)
 
   return (
     <div className="min-h-screen bg-background">
@@ -142,22 +151,38 @@ export default function HomePage() {
           </div>
 
           <div className="flex flex-wrap gap-2 mb-6">
-            <Button variant="default" size="sm">
+            <Button
+              variant={selectedSport === "All" ? "default" : "outline"}
+              size="sm"
+              onClick={() => setSelectedSport("All")}
+            >
               All
             </Button>
-            <Button variant="outline" size="sm">
+            <Button
+              variant={selectedSport === "Football" ? "default" : "outline"}
+              size="sm"
+              onClick={() => setSelectedSport("Football")}
+            >
               Football
             </Button>
-            <Button variant="outline" size="sm">
+            <Button
+              variant={selectedSport === "Basketball" ? "default" : "outline"}
+              size="sm"
+              onClick={() => setSelectedSport("Basketball")}
+            >
               Basketball
             </Button>
-            <Button variant="outline" size="sm">
+            <Button
+              variant={selectedSport === "Volleyball" ? "default" : "outline"}
+              size="sm"
+              onClick={() => setSelectedSport("Volleyball")}
+            >
               Volleyball
             </Button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {upcomingMatches.map((match) => (
+            {filteredMatches.map((match) => (
               <Card key={match.id} className="overflow-hidden">
                 <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/20 relative">
                   <img

@@ -147,36 +147,36 @@ export default function SearchPage() {
                           <Badge variant="outline" className="capitalize">
                             {result.type}
                           </Badge>
-                          {result.type === "event" && <Badge variant="secondary">{result.sport}</Badge>}
-                          {result.type === "product" && <Badge variant="secondary">{result.team}</Badge>}
-                          {result.type === "team" && <Badge variant="secondary">{result.sport}</Badge>}
+                          {result.type === "event" && <Badge variant="secondary">{(result as any).sport}</Badge>}
+                          {result.type === "product" && <Badge variant="secondary">{(result as any).team}</Badge>}
+                          {result.type === "team" && <Badge variant="secondary">{(result as any).sport}</Badge>}
                         </div>
                         <h3 className="font-semibold text-lg mb-1">
-                          {result.type === "event" && `${result.home_team} vs ${result.away_team}`}
-                          {result.type === "product" && result.name}
-                          {result.type === "team" && result.name}
+                          {result.type === "event" && `${(result as any).home_team} vs ${(result as any).away_team}`}
+                          {result.type === "product" && (result as any).name}
+                          {result.type === "team" && (result as any).name}
                         </h3>
                         <p className="text-muted-foreground mb-2">
                           {result.type === "event" && (
                             <span className="flex items-center gap-4">
                               <span className="flex items-center gap-1">
                                 <Calendar className="h-4 w-4" />
-                                {result.date} {result.time}
+                                {(result as any).date} {(result as any).time}
                               </span>
                               <span className="flex items-center gap-1">
                                 <MapPin className="h-4 w-4" />
-                                {result.location}
+                                {(result as any).location}
                               </span>
                             </span>
                           )}
-                          {result.type === "product" && result.description}
-                          {result.type === "team" && `${result.league} • Founded ${result.founded}`}
+                          {result.type === "product" && (result as any).description}
+                          {result.type === "team" && `${(result as any).league} • Founded ${(result as any).founded}`}
                         </p>
                         <div className="flex items-center justify-between">
                           <div className="font-semibold">
-                            {result.type === "event" && `${result.price.toLocaleString()} RWF`}
-                            {result.type === "product" && `${result.price.toLocaleString()} RWF`}
-                            {result.type === "team" && `${result.members} members`}
+                            {result.type === "event" && `${(result as any).price.toLocaleString()} RWF`}
+                            {result.type === "product" && `${(result as any).price.toLocaleString()} RWF`}
+                            {result.type === "team" && `${(result as any).members} members`}
                           </div>
                           <Button variant="outline" size="sm">
                             View Details

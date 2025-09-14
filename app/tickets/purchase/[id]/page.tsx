@@ -26,7 +26,7 @@ export default function TicketPurchasePage({ params }: TicketPurchasePageProps) 
   const [email, setEmail] = useState("")
   const [fullName, setFullName] = useState("")
 
-  const match = matches.find((m) => m.id === params.id)
+  const match = matches.find((m) => m.id.toString() === params.id || m.id === parseInt(params.id))
 
   if (!match) {
     return (
