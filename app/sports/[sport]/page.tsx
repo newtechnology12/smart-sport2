@@ -5,7 +5,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Header } from "@/components/header"
+
 import { ArrowLeft, Users, MapPin, Clock, Calendar, Heart, Search, Eye, DollarSign } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { sportsData, matches } from "@/lib/dummy-data"
@@ -53,7 +53,6 @@ export default function SportPage({ params }: SportPageProps) {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
 
       <div className="container max-w-6xl mx-auto px-4 py-6">
         {/* Back Navigation */}
