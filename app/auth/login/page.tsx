@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { ArrowLeft, Mail, Lock, Eye, EyeOff, Loader2 } from "lucide-react"
+import { Mail, Lock, Eye, EyeOff, Loader2 } from "lucide-react"
 
 export default function LoginPage() {
   const router = useRouter()
@@ -77,13 +77,6 @@ export default function LoginPage() {
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
       <div className="container max-w-md mx-auto px-4 py-6">
         <div className="mb-8">
-          <Link href="/">
-            <Button variant="ghost" size="sm" className="mb-6 apple-button">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Home
-            </Button>
-          </Link>
-
           <div className="text-center mb-8">
             <h1 className="font-serif text-4xl font-bold mb-3 apple-title bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Welcome Back

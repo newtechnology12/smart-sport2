@@ -10,9 +10,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
-import { ArrowLeft, User, Mail, Phone, Lock, Eye, EyeOff, Loader2, Shield, Users, Trophy, CheckCircle } from "lucide-react"
+import { User, Mail, Phone, Lock, Eye, EyeOff, Loader2, CheckCircle } from "lucide-react"
 
 export default function RegisterPage() {
   const router = useRouter()
@@ -64,6 +63,12 @@ export default function RegisterPage() {
         return
       }
 
+      // Auto-detect role based on email or default to 'client'
+      let detectedRole: 'client' | 'team' = 'client'
+      if (formData.email.includes('team')) {
+        detectedRole = 'team'
+      }
+
       // Handle registration logic here
       const success = await register({
         firstName: formData.firstName,
@@ -71,7 +76,7 @@ export default function RegisterPage() {
         email: formData.email,
         phone: formData.phone,
         password: formData.password,
-        role: formData.role as 'client' | 'team'
+        role: detectedRole
       })
 
       if (success) {
@@ -99,12 +104,7 @@ export default function RegisterPage() {
     }
   }
 
-  const handleRoleChange = (value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      role: value,
-    }))
-  }
+
 
   const getPasswordStrengthColor = () => {
     if (passwordStrength <= 1) return "bg-red-500"
@@ -126,13 +126,6 @@ export default function RegisterPage() {
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
       <div className="container max-w-lg mx-auto px-4 py-6">
         <div className="mb-8">
-          <Link href="/">
-            <Button variant="ghost" size="sm" className="mb-6 apple-button">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Home
-            </Button>
-          </Link>
-
           <div className="text-center mb-8">
             <h1 className="font-serif text-4xl font-bold mb-3 apple-title bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Create Account
@@ -158,34 +151,6 @@ export default function RegisterPage() {
             )}
 
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="space-y-2">
-                <Label htmlFor="role" className="apple-caption font-medium">Account Type</Label>
-                <Select value={formData.role} onValueChange={handleRoleChange} required>
-                  <SelectTrigger className="apple-focus h-12 border-2">
-                    <SelectValue placeholder="Select your account type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="client" className="apple-body">
-                      <div className="flex items-center gap-3">
-                        <Users className="h-4 w-4 text-blue-500" />
-                        <div>
-                          <div className="font-medium">Client/User</div>
-                          <div className="text-xs text-muted-foreground">Buy tickets & manage profile</div>
-                        </div>
-                      </div>
-                    </SelectItem>
-                    <SelectItem value="team" className="apple-body">
-                      <div className="flex items-center gap-3">
-                        <Trophy className="h-4 w-4 text-green-500" />
-                        <div>
-                          <div className="font-medium">Team</div>
-                          <div className="text-xs text-muted-foreground">Manage team info & sales</div>
-                        </div>
-                      </div>
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
