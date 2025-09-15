@@ -31,7 +31,7 @@ export default function TicketPurchasePage({ params }: TicketPurchasePageProps) 
   if (!match) {
     return (
       <div className="min-h-screen bg-background">
-        <Header />
+
         <div className="container max-w-4xl mx-auto px-4 py-6">
           <Card>
             <CardContent className="text-center py-12">
@@ -73,7 +73,6 @@ EBM Receipt will be sent to ${email}`)
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
 
       <div className="container max-w-6xl mx-auto px-4 py-6">
         <div className="mb-8">
