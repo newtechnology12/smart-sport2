@@ -2,6 +2,10 @@
 
 import { SimpleVideoBackground } from "@/components/ui/simple-video-background"
 import { VideoBackground } from "@/components/ui/video-background"
+import { ReliableVideoBackground } from "@/components/ui/reliable-video-background"
+import { PreloadedVideoBackground } from "@/components/ui/preloaded-video-background"
+import { OptimizedVideoBackground } from "@/components/ui/optimized-video-background"
+import { DebugVideoInfo } from "@/components/ui/debug-video-info"
 
 export default function TestVideoPage() {
   const testVideos = [
@@ -16,6 +20,44 @@ export default function TestVideoPage() {
       <div className="container mx-auto p-8">
         <h1 className="text-3xl font-bold mb-8">Video Background Test</h1>
         
+        {/* Optimized Video Background Test (Best) */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold mb-4">Optimized Video Background (Best)</h2>
+          <div className="relative h-96 rounded-lg overflow-hidden">
+            <OptimizedVideoBackground
+              videos={testVideos}
+              className="absolute inset-0"
+              slideInterval={5000}
+              showIndicators={true}
+            />
+            <div className="relative z-10 flex items-center justify-center h-full">
+              <div className="text-white text-center">
+                <h3 className="text-2xl font-bold mb-2">Optimized Content</h3>
+                <p className="text-lg opacity-90">Handles autoplay policies and user interaction</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Preloaded Video Background Test (Recommended) */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold mb-4">Preloaded Video Background (Recommended)</h2>
+          <div className="relative h-96 rounded-lg overflow-hidden">
+            <PreloadedVideoBackground
+              videos={testVideos}
+              className="absolute inset-0"
+              slideInterval={5000}
+              showIndicators={true}
+            />
+            <div className="relative z-10 flex items-center justify-center h-full">
+              <div className="text-white text-center">
+                <h3 className="text-2xl font-bold mb-2">Preloaded Content</h3>
+                <p className="text-lg opacity-90">Smooth transitions with preloaded videos</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Simple Video Background Test */}
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-4">Simple Video Background</h2>
@@ -29,6 +71,25 @@ export default function TestVideoPage() {
               <div className="text-white text-center">
                 <h3 className="text-2xl font-bold mb-2">Test Content</h3>
                 <p className="text-lg opacity-90">Video should be playing behind this text</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Reliable Video Background Test */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold mb-4">Reliable Video Background</h2>
+          <div className="relative h-96 rounded-lg overflow-hidden">
+            <ReliableVideoBackground
+              videos={testVideos}
+              className="absolute inset-0"
+              slideInterval={5000}
+              showIndicators={true}
+            />
+            <div className="relative z-10 flex items-center justify-center h-full">
+              <div className="text-white text-center">
+                <h3 className="text-2xl font-bold mb-2">Reliable Test Content</h3>
+                <p className="text-lg opacity-90">Cross-browser compatible video background</p>
               </div>
             </div>
           </div>
@@ -74,6 +135,9 @@ export default function TestVideoPage() {
           </div>
         </section>
       </div>
+
+      {/* Debug Info */}
+      <DebugVideoInfo videos={testVideos} />
     </div>
   )
 }

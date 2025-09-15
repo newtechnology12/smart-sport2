@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 
 interface SimpleVideoBackgroundProps {
   videos: string[]
@@ -14,15 +14,7 @@ export function SimpleVideoBackground({
   slideInterval = 10000
 }: SimpleVideoBackgroundProps) {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0)
-
-  // Debug logging (remove in production)
-  if (process.env.NODE_ENV === 'development') {
-    console.log("SimpleVideoBackground render:", {
-      videos,
-      currentVideoIndex,
-      currentVideo: videos[currentVideoIndex]
-    })
-  }
+  const videoRef = useRef<HTMLVideoElement>(null)
 
   // Auto-slide effect
   useEffect(() => {
@@ -37,25 +29,66 @@ export function SimpleVideoBackground({
     return () => clearInterval(interval)
   }, [videos.length, slideInterval])
 
+  // Handle video loading and autoplay
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video || videos.length === 0) return
+
+    const handleLoadedData = () => {
+      // Ensure video plays when loaded
+      video.play().catch(error => {
+        console.warn("Autoplay failed:", error)
+      })
+    }
+
+    const handleCanPlay = () => {
+      // Backup play attempt
+      if (video.paused) {
+        video.play().catch(error => {
+          console.warn("Autoplay failed on canplay:", error)
+        })
+      }
+    }
+
+    video.addEventListener('loadeddata', handleLoadedData)
+    video.addEventListener('canplay', handleCanPlay)
+
+    // Force load the video
+    video.load()
+
+    return () => {
+      video.removeEventListener('loadeddata', handleLoadedData)
+      video.removeEventListener('canplay', handleCanPlay)
+    }
+  }, [currentVideoIndex, videos])
+
+  if (videos.length === 0) {
+    return (
+      <div className={`relative overflow-hidden ${className}`}>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-secondary/20 to-primary/25" />
+      </div>
+    )
+  }
+
   return (
     <div className={`relative overflow-hidden ${className}`}>
       {/* Video Element */}
-      {videos.length > 0 && (
-        <video
-          key={videos[currentVideoIndex]} // Force re-render when video changes
-          className="absolute inset-0 w-full h-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          suppressHydrationWarning={true}
-          style={{ zIndex: 1 }}
-        >
-          <source src={videos[currentVideoIndex]} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      )}
+      <video
+        ref={videoRef}
+        className="absolute inset-0 w-full h-full object-cover"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        style={{
+          zIndex: 1,
+          display: 'block'
+        }}
+      >
+        <source src={videos[currentVideoIndex]} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
 
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/30 z-10" />
