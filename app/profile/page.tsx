@@ -1,449 +1,199 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Switch } from "@/components/ui/switch"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-
-import { User, Edit, Bell, Shield, Globe, Heart, Trophy, Camera, Save, Phone, MapPin, Calendar } from "lucide-react"
+import { Separator } from "@/components/ui/separator"
+import {
+  User,
+  LogIn,
+  UserPlus,
+  Info,
+  HelpCircle,
+  MessageCircle,
+  Heart,
+  Settings,
+  Shield,
+  Bell,
+  Wallet,
+  Trophy,
+  Ticket,
+  ChevronRight,
+  Globe,
+  FileText,
+  Users,
+  Star,
+  Download,
+  Share,
+  LogOut
+} from "lucide-react"
 
 export default function ProfilePage() {
-  const [isEditing, setIsEditing] = useState(false)
-  const [profile, setProfile] = useState({
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  // Mock user data
+  const user = {
     name: "Jean Baptiste Uwimana",
     email: "jean.uwimana@email.com",
-    phone: "+250 788 123 456",
-    location: "Kigali, Rwanda",
-    dateOfBirth: "1995-03-15",
-    bio: "Passionate sports fan and supporter of APR FC. Love attending matches and supporting local teams.",
-    favoriteTeams: ["APR FC", "REG BBC"],
-    language: "en",
-    notifications: {
-      email: true,
-      sms: true,
-      push: true,
-      matchReminders: true,
-      teamUpdates: true,
-      promotions: false,
-    },
-  })
-
-  const handleSave = () => {
-    setIsEditing(false)
-    // Save profile logic here
-    alert("Profile updated successfully!")
-  }
-
-  const stats = {
-    ticketsPurchased: 12,
-    eventsAttended: 8,
-    totalSpent: 45000,
-    favoriteTeams: 2,
+    avatar: "/placeholder-user.jpg",
     memberSince: "2024",
+    stats: {
+      ticketsPurchased: 12,
+      eventsAttended: 8,
+      totalSpent: 45000,
+      favoriteTeams: 2,
+    }
   }
+
+  const menuSections = [
+    {
+      title: "Account",
+      items: [
+        { icon: LogIn, label: "Sign In", href: "/auth/signin", description: "Access your account" },
+        { icon: UserPlus, label: "Sign Up", href: "/auth/signup", description: "Create new account" },
+      ]
+    },
+    {
+      title: "My Account",
+      items: [
+        { icon: Wallet, label: "My Wallet", href: "/wallet", description: "Manage your balance" },
+        { icon: Ticket, label: "My Tickets", href: "/tickets", description: "View purchased tickets" },
+        { icon: Trophy, label: "My Teams", href: "/teams", description: "Favorite teams" },
+        { icon: Heart, label: "Wishlist", href: "/wishlist", description: "Saved items" },
+      ]
+    },
+    {
+      title: "Information",
+      items: [
+        { icon: Info, label: "About Us", href: "/about", description: "Learn about SmartSports RW" },
+        { icon: HelpCircle, label: "FAQ", href: "/faq", description: "Frequently asked questions" },
+        { icon: MessageCircle, label: "Contact Us", href: "/contact", description: "Get in touch" },
+        { icon: Users, label: "Help Us", href: "/help", description: "Support our mission" },
+      ]
+    },
+    {
+      title: "Settings",
+      items: [
+        { icon: Settings, label: "Preferences", href: "/settings", description: "App settings" },
+        { icon: Bell, label: "Notifications", href: "/notifications", description: "Manage alerts" },
+        { icon: Shield, label: "Privacy", href: "/privacy", description: "Privacy settings" },
+        { icon: Globe, label: "Language", href: "/language", description: "Change language" },
+      ]
+    },
+    {
+      title: "Legal",
+      items: [
+        { icon: FileText, label: "Terms of Service", href: "/terms", description: "Terms and conditions" },
+        { icon: Shield, label: "Privacy Policy", href: "/privacy-policy", description: "Privacy information" },
+      ]
+    }
+  ]
 
   return (
     <div className="min-h-screen bg-background">
-
-      <div className="container max-w-6xl mx-auto px-4 py-6">
+      <div className="container max-w-4xl mx-auto px-4 py-6">
+        {/* Header */}
         <div className="mb-8">
-          <div className="flex items-center gap-3 mb-4">
-            <User className="h-8 w-8 text-primary" />
-            <h1 className="font-serif text-3xl font-bold">My Profile</h1>
-          </div>
-          <p className="text-muted-foreground">Manage your account information and preferences</p>
+          <h1 className="apple-title text-3xl font-bold mb-2">Profile</h1>
+          <p className="apple-body text-muted-foreground">Manage your account and preferences</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Profile Overview */}
-          <div className="lg:col-span-1">
-            <Card>
-              <CardContent className="pt-6">
-                <div className="text-center mb-6">
-                  <div className="relative inline-block">
-                    <Avatar className="w-24 h-24">
-                      <AvatarImage src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" />
-                      <AvatarFallback className="text-2xl">JU</AvatarFallback>
-                    </Avatar>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="absolute -bottom-2 -right-2 rounded-full w-8 h-8 p-0 bg-transparent"
-                    >
-                      <Camera className="h-4 w-4" />
-                    </Button>
-                  </div>
-                  <h2 className="font-semibold text-xl mt-4">{profile.name}</h2>
-                  <p className="text-muted-foreground">{profile.email}</p>
-                  <Badge variant="secondary" className="mt-2">
-                    Member since {stats.memberSince}
+        {/* User Profile Card */}
+        {isLoggedIn && (
+          <Card className="apple-card mb-6 rounded-2xl border-0 bg-card/50 backdrop-blur-sm">
+            <CardContent className="p-6">
+              <div className="flex items-center gap-4">
+                <Avatar className="w-16 h-16">
+                  <AvatarImage src={user.avatar} />
+                  <AvatarFallback className="text-lg bg-primary/10 text-primary">
+                    {user.name.split(' ').map(n => n[0]).join('')}
+                  </AvatarFallback>
+                </Avatar>
+                <div className="flex-1">
+                  <h2 className="apple-subtitle text-xl font-semibold">{user.name}</h2>
+                  <p className="apple-caption text-muted-foreground">{user.email}</p>
+                  <Badge variant="secondary" className="mt-1">
+                    Member since {user.memberSince}
                   </Badge>
                 </div>
+                <ChevronRight className="h-5 w-5 text-muted-foreground" />
+              </div>
 
-                <div className="space-y-3 text-sm">
-                  <div className="flex items-center gap-2">
-                    <Phone className="h-4 w-4 text-muted-foreground" />
-                    <span>{profile.phone}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <MapPin className="h-4 w-4 text-muted-foreground" />
-                    <span>{profile.location}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4 text-muted-foreground" />
-                    <span>Born {profile.dateOfBirth}</span>
-                  </div>
+              {/* Quick Stats */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-6 border-t border-border/50">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-primary">{user.stats.ticketsPurchased}</div>
+                  <div className="text-xs text-muted-foreground">Tickets</div>
                 </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-primary">{user.stats.eventsAttended}</div>
+                  <div className="text-xs text-muted-foreground">Events</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-primary">{user.stats.totalSpent.toLocaleString()}</div>
+                  <div className="text-xs text-muted-foreground">RWF Spent</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-primary">{user.stats.favoriteTeams}</div>
+                  <div className="text-xs text-muted-foreground">Teams</div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
-                <div className="mt-6">
-                  <h3 className="font-semibold mb-3">Favorite Teams</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {profile.favoriteTeams.map((team) => (
-                      <Badge key={team} variant="outline" className="flex items-center gap-1">
-                        <Heart className="h-3 w-3" />
-                        {team}
-                      </Badge>
-                    ))}
-                  </div>
+        {/* Menu Sections */}
+        <div className="space-y-6">
+          {menuSections.map((section, sectionIndex) => (
+            <Card key={section.title} className="apple-card rounded-2xl border-0 bg-card/50 backdrop-blur-sm">
+              <CardContent className="p-0">
+                <div className="p-4 pb-2">
+                  <h3 className="apple-subtitle text-sm font-semibold text-muted-foreground uppercase tracking-wide">
+                    {section.title}
+                  </h3>
+                </div>
+                <div className="space-y-0">
+                  {section.items.map((item, itemIndex) => {
+                    const Icon = item.icon
+                    return (
+                      <Link key={item.label} href={item.href}>
+                        <div className="apple-button flex items-center gap-4 p-4 hover:bg-muted/50 transition-colors duration-200 border-b border-border/30 last:border-b-0">
+                          <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
+                            <Icon className="h-4 w-4 text-primary" />
+                          </div>
+                          <div className="flex-1">
+                            <div className="apple-body font-medium">{item.label}</div>
+                            <div className="apple-caption text-xs text-muted-foreground">{item.description}</div>
+                          </div>
+                          <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                        </div>
+                      </Link>
+                    )
+                  })}
                 </div>
               </CardContent>
             </Card>
+          ))}
 
-            {/* Quick Stats */}
-            <Card className="mt-6">
-              <CardHeader>
-                <CardTitle className="text-lg">Activity Stats</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Trophy className="h-4 w-4 text-primary" />
-                    <span className="text-sm">Tickets Purchased</span>
+          {/* Logout Button */}
+          {isLoggedIn && (
+            <Card className="apple-card rounded-2xl border-0 bg-card/50 backdrop-blur-sm">
+              <CardContent className="p-0">
+                <button className="apple-button w-full flex items-center gap-4 p-4 hover:bg-red-50 dark:hover:bg-red-950/20 transition-colors duration-200 text-red-600 dark:text-red-400">
+                  <div className="w-8 h-8 bg-red-100 dark:bg-red-950/50 rounded-lg flex items-center justify-center">
+                    <LogOut className="h-4 w-4 text-red-600 dark:text-red-400" />
                   </div>
-                  <span className="font-semibold">{stats.ticketsPurchased}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4 text-primary" />
-                    <span className="text-sm">Events Attended</span>
+                  <div className="flex-1 text-left">
+                    <div className="apple-body font-medium">Sign Out</div>
+                    <div className="apple-caption text-xs text-muted-foreground">Sign out of your account</div>
                   </div>
-                  <span className="font-semibold">{stats.eventsAttended}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm">Total Spent</span>
-                  </div>
-                  <span className="font-semibold">{stats.totalSpent.toLocaleString()} RWF</span>
-                </div>
+                </button>
               </CardContent>
             </Card>
-          </div>
-
-          {/* Profile Details */}
-          <div className="lg:col-span-2">
-            <Tabs defaultValue="personal" className="w-full">
-              <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="personal">Personal Info</TabsTrigger>
-                <TabsTrigger value="preferences">Preferences</TabsTrigger>
-                <TabsTrigger value="security">Security</TabsTrigger>
-              </TabsList>
-
-              <TabsContent value="personal" className="space-y-6">
-                <Card>
-                  <CardHeader>
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <CardTitle>Personal Information</CardTitle>
-                        <CardDescription>Update your personal details and bio</CardDescription>
-                      </div>
-                      <Button
-                        variant={isEditing ? "default" : "outline"}
-                        onClick={() => (isEditing ? handleSave() : setIsEditing(true))}
-                      >
-                        {isEditing ? (
-                          <>
-                            <Save className="mr-2 h-4 w-4" />
-                            Save Changes
-                          </>
-                        ) : (
-                          <>
-                            <Edit className="mr-2 h-4 w-4" />
-                            Edit Profile
-                          </>
-                        )}
-                      </Button>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="name">Full Name</Label>
-                        <Input
-                          id="name"
-                          value={profile.name}
-                          onChange={(e) => setProfile({ ...profile, name: e.target.value })}
-                          disabled={!isEditing}
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="email">Email Address</Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          value={profile.email}
-                          onChange={(e) => setProfile({ ...profile, email: e.target.value })}
-                          disabled={!isEditing}
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="phone">Phone Number</Label>
-                        <Input
-                          id="phone"
-                          value={profile.phone}
-                          onChange={(e) => setProfile({ ...profile, phone: e.target.value })}
-                          disabled={!isEditing}
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="location">Location</Label>
-                        <Input
-                          id="location"
-                          value={profile.location}
-                          onChange={(e) => setProfile({ ...profile, location: e.target.value })}
-                          disabled={!isEditing}
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="dob">Date of Birth</Label>
-                        <Input
-                          id="dob"
-                          type="date"
-                          value={profile.dateOfBirth}
-                          onChange={(e) => setProfile({ ...profile, dateOfBirth: e.target.value })}
-                          disabled={!isEditing}
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="language">Preferred Language</Label>
-                        <Select
-                          value={profile.language}
-                          onValueChange={(value) => setProfile({ ...profile, language: value })}
-                          disabled={!isEditing}
-                        >
-                          <SelectTrigger>
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="en">English</SelectItem>
-                            <SelectItem value="rw">Kinyarwanda</SelectItem>
-                            <SelectItem value="fr">Français</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
-                    <div>
-                      <Label htmlFor="bio">Bio</Label>
-                      <Textarea
-                        id="bio"
-                        placeholder="Tell us about yourself..."
-                        value={profile.bio}
-                        onChange={(e) => setProfile({ ...profile, bio: e.target.value })}
-                        disabled={!isEditing}
-                        rows={3}
-                      />
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-
-              <TabsContent value="preferences" className="space-y-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Bell className="h-5 w-5" />
-                      Notification Preferences
-                    </CardTitle>
-                    <CardDescription>Choose how you want to receive updates</CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-6">
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <Label htmlFor="email-notifications">Email Notifications</Label>
-                          <p className="text-sm text-muted-foreground">Receive updates via email</p>
-                        </div>
-                        <Switch
-                          id="email-notifications"
-                          checked={profile.notifications.email}
-                          onCheckedChange={(checked) =>
-                            setProfile({
-                              ...profile,
-                              notifications: { ...profile.notifications, email: checked },
-                            })
-                          }
-                        />
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <Label htmlFor="sms-notifications">SMS Notifications</Label>
-                          <p className="text-sm text-muted-foreground">Receive updates via SMS</p>
-                        </div>
-                        <Switch
-                          id="sms-notifications"
-                          checked={profile.notifications.sms}
-                          onCheckedChange={(checked) =>
-                            setProfile({
-                              ...profile,
-                              notifications: { ...profile.notifications, sms: checked },
-                            })
-                          }
-                        />
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <Label htmlFor="match-reminders">Match Reminders</Label>
-                          <p className="text-sm text-muted-foreground">Get reminded about upcoming matches</p>
-                        </div>
-                        <Switch
-                          id="match-reminders"
-                          checked={profile.notifications.matchReminders}
-                          onCheckedChange={(checked) =>
-                            setProfile({
-                              ...profile,
-                              notifications: { ...profile.notifications, matchReminders: checked },
-                            })
-                          }
-                        />
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <Label htmlFor="team-updates">Team Updates</Label>
-                          <p className="text-sm text-muted-foreground">News and updates from your favorite teams</p>
-                        </div>
-                        <Switch
-                          id="team-updates"
-                          checked={profile.notifications.teamUpdates}
-                          onCheckedChange={(checked) =>
-                            setProfile({
-                              ...profile,
-                              notifications: { ...profile.notifications, teamUpdates: checked },
-                            })
-                          }
-                        />
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <Label htmlFor="promotions">Promotional Offers</Label>
-                          <p className="text-sm text-muted-foreground">Special offers and discounts</p>
-                        </div>
-                        <Switch
-                          id="promotions"
-                          checked={profile.notifications.promotions}
-                          onCheckedChange={(checked) =>
-                            setProfile({
-                              ...profile,
-                              notifications: { ...profile.notifications, promotions: checked },
-                            })
-                          }
-                        />
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Globe className="h-5 w-5" />
-                      Language & Region
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="display-language">Display Language</Label>
-                        <Select
-                          value={profile.language}
-                          onValueChange={(value) => setProfile({ ...profile, language: value })}
-                        >
-                          <SelectTrigger>
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="en">English</SelectItem>
-                            <SelectItem value="rw">Kinyarwanda</SelectItem>
-                            <SelectItem value="fr">Français</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div>
-                        <Label htmlFor="timezone">Timezone</Label>
-                        <Select defaultValue="africa/kigali">
-                          <SelectTrigger>
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="africa/kigali">Africa/Kigali (CAT)</SelectItem>
-                            <SelectItem value="utc">UTC</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-
-              <TabsContent value="security" className="space-y-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Shield className="h-5 w-5" />
-                      Security Settings
-                    </CardTitle>
-                    <CardDescription>Manage your account security and privacy</CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div>
-                      <Label htmlFor="current-password">Current Password</Label>
-                      <Input id="current-password" type="password" placeholder="Enter current password" />
-                    </div>
-                    <div>
-                      <Label htmlFor="new-password">New Password</Label>
-                      <Input id="new-password" type="password" placeholder="Enter new password" />
-                    </div>
-                    <div>
-                      <Label htmlFor="confirm-password">Confirm New Password</Label>
-                      <Input id="confirm-password" type="password" placeholder="Confirm new password" />
-                    </div>
-                    <Button>Update Password</Button>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Two-Factor Authentication</CardTitle>
-                    <CardDescription>Add an extra layer of security to your account</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="font-medium">SMS Authentication</p>
-                        <p className="text-sm text-muted-foreground">Receive verification codes via SMS</p>
-                      </div>
-                      <Button variant="outline">Enable</Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-            </Tabs>
-          </div>
+          )}
         </div>
       </div>
     </div>

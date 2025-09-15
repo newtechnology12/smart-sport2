@@ -9,6 +9,8 @@ import { Trophy, Calendar, Wallet, Users, Star, ArrowRight } from "lucide-react"
 import { matches } from "@/lib/dummy-data"
 import { getSportImage } from "@/lib/images"
 import { FootballIcon, BasketballIcon, VolleyballIcon, EventIcon, AllSportsIcon } from "@/components/icons/sport-icons"
+import { VideoBackground } from "@/components/ui/video-background"
+import { AutoTyping } from "@/components/ui/auto-typing"
 
 export default function HomePage() {
   const [selectedSport, setSelectedSport] = useState("All")
@@ -19,31 +21,70 @@ export default function HomePage() {
 
   const upcomingMatches = filteredMatches.slice(0, 3)
 
+  // Video backgrounds
+  const heroVideos = [
+    "/videos/football.mp4",
+    "/videos/basketball.mp4",
+    "/videos/volleyball.mp4",
+    "/videos/handball.mp4"
+  ]
+
+  // Auto-typing texts
+  const typingTexts = [
+    "Rwanda's Premier Sports Platform",
+    "Digital Tickets, Real Experiences",
+    "Support Your Favorite Teams",
+    "Mobile Money Made Easy"
+  ]
+
   return (
     <div className="min-h-screen bg-background">
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary/10 to-secondary/10 px-4 py-6 md:py-8">
-        <div className="container max-w-4xl mx-auto text-center">
-          <h1 className="font-serif text-2xl md:text-4xl font-bold text-balance mb-3 md:mb-4">
-            Rwanda's Premier Sports Ticketing Platform
-          </h1>
-          <p className="text-muted-foreground text-base md:text-lg mb-4 md:mb-6 text-pretty px-2">
-            Buy tickets for Football, Basketball, Volleyball and Events. Digital tickets with QR codes, mobile money
-            support, and more.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center px-4 sm:px-0">
-            <Link href="/sports" className="w-full sm:w-auto">
-              <Button size="lg" className="apple-button w-full sm:w-auto rounded-xl px-6 md:px-8 py-3 h-11 md:h-12">
-                <Trophy className="mr-2 h-4 md:h-5 w-4 md:w-5" />
-                Buy Tickets
-              </Button>
-            </Link>
-            <Link href="/auth/register" className="w-full sm:w-auto">
-              <Button variant="outline" size="lg" className="apple-button w-full sm:w-auto bg-transparent rounded-xl px-6 md:px-8 py-3 h-11 md:h-12">
-                Create Account
-              </Button>
-            </Link>
+      {/* Hero Section with Video Background */}
+      <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+        {/* Video Background */}
+        <VideoBackground
+          videos={heroVideos}
+          className="absolute inset-0"
+          autoSlide={true}
+          slideInterval={10000}
+        />
+
+        {/* Hero Content */}
+        <div className="relative z-10 container max-w-4xl mx-auto text-center px-4">
+          <div className="text-white">
+            {/* Auto-typing Title */}
+            <h1 className="apple-title text-3xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8">
+              <AutoTyping
+                texts={typingTexts}
+                typeSpeed={80}
+                deleteSpeed={40}
+                pauseDuration={3000}
+                className="text-white drop-shadow-lg"
+              />
+            </h1>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/sports" className="w-full sm:w-auto">
+                <Button
+                  size="lg"
+                  className="apple-button w-full sm:w-auto bg-primary hover:bg-primary/90 text-white rounded-2xl px-8 py-4 h-14 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
+                >
+                  <Trophy className="mr-3 h-5 w-5" />
+                  BUY TICKET
+                </Button>
+              </Link>
+              <Link href="/auth/register" className="w-full sm:w-auto">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="apple-button w-full sm:w-auto bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20 rounded-2xl px-8 py-4 h-14 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
+                >
+                  CREATE ACCOUNT
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -90,69 +131,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="px-4 py-8 md:py-12">
-        <div className="container max-w-4xl mx-auto">
-          <h2 className="font-serif text-xl md:text-2xl font-bold text-center mb-6 md:mb-8">Why Choose SmartSports RW?</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            <Card className="apple-card rounded-2xl border-0 shadow-sm bg-card/50 backdrop-blur-sm">
-              <CardHeader className="text-center">
-                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-3">
-                  <Trophy className="h-6 w-6 text-primary" />
-                </div>
-                <CardTitle className="text-lg">Multiple Sports</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-center">
-                  Football, Basketball, Volleyball, and Events all in one platform
-                </CardDescription>
-              </CardContent>
-            </Card>
 
-            <Card className="apple-card rounded-2xl border-0 shadow-sm bg-card/50 backdrop-blur-sm">
-              <CardHeader className="text-center">
-                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-3">
-                  <Calendar className="h-6 w-6 text-primary" />
-                </div>
-                <CardTitle className="text-lg">Digital Tickets</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-center">
-                  QR code tickets that work on your phone - no more paper tickets
-                </CardDescription>
-              </CardContent>
-            </Card>
-
-            <Card className="apple-card rounded-2xl border-0 shadow-sm bg-card/50 backdrop-blur-sm">
-              <CardHeader className="text-center">
-                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-3">
-                  <Wallet className="h-6 w-6 text-primary" />
-                </div>
-                <CardTitle className="text-lg">Mobile Money</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-center">
-                  Pay with MTN Mobile Money, Airtel Money, or bank transfer
-                </CardDescription>
-              </CardContent>
-            </Card>
-
-            <Card className="apple-card rounded-2xl border-0 shadow-sm bg-card/50 backdrop-blur-sm">
-              <CardHeader className="text-center">
-                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-3">
-                  <Users className="h-6 w-6 text-primary" />
-                </div>
-                <CardTitle className="text-lg">Support Teams</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-center">
-                  Donate to your favorite teams and help them grow
-                </CardDescription>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
 
       {/* Upcoming Matches */}
       <section className="px-4 py-8 md:py-12 bg-muted/30">
@@ -247,32 +226,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="px-4 py-8 md:py-12">
-        <div className="container max-w-4xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 text-center">
-            <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-4 md:p-6">
-              <div className="text-2xl md:text-3xl font-bold text-primary mb-1 md:mb-2">50K+</div>
-              <div className="text-muted-foreground text-sm md:text-base">Tickets Sold</div>
-            </div>
-            <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-4 md:p-6">
-              <div className="text-2xl md:text-3xl font-bold text-primary mb-1 md:mb-2">25+</div>
-              <div className="text-muted-foreground text-sm md:text-base">Teams Supported</div>
-            </div>
-            <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-4 md:p-6">
-              <div className="text-2xl md:text-3xl font-bold text-primary mb-1 md:mb-2">100+</div>
-              <div className="text-muted-foreground text-sm md:text-base">Events Hosted</div>
-            </div>
-            <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-4 md:p-6">
-              <div className="text-2xl md:text-3xl font-bold text-primary mb-1 md:mb-2">4.9</div>
-              <div className="text-muted-foreground flex items-center justify-center gap-1 text-sm md:text-base">
-                <Star className="h-3 md:h-4 w-3 md:w-4 fill-current text-yellow-500" />
-                Rating
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+
     </div>
   )
 }

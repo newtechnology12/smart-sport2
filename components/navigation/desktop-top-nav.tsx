@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Bell, Home, Trophy, Calendar, User, Wallet, Settings, Search } from "lucide-react"
+import { Bell, Home, Trophy, Calendar, User, Wallet, Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { cn } from "@/lib/utils"
@@ -61,31 +61,20 @@ export function DesktopTopNav() {
           {/* Right Actions */}
           <div className="flex items-center gap-2">
             <Link href="/search">
-              <Button 
-                variant="ghost" 
-                size="sm" 
+              <Button
+                variant="ghost"
+                size="sm"
                 className="apple-button apple-focus h-10 w-10 rounded-xl hover:bg-muted/50"
               >
                 <Search className="h-4 w-4" />
               </Button>
             </Link>
-            
+
             <LanguageSwitcher />
-            
-            <Link href="/admin">
-              <Button 
-                variant="outline" 
-                size="sm" 
-                className="apple-button apple-focus bg-red-50 border-red-200 text-red-700 hover:bg-red-100 rounded-xl px-4 py-2 h-10"
-              >
-                <Settings className="h-4 w-4 mr-2" />
-                Admin
-              </Button>
-            </Link>
-            
-            <Button 
-              variant="ghost" 
-              size="sm" 
+
+            <Button
+              variant="ghost"
+              size="sm"
               className="apple-button apple-focus h-10 w-10 rounded-xl hover:bg-muted/50"
             >
               <Bell className="h-4 w-4" />
