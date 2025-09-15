@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
-import { Header } from "@/components/header"
+
 import { ArrowLeft, Calendar, Clock, MapPin, CreditCard, Smartphone, DollarSign, Trash2, ShoppingCart } from "lucide-react"
 import { matches } from "@/lib/dummy-data"
 import { getSportImage } from "@/lib/images"
@@ -123,7 +123,6 @@ EBM Receipt will be sent to ${email}`)
   if (selectedMatches.length === 0) {
     return (
       <div className="min-h-screen bg-background">
-        <Header />
         <div className="container max-w-4xl mx-auto px-4 py-6">
           <Card>
             <CardContent className="text-center py-12">
@@ -144,7 +143,6 @@ EBM Receipt will be sent to ${email}`)
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
 
       <div className="container max-w-6xl mx-auto px-4 py-6">
         <div className="mb-8">
