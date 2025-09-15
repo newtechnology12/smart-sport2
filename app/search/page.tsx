@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Header } from "@/components/header"
+
 import { Search, Calendar, MapPin, Trophy, ShoppingBag, Users, Filter } from "lucide-react"
 import { matches, storeProducts, teams } from "@/lib/dummy-data"
 
@@ -70,7 +70,6 @@ export default function SearchPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
 
       <div className="container max-w-6xl mx-auto px-4 py-6">
         <div className="mb-8">
