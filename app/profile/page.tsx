@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Switch } from "@/components/ui/switch"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Header } from "@/components/header"
+
 import { User, Edit, Bell, Shield, Globe, Heart, Trophy, Camera, Save, Phone, MapPin, Calendar } from "lucide-react"
 
 export default function ProfilePage() {
@@ -51,7 +51,6 @@ export default function ProfilePage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
 
       <div className="container max-w-6xl mx-auto px-4 py-6">
         <div className="mb-8">
