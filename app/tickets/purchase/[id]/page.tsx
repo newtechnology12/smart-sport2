@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
+import { IntouchPaymentModal } from "@/components/payment/IntouchPaymentModal"
 
 import { ArrowLeft, Calendar, Clock, MapPin, CreditCard, Smartphone, DollarSign, Minus, Plus } from "lucide-react"
 import { matches } from "@/lib/dummy-data"
@@ -21,10 +22,11 @@ interface TicketPurchasePageProps {
 export default function TicketPurchasePage({ params }: TicketPurchasePageProps) {
   const [ticketType, setTicketType] = useState("regular")
   const [quantity, setQuantity] = useState(1)
-  const [paymentMethod, setPaymentMethod] = useState("")
+  const [paymentMethod, setPaymentMethod] = useState("mobile_money")
   const [phoneNumber, setPhoneNumber] = useState("")
   const [email, setEmail] = useState("")
   const [fullName, setFullName] = useState("")
+  const [showPaymentModal, setShowPaymentModal] = useState(false)
 
   const match = matches.find((m) => m.id.toString() === params.id || m.id === parseInt(params.id))
 
@@ -54,40 +56,36 @@ export default function TicketPurchasePage({ params }: TicketPurchasePageProps) 
   const finalTotal = totalPrice + serviceFee + vatAmount
 
   const handlePurchase = async () => {
-    if (!paymentMethod || !phoneNumber || !fullName) {
-      alert("Please fill in all required fields (Name, Phone Number, and Payment Method)")
+    if (!phoneNumber || !fullName) {
+      alert("Please fill in all required fields (Name and Phone Number)")
       return
     }
 
-    try {
-      const purchaseData = {
-        event_id: match.id,
-        ticket_type: ticketType,
-        quantity: quantity,
-        payment_method: paymentMethod,
-        customer_name: fullName,
-        customer_phone: phoneNumber,
-        customer_email: email || undefined
-      }
-
-      // In a real implementation, this would be an API call
-      // const response = await fetch('/api/v1/tickets/purchase', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(purchaseData)
-      // })
-      // const result = await response.json()
-
-      // For now, simulate success and redirect to success page
-      const paymentRef = `SSR${Date.now()}${Math.floor(Math.random() * 1000)}`
-
-      // Redirect to success page with payment reference
-      window.location.href = `/tickets/success?ref=${paymentRef}&event=${encodeURIComponent(match.home_team + ' vs ' + match.away_team)}&quantity=${quantity}&total=${finalTotal}`
-
-    } catch (error) {
-      console.error('Purchase failed:', error)
-      alert('Purchase failed. Please try again.')
+    // Validate phone number format
+    const cleanPhone = phoneNumber.replace(/\D/g, '')
+    if (!/^250\d{9}$/.test(cleanPhone)) {
+      alert("Please enter a valid Rwandan phone number (12 digits starting with 250)")
+      return
     }
+
+    // Show payment modal for mobile money payment
+    setShowPaymentModal(true)
+  }
+
+  const handlePaymentComplete = (paymentData: any) => {
+    console.log('Payment completed:', paymentData)
+
+    // Create payment reference
+    const paymentRef = paymentData.transactionId || `SSR${Date.now()}${Math.floor(Math.random() * 1000)}`
+
+    // Redirect to success page with payment reference
+    window.location.href = `/tickets/success?ref=${paymentRef}&event=${encodeURIComponent(match.home_team + ' vs ' + match.away_team)}&quantity=${quantity}&total=${finalTotal}&txn=${paymentData.intouchpayTransactionId || ''}`
+  }
+
+  const handlePaymentError = (error: string) => {
+    console.error('Payment failed:', error)
+    alert(`Payment failed: ${error}`)
+    setShowPaymentModal(false)
   }
 
   return (
@@ -280,28 +278,10 @@ export default function TicketPurchasePage({ params }: TicketPurchasePageProps) 
                         <SelectValue placeholder="Select payment method" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="mtn">
+                        <SelectItem value="mobile_money">
                           <div className="flex items-center gap-2">
                             <Smartphone className="h-4 w-4" />
-                            MTN Rwanda
-                          </div>
-                        </SelectItem>
-                        <SelectItem value="airtel">
-                          <div className="flex items-center gap-2">
-                            <Smartphone className="h-4 w-4" />
-                            Airtel Rwanda
-                          </div>
-                        </SelectItem>
-                        <SelectItem value="bank_transfer">
-                          <div className="flex items-center gap-2">
-                            <CreditCard className="h-4 w-4" />
-                            Bank Transfer
-                          </div>
-                        </SelectItem>
-                        <SelectItem value="wallet">
-                          <div className="flex items-center gap-2">
-                            <DollarSign className="h-4 w-4" />
-                            System Wallet
+                            Mobile Money (MTN/Airtel)
                           </div>
                         </SelectItem>
                       </SelectContent>
@@ -358,6 +338,16 @@ export default function TicketPurchasePage({ params }: TicketPurchasePageProps) 
           </div>
         </div>
       </div>
+
+      {/* InTouch Payment Modal */}
+      <IntouchPaymentModal
+        isOpen={showPaymentModal}
+        onClose={() => setShowPaymentModal(false)}
+        amount={finalTotal}
+        description={`${quantity}x ${ticketType.toUpperCase()} ticket${quantity > 1 ? 's' : ''} for ${match.home_team} vs ${match.away_team}`}
+        onPaymentComplete={handlePaymentComplete}
+        onPaymentError={handlePaymentError}
+      />
     </div>
   )
 }
