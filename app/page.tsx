@@ -5,10 +5,10 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Header } from "@/components/header"
 import { Trophy, Calendar, Wallet, Users, Star, ArrowRight } from "lucide-react"
 import { matches } from "@/lib/dummy-data"
 import { getSportImage } from "@/lib/images"
+import { FootballIcon, BasketballIcon, VolleyballIcon, EventIcon, AllSportsIcon } from "@/components/icons/sport-icons"
 
 export default function HomePage() {
   const [selectedSport, setSelectedSport] = useState("All")
@@ -21,27 +21,26 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary/10 to-secondary/10 px-4 py-8">
+      <section className="bg-gradient-to-br from-primary/10 to-secondary/10 px-4 py-6 md:py-8">
         <div className="container max-w-4xl mx-auto text-center">
-          <h1 className="font-serif text-3xl md:text-4xl font-bold text-balance mb-4">
+          <h1 className="font-serif text-2xl md:text-4xl font-bold text-balance mb-3 md:mb-4">
             Rwanda's Premier Sports Ticketing Platform
           </h1>
-          <p className="text-muted-foreground text-lg mb-6 text-pretty">
+          <p className="text-muted-foreground text-base md:text-lg mb-4 md:mb-6 text-pretty px-2">
             Buy tickets for Football, Basketball, Volleyball and Events. Digital tickets with QR codes, mobile money
             support, and more.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/sports">
-              <Button size="lg" className="w-full sm:w-auto">
-                <Trophy className="mr-2 h-5 w-5" />
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center px-4 sm:px-0">
+            <Link href="/sports" className="w-full sm:w-auto">
+              <Button size="lg" className="apple-button w-full sm:w-auto rounded-xl px-6 md:px-8 py-3 h-11 md:h-12">
+                <Trophy className="mr-2 h-4 md:h-5 w-4 md:w-5" />
                 Buy Tickets
               </Button>
             </Link>
-            <Link href="/auth/register">
-              <Button variant="outline" size="lg" className="w-full sm:w-auto bg-transparent">
+            <Link href="/auth/register" className="w-full sm:w-auto">
+              <Button variant="outline" size="lg" className="apple-button w-full sm:w-auto bg-transparent rounded-xl px-6 md:px-8 py-3 h-11 md:h-12">
                 Create Account
               </Button>
             </Link>
@@ -50,33 +49,41 @@ export default function HomePage() {
       </section>
 
       {/* Sports Categories Navigation */}
-      <section className="px-4 py-8 bg-muted/20">
+      <section className="px-4 py-6 md:py-8 bg-muted/20">
         <div className="container max-w-4xl mx-auto">
-          <h2 className="font-serif text-2xl font-bold text-center mb-6">Browse by Sport</h2>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/sports">
-              <Button variant="outline" size="lg" className="bg-white hover:bg-primary hover:text-white">
-                All Sports
+          <h2 className="font-serif text-xl md:text-2xl font-bold text-center mb-4 md:mb-6">Browse by Sport</h2>
+          <div className="grid grid-cols-2 md:flex md:flex-wrap md:justify-center gap-3 md:gap-4">
+            <Link href="/sports" className="w-full md:w-auto">
+              <Button variant="outline" size="lg" className="apple-button bg-white hover:bg-primary hover:text-white rounded-xl flex items-center justify-center gap-2 w-full md:w-auto h-12 md:h-auto text-sm md:text-base">
+                <AllSportsIcon size={18} className="md:w-5 md:h-5" />
+                <span className="hidden sm:inline">All Sports</span>
+                <span className="sm:hidden">All</span>
               </Button>
             </Link>
-            <Link href="/sports/football">
-              <Button variant="outline" size="lg" className="bg-white hover:bg-primary hover:text-white">
-                ⚽ Football
+            <Link href="/sports/football" className="w-full md:w-auto">
+              <Button variant="outline" size="lg" className="apple-button bg-white hover:bg-primary hover:text-white rounded-xl flex items-center justify-center gap-2 w-full md:w-auto h-12 md:h-auto text-sm md:text-base">
+                <FootballIcon size={18} className="md:w-5 md:h-5" />
+                Football
               </Button>
             </Link>
-            <Link href="/sports/basketball">
-              <Button variant="outline" size="lg" className="bg-white hover:bg-primary hover:text-white">
-                🏀 Basketball
+            <Link href="/sports/basketball" className="w-full md:w-auto">
+              <Button variant="outline" size="lg" className="apple-button bg-white hover:bg-primary hover:text-white rounded-xl flex items-center justify-center gap-2 w-full md:w-auto h-12 md:h-auto text-sm md:text-base">
+                <BasketballIcon size={18} className="md:w-5 md:h-5" />
+                <span className="hidden sm:inline">Basketball</span>
+                <span className="sm:hidden">B-Ball</span>
               </Button>
             </Link>
-            <Link href="/sports/volleyball">
-              <Button variant="outline" size="lg" className="bg-white hover:bg-primary hover:text-white">
-                🏐 Volleyball
+            <Link href="/sports/volleyball" className="w-full md:w-auto">
+              <Button variant="outline" size="lg" className="apple-button bg-white hover:bg-primary hover:text-white rounded-xl flex items-center justify-center gap-2 w-full md:w-auto h-12 md:h-auto text-sm md:text-base">
+                <VolleyballIcon size={18} className="md:w-5 md:h-5" />
+                <span className="hidden sm:inline">Volleyball</span>
+                <span className="sm:hidden">V-Ball</span>
               </Button>
             </Link>
-            <Link href="/sports/events">
-              <Button variant="outline" size="lg" className="bg-white hover:bg-primary hover:text-white">
-                🎪 Events
+            <Link href="/sports/events" className="w-full md:w-auto col-span-2 md:col-span-1">
+              <Button variant="outline" size="lg" className="apple-button bg-white hover:bg-primary hover:text-white rounded-xl flex items-center justify-center gap-2 w-full md:w-auto h-12 md:h-auto text-sm md:text-base">
+                <EventIcon size={18} className="md:w-5 md:h-5" />
+                Events
               </Button>
             </Link>
           </div>
@@ -84,13 +91,15 @@ export default function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="px-4 py-12">
+      <section className="px-4 py-8 md:py-12">
         <div className="container max-w-4xl mx-auto">
-          <h2 className="font-serif text-2xl font-bold text-center mb-8">Why Choose SmartSports RW?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card>
+          <h2 className="font-serif text-xl md:text-2xl font-bold text-center mb-6 md:mb-8">Why Choose SmartSports RW?</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            <Card className="apple-card rounded-2xl border-0 shadow-sm bg-card/50 backdrop-blur-sm">
               <CardHeader className="text-center">
-                <Trophy className="h-8 w-8 text-primary mx-auto mb-2" />
+                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-3">
+                  <Trophy className="h-6 w-6 text-primary" />
+                </div>
                 <CardTitle className="text-lg">Multiple Sports</CardTitle>
               </CardHeader>
               <CardContent>
@@ -100,9 +109,11 @@ export default function HomePage() {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="apple-card rounded-2xl border-0 shadow-sm bg-card/50 backdrop-blur-sm">
               <CardHeader className="text-center">
-                <Calendar className="h-8 w-8 text-primary mx-auto mb-2" />
+                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-3">
+                  <Calendar className="h-6 w-6 text-primary" />
+                </div>
                 <CardTitle className="text-lg">Digital Tickets</CardTitle>
               </CardHeader>
               <CardContent>
@@ -112,9 +123,11 @@ export default function HomePage() {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="apple-card rounded-2xl border-0 shadow-sm bg-card/50 backdrop-blur-sm">
               <CardHeader className="text-center">
-                <Wallet className="h-8 w-8 text-primary mx-auto mb-2" />
+                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-3">
+                  <Wallet className="h-6 w-6 text-primary" />
+                </div>
                 <CardTitle className="text-lg">Mobile Money</CardTitle>
               </CardHeader>
               <CardContent>
@@ -124,9 +137,11 @@ export default function HomePage() {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="apple-card rounded-2xl border-0 shadow-sm bg-card/50 backdrop-blur-sm">
               <CardHeader className="text-center">
-                <Users className="h-8 w-8 text-primary mx-auto mb-2" />
+                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-3">
+                  <Users className="h-6 w-6 text-primary" />
+                </div>
                 <CardTitle className="text-lg">Support Teams</CardTitle>
               </CardHeader>
               <CardContent>
@@ -140,22 +155,24 @@ export default function HomePage() {
       </section>
 
       {/* Upcoming Matches */}
-      <section className="px-4 py-12 bg-muted/30">
+      <section className="px-4 py-8 md:py-12 bg-muted/30">
         <div className="container max-w-4xl mx-auto">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="font-serif text-2xl font-bold">Upcoming Matches</h2>
+          <div className="flex items-center justify-between mb-6 md:mb-8">
+            <h2 className="font-serif text-xl md:text-2xl font-bold">Upcoming Matches</h2>
             <Link href="/sports">
-              <Button variant="outline" size="sm">
-                View All
-                <ArrowRight className="ml-2 h-4 w-4" />
+              <Button variant="outline" size="sm" className="apple-button rounded-xl text-xs md:text-sm">
+                <span className="hidden sm:inline">View All</span>
+                <span className="sm:hidden">All</span>
+                <ArrowRight className="ml-1 md:ml-2 h-3 md:h-4 w-3 md:w-4" />
               </Button>
             </Link>
           </div>
 
-          <div className="flex flex-wrap gap-2 mb-6">
+          <div className="flex flex-wrap gap-2 mb-4 md:mb-6 overflow-x-auto pb-2">
             <Button
               variant={selectedSport === "All" ? "default" : "outline"}
               size="sm"
+              className="apple-button rounded-xl"
               onClick={() => setSelectedSport("All")}
             >
               All
@@ -163,6 +180,7 @@ export default function HomePage() {
             <Button
               variant={selectedSport === "Football" ? "default" : "outline"}
               size="sm"
+              className="apple-button rounded-xl"
               onClick={() => setSelectedSport("Football")}
             >
               Football
@@ -170,6 +188,7 @@ export default function HomePage() {
             <Button
               variant={selectedSport === "Basketball" ? "default" : "outline"}
               size="sm"
+              className="apple-button rounded-xl"
               onClick={() => setSelectedSport("Basketball")}
             >
               Basketball
@@ -177,15 +196,16 @@ export default function HomePage() {
             <Button
               variant={selectedSport === "Volleyball" ? "default" : "outline"}
               size="sm"
+              className="apple-button rounded-xl"
               onClick={() => setSelectedSport("Volleyball")}
             >
               Volleyball
             </Button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {filteredMatches.map((match) => (
-              <Card key={match.id} className="overflow-hidden">
+              <Card key={match.id} className="apple-card overflow-hidden rounded-2xl border-0 shadow-sm bg-card/50 backdrop-blur-sm">
                 <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/20 relative">
                   <Image
                     src={match.image || getSportImage(match.sport)}
@@ -217,7 +237,7 @@ export default function HomePage() {
                   <div className="flex items-center justify-between">
                     <span className="text-lg font-semibold text-primary">{match.price.toLocaleString()} RWF</span>
                     <Link href={`/tickets/purchase/${match.id}`}>
-                      <Button size="sm">Buy Ticket</Button>
+                      <Button size="sm" className="apple-button rounded-xl">Buy Ticket</Button>
                     </Link>
                   </div>
                 </CardContent>
@@ -228,25 +248,25 @@ export default function HomePage() {
       </section>
 
       {/* Stats Section */}
-      <section className="px-4 py-12">
+      <section className="px-4 py-8 md:py-12">
         <div className="container max-w-4xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div>
-              <div className="text-3xl font-bold text-primary mb-2">50K+</div>
-              <div className="text-muted-foreground">Tickets Sold</div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 text-center">
+            <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-4 md:p-6">
+              <div className="text-2xl md:text-3xl font-bold text-primary mb-1 md:mb-2">50K+</div>
+              <div className="text-muted-foreground text-sm md:text-base">Tickets Sold</div>
             </div>
-            <div>
-              <div className="text-3xl font-bold text-primary mb-2">25+</div>
-              <div className="text-muted-foreground">Teams Supported</div>
+            <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-4 md:p-6">
+              <div className="text-2xl md:text-3xl font-bold text-primary mb-1 md:mb-2">25+</div>
+              <div className="text-muted-foreground text-sm md:text-base">Teams Supported</div>
             </div>
-            <div>
-              <div className="text-3xl font-bold text-primary mb-2">100+</div>
-              <div className="text-muted-foreground">Events Hosted</div>
+            <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-4 md:p-6">
+              <div className="text-2xl md:text-3xl font-bold text-primary mb-1 md:mb-2">100+</div>
+              <div className="text-muted-foreground text-sm md:text-base">Events Hosted</div>
             </div>
-            <div>
-              <div className="text-3xl font-bold text-primary mb-2">4.9</div>
-              <div className="text-muted-foreground flex items-center justify-center gap-1">
-                <Star className="h-4 w-4 fill-current text-yellow-500" />
+            <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-4 md:p-6">
+              <div className="text-2xl md:text-3xl font-bold text-primary mb-1 md:mb-2">4.9</div>
+              <div className="text-muted-foreground flex items-center justify-center gap-1 text-sm md:text-base">
+                <Star className="h-3 md:h-4 w-3 md:w-4 fill-current text-yellow-500" />
                 Rating
               </div>
             </div>
