@@ -8,14 +8,16 @@ interface AutoTypingProps {
   deleteSpeed?: number
   pauseDuration?: number
   className?: string
+  minHeight?: string
 }
 
-export function AutoTyping({ 
-  texts, 
-  typeSpeed = 100, 
-  deleteSpeed = 50, 
+export function AutoTyping({
+  texts,
+  typeSpeed = 100,
+  deleteSpeed = 50,
   pauseDuration = 2000,
-  className = ""
+  className = "",
+  minHeight = "1.2em"
 }: AutoTypingProps) {
   const [currentTextIndex, setCurrentTextIndex] = useState(0)
   const [currentText, setCurrentText] = useState("")
@@ -61,13 +63,18 @@ export function AutoTyping({
   }, [])
 
   return (
-    <span className={className}>
-      {currentText}
-      <span 
-        className={`inline-block w-0.5 h-[1em] bg-current ml-1 transition-opacity duration-100 ${
-          showCursor ? "opacity-100" : "opacity-0"
-        }`}
-      />
-    </span>
+    <div
+      className={`inline-block ${className}`}
+      style={{ minHeight }}
+    >
+      <span className="inline-block">
+        {currentText}
+        <span
+          className={`inline-block w-0.5 h-[1em] bg-current ml-1 transition-opacity duration-100 ${
+            showCursor ? "opacity-100" : "opacity-0"
+          }`}
+        />
+      </span>
+    </div>
   )
 }
