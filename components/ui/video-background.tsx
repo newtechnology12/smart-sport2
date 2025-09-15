@@ -53,21 +53,36 @@ export function VideoBackground({
 
       // Try to play the video after a short delay
       setTimeout(() => {
-        const playPromise = video.play()
-        if (playPromise !== undefined) {
-          playPromise
-            .then(() => {
-              console.log("Video playing successfully:", videos[currentVideoIndex])
-              clearTimeout(loadTimeout)
-              setIsLoading(false)
-              setHasError(false)
-            })
-            .catch(error => {
-              console.error("Video play failed:", error, videos[currentVideoIndex])
-              clearTimeout(loadTimeout)
-              setIsLoading(false)
-              setHasError(true)
-            })
+        if (video.readyState >= 3) { // HAVE_FUTURE_DATA
+          const playPromise = video.play()
+          if (playPromise !== undefined) {
+            playPromise
+              .then(() => {
+                console.log("Video playing successfully:", videos[currentVideoIndex])
+                clearTimeout(loadTimeout)
+                setIsLoading(false)
+                setHasError(false)
+              })
+              .catch(error => {
+                if (error.name === 'AbortError') {
+                  console.warn("Video play interrupted (power saving):", videos[currentVideoIndex])
+                  // Try again after a longer delay for AbortError
+                  setTimeout(() => {
+                    if (video && video.paused && video.readyState >= 3) {
+                      video.play().catch(() => {
+                        console.warn("Retry autoplay failed")
+                        setHasError(true)
+                      })
+                    }
+                  }, 1000)
+                } else {
+                  console.error("Video play failed:", error, videos[currentVideoIndex])
+                  clearTimeout(loadTimeout)
+                  setIsLoading(false)
+                  setHasError(true)
+                }
+              })
+          }
         }
       }, 100)
 
@@ -107,7 +122,6 @@ export function VideoBackground({
           key={videos[currentVideoIndex]} // Force re-render when video changes
           ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover z-0"
-          autoPlay
           muted
           loop
           playsInline

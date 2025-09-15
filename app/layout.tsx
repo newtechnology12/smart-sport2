@@ -31,8 +31,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={`font-sans ${playfairDisplay.variable} ${sourceSans.variable}`}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`font-sans ${playfairDisplay.variable} ${sourceSans.variable}`} suppressHydrationWarning>
         <AppNavigation />
         <main className="pt-16 pb-20 md:pt-16 md:pb-0">
           <Suspense fallback={null}>{children}</Suspense>

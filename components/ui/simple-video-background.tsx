@@ -36,16 +36,34 @@ export function SimpleVideoBackground({
 
     const handleLoadedData = () => {
       // Ensure video plays when loaded
-      video.play().catch(error => {
-        console.warn("Autoplay failed:", error)
-      })
+      if (video.readyState >= 3) { // HAVE_FUTURE_DATA
+        video.play().catch(error => {
+          if (error.name === 'AbortError') {
+            console.warn("Video play interrupted (power saving):", videos[currentVideoIndex])
+            // Try again after a delay for AbortError
+            setTimeout(() => {
+              if (video && video.paused && video.readyState >= 3) {
+                video.play().catch(() => {
+                  console.warn("Retry autoplay failed")
+                })
+              }
+            }, 1000)
+          } else {
+            console.warn("Autoplay failed:", error)
+          }
+        })
+      }
     }
 
     const handleCanPlay = () => {
       // Backup play attempt
-      if (video.paused) {
+      if (video.paused && video.readyState >= 3) {
         video.play().catch(error => {
-          console.warn("Autoplay failed on canplay:", error)
+          if (error.name === 'AbortError') {
+            console.warn("Video play interrupted on canplay:", videos[currentVideoIndex])
+          } else {
+            console.warn("Autoplay failed on canplay:", error)
+          }
         })
       }
     }
@@ -76,11 +94,11 @@ export function SimpleVideoBackground({
       <video
         ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover"
-        autoPlay
         muted
         loop
         playsInline
         preload="auto"
+        suppressHydrationWarning
         style={{
           zIndex: 1,
           display: 'block'

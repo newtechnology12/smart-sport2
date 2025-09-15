@@ -146,7 +146,8 @@ export function OptimizedVideoBackground({
         loop
         playsInline
         preload="auto"
-        style={{ 
+        suppressHydrationWarning
+        style={{
           zIndex: 1,
           display: 'block',
           backgroundColor: '#000'

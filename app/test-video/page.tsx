@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { SimpleVideoBackground } from "@/components/ui/simple-video-background"
 import { VideoBackground } from "@/components/ui/video-background"
 import { ReliableVideoBackground } from "@/components/ui/reliable-video-background"
@@ -7,7 +8,11 @@ import { PreloadedVideoBackground } from "@/components/ui/preloaded-video-backgr
 import { OptimizedVideoBackground } from "@/components/ui/optimized-video-background"
 import { DebugVideoInfo } from "@/components/ui/debug-video-info"
 
+type ComponentType = 'optimized' | 'preloaded' | 'reliable' | 'advanced' | 'simple'
+
 export default function TestVideoPage() {
+  const [activeComponent, setActiveComponent] = useState<ComponentType>('optimized')
+
   const testVideos = [
     "/videos/football.mp4",
     "/videos/basketball.mp4",
@@ -15,104 +20,82 @@ export default function TestVideoPage() {
     "/videos/handball.mp4"
   ]
 
+  const components = [
+    { id: 'optimized' as ComponentType, name: 'Optimized (Recommended)', description: 'Handles autoplay policies and user interaction' },
+    { id: 'preloaded' as ComponentType, name: 'Preloaded', description: 'Smooth transitions with preloaded videos' },
+    { id: 'reliable' as ComponentType, name: 'Reliable', description: 'Cross-browser compatible video background' },
+    { id: 'advanced' as ComponentType, name: 'Advanced', description: 'Video with loading states and error handling' },
+    { id: 'simple' as ComponentType, name: 'Simple', description: 'Basic video background implementation' },
+  ]
+
+  const renderActiveComponent = () => {
+    const commonProps = {
+      videos: testVideos,
+      className: "absolute inset-0",
+      slideInterval: 5000,
+    }
+
+    switch (activeComponent) {
+      case 'optimized':
+        return <OptimizedVideoBackground {...commonProps} showIndicators={true} />
+      case 'preloaded':
+        return <PreloadedVideoBackground {...commonProps} showIndicators={true} />
+      case 'reliable':
+        return <ReliableVideoBackground {...commonProps} showIndicators={true} />
+      case 'advanced':
+        return <VideoBackground {...commonProps} autoSlide={true} />
+      case 'simple':
+        return <SimpleVideoBackground {...commonProps} />
+      default:
+        return <OptimizedVideoBackground {...commonProps} showIndicators={true} />
+    }
+  }
+
   return (
     <div className="min-h-screen bg-background">
+      {/* Component Selector */}
+      <div className="bg-white shadow-sm border-b">
+        <div className="container mx-auto p-4">
+          <h1 className="text-3xl font-bold mb-4">Video Background Components Test</h1>
+          <div className="flex flex-wrap gap-2">
+            {components.map((component) => (
+              <button
+                key={component.id}
+                onClick={() => setActiveComponent(component.id)}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                  activeComponent === component.id
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
+              >
+                {component.name}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Active Component Display */}
       <div className="container mx-auto p-8">
-        <h1 className="text-3xl font-bold mb-8">Video Background Test</h1>
-        
-        {/* Optimized Video Background Test (Best) */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4">Optimized Video Background (Best)</h2>
-          <div className="relative h-96 rounded-lg overflow-hidden">
-            <OptimizedVideoBackground
-              videos={testVideos}
-              className="absolute inset-0"
-              slideInterval={5000}
-              showIndicators={true}
-            />
-            <div className="relative z-10 flex items-center justify-center h-full">
-              <div className="text-white text-center">
-                <h3 className="text-2xl font-bold mb-2">Optimized Content</h3>
-                <p className="text-lg opacity-90">Handles autoplay policies and user interaction</p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <div className="mb-6">
+          <h2 className="text-2xl font-semibold mb-2">
+            {components.find(c => c.id === activeComponent)?.name}
+          </h2>
+          <p className="text-gray-600">
+            {components.find(c => c.id === activeComponent)?.description}
+          </p>
+        </div>
 
-        {/* Preloaded Video Background Test (Recommended) */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4">Preloaded Video Background (Recommended)</h2>
-          <div className="relative h-96 rounded-lg overflow-hidden">
-            <PreloadedVideoBackground
-              videos={testVideos}
-              className="absolute inset-0"
-              slideInterval={5000}
-              showIndicators={true}
-            />
-            <div className="relative z-10 flex items-center justify-center h-full">
-              <div className="text-white text-center">
-                <h3 className="text-2xl font-bold mb-2">Preloaded Content</h3>
-                <p className="text-lg opacity-90">Smooth transitions with preloaded videos</p>
-              </div>
+        <div className="relative h-96 rounded-lg overflow-hidden shadow-lg mb-8">
+          {renderActiveComponent()}
+          <div className="relative z-10 flex items-center justify-center h-full">
+            <div className="text-white text-center">
+              <h3 className="text-2xl font-bold mb-2">Test Content</h3>
+              <p className="text-lg opacity-90">Video should be playing behind this text</p>
+              <p className="text-sm opacity-75 mt-2">Click anywhere to ensure video plays</p>
             </div>
           </div>
-        </section>
-
-        {/* Simple Video Background Test */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4">Simple Video Background</h2>
-          <div className="relative h-96 rounded-lg overflow-hidden">
-            <SimpleVideoBackground
-              videos={testVideos}
-              className="absolute inset-0"
-              slideInterval={5000}
-            />
-            <div className="relative z-10 flex items-center justify-center h-full">
-              <div className="text-white text-center">
-                <h3 className="text-2xl font-bold mb-2">Test Content</h3>
-                <p className="text-lg opacity-90">Video should be playing behind this text</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Reliable Video Background Test */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4">Reliable Video Background</h2>
-          <div className="relative h-96 rounded-lg overflow-hidden">
-            <ReliableVideoBackground
-              videos={testVideos}
-              className="absolute inset-0"
-              slideInterval={5000}
-              showIndicators={true}
-            />
-            <div className="relative z-10 flex items-center justify-center h-full">
-              <div className="text-white text-center">
-                <h3 className="text-2xl font-bold mb-2">Reliable Test Content</h3>
-                <p className="text-lg opacity-90">Cross-browser compatible video background</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Advanced Video Background Test */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4">Advanced Video Background</h2>
-          <div className="relative h-96 rounded-lg overflow-hidden">
-            <VideoBackground
-              videos={testVideos}
-              className="absolute inset-0"
-              slideInterval={5000}
-              autoSlide={true}
-            />
-            <div className="relative z-10 flex items-center justify-center h-full">
-              <div className="text-white text-center">
-                <h3 className="text-2xl font-bold mb-2">Advanced Test Content</h3>
-                <p className="text-lg opacity-90">Video with loading states and error handling</p>
-              </div>
-            </div>
-          </div>
-        </section>
+        </div>
 
         {/* Video File Status */}
         <section>
@@ -126,6 +109,7 @@ export default function TestVideoPage() {
                   className="w-full h-32 object-cover rounded"
                   controls
                   preload="metadata"
+                  suppressHydrationWarning
                 >
                   <source src={video} type="video/mp4" />
                   Your browser does not support the video tag.

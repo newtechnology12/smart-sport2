@@ -20,7 +20,7 @@ export function ReliableVideoBackground({
   const videoRef = useRef<HTMLVideoElement>(null)
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
-  // Ensure video plays reliably
+  // Ensure video plays reliably with better error handling
   const playVideo = useCallback(async () => {
     const video = videoRef.current
     if (!video) return
@@ -28,24 +28,33 @@ export function ReliableVideoBackground({
     try {
       // Reset video state
       video.currentTime = 0
-      
-      // Multiple attempts to ensure playback
-      const playPromise = video.play()
-      if (playPromise !== undefined) {
-        await playPromise
-        setIsVideoReady(true)
+
+      // Check if video is ready to play
+      if (video.readyState >= 3) { // HAVE_FUTURE_DATA
+        const playPromise = video.play()
+        if (playPromise !== undefined) {
+          await playPromise
+          setIsVideoReady(true)
+          return
+        }
       }
     } catch (error) {
-      console.warn("Video autoplay failed, trying again:", error)
-      
-      // Fallback: try again after a short delay
-      setTimeout(() => {
-        if (video && video.paused) {
-          video.play().catch(() => {
-            console.warn("Final autoplay attempt failed")
-          })
-        }
-      }, 500)
+      // Handle different types of autoplay errors
+      if (error.name === 'NotAllowedError') {
+        console.warn("Autoplay blocked by browser policy. User interaction required.")
+      } else if (error.name === 'AbortError') {
+        console.warn("Video play interrupted:", error.message)
+        // Try again after a short delay for AbortError
+        setTimeout(() => {
+          if (video && video.paused && video.readyState >= 3) {
+            video.play().catch(() => {
+              console.warn("Retry autoplay failed")
+            })
+          }
+        }, 1000)
+      } else {
+        console.warn("Video autoplay failed:", error)
+      }
     }
   }, [])
 
@@ -138,12 +147,12 @@ export function ReliableVideoBackground({
       <video
         ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover"
-        autoPlay
         muted
         loop
         playsInline
         preload="auto"
-        style={{ 
+        suppressHydrationWarning
+        style={{
           zIndex: 1,
           display: 'block',
           backgroundColor: '#000'

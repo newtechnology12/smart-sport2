@@ -87,7 +87,6 @@ export function PreloadedVideoBackground({
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
             index === currentVideoIndex ? 'opacity-100 z-[1]' : 'opacity-0 z-0'
           }`}
-          autoPlay={index === currentVideoIndex}
           muted
           loop
           playsInline
@@ -96,6 +95,7 @@ export function PreloadedVideoBackground({
           style={{ backgroundColor: '#000' }}
           webkit-playsinline="true"
           x5-playsinline="true"
+          suppressHydrationWarning
         >
           <source src={video} type="video/mp4" />
         </video>
