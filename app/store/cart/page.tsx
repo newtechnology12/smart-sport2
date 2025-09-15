@@ -24,7 +24,7 @@ export default function CartPage() {
   }
 
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
-  const shipping = 2000
+  const shipping = 100 // Reduced from 2000 to ensure total stays within limit
   const total = subtotal + shipping
 
   return (
