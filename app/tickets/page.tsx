@@ -15,7 +15,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Header } from "@/components/header"
+
 import { Ticket, QrCode, Calendar, MapPin, Clock, Search, Eye, Download } from "lucide-react"
 import { userTickets } from "@/lib/dummy-data"
 
@@ -54,7 +54,6 @@ export default function MyTicketsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
 
       <div className="container max-w-6xl mx-auto px-4 py-6">
         <div className="mb-8">
