@@ -148,68 +148,8 @@ export function VideoBackgroundSlides({
       {/* Overlay gradient for better content visibility */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/60" />
 
-      {/* Navigation Controls */}
-      {showControls && videos.length > 1 && (
-        <>
-          {/* Previous Button */}
-          <Button
-            variant="ghost"
-            size="sm"
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm"
-            onClick={prevVideo}
-            aria-label="Previous video"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </Button>
-
-          {/* Next Button */}
-          <Button
-            variant="ghost"
-            size="sm"
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm"
-            onClick={nextVideo}
-            aria-label="Next video"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </Button>
-
-          {/* Play/Pause Button */}
-          <Button
-            variant="ghost"
-            size="sm"
-            className="absolute top-4 right-4 bg-white/20 hover:bg-white/30 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm"
-            onClick={togglePlayPause}
-            aria-label={isPlaying ? 'Pause video' : 'Play video'}
-          >
-            {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-          </Button>
-        </>
-      )}
-
-      {/* Video Counter */}
-      {videos.length > 1 && (
-        <div className="absolute top-4 left-4 bg-black/50 text-white px-3 py-1.5 rounded-lg text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm">
-          {currentIndex + 1} / {videos.length}
-        </div>
-      )}
-
-      {/* Video Indicators */}
-      {showIndicators && videos.length > 1 && (
-        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2">
-          {videos.map((_, index) => (
-            <button
-              key={index}
-              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                index === currentIndex
-                  ? 'bg-white scale-125'
-                  : 'bg-white/50 hover:bg-white/75'
-              }`}
-              onClick={() => goToVideo(index)}
-              aria-label={`Go to video ${index + 1}`}
-            />
-          ))}
-        </div>
-      )}
+      {/* Navigation Controls - Removed as per requirements */}
+      {/* Video Indicators - Removed as per requirements */}
     </div>
   )
 }
