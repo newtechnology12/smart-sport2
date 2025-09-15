@@ -5,16 +5,17 @@ import type React from "react"
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { useAuth } from "@/lib/auth-context"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Header } from "@/components/header"
 import { ArrowLeft, Mail, Lock, Eye, EyeOff, Loader2, Shield, Users, Trophy } from "lucide-react"
 
 export default function LoginPage() {
   const router = useRouter()
+  const { login } = useAuth()
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -30,34 +31,9 @@ export default function LoginPage() {
     setError("")
 
     try {
-      // Handle login logic here
-      console.log("Login data:", formData)
+      const success = await login(formData.email, formData.password, formData.role)
 
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000))
-
-      // Default credentials check
-      const defaultCredentials = {
-        admin: { email: "admin", password: "admin", role: "admin" },
-        client: { email: "client", password: "client", role: "client" },
-        team: { email: "team", password: "team", role: "team" }
-      }
-
-      const credential = Object.values(defaultCredentials).find(
-        cred => (cred.email === formData.email || formData.email === cred.email) &&
-                cred.password === formData.password &&
-                cred.role === formData.role
-      )
-
-      if (credential) {
-        // Store user data in localStorage for demo purposes
-        localStorage.setItem('user', JSON.stringify({
-          id: Math.random().toString(36).substr(2, 9),
-          email: formData.email,
-          role: formData.role,
-          name: formData.role.charAt(0).toUpperCase() + formData.role.slice(1) + " User"
-        }))
-
+      if (success) {
         // Redirect based on role
         switch (formData.role) {
           case 'admin':
@@ -98,8 +74,6 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
-      <Header />
-
       <div className="container max-w-md mx-auto px-4 py-6">
         <div className="mb-8">
           <Link href="/">

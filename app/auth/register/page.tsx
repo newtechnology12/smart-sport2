@@ -5,17 +5,18 @@ import type React from "react"
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { useAuth } from "@/lib/auth-context"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Header } from "@/components/header"
 import { ArrowLeft, User, Mail, Phone, Lock, Eye, EyeOff, Loader2, Shield, Users, Trophy, CheckCircle } from "lucide-react"
 
 export default function RegisterPage() {
   const router = useRouter()
+  const { register } = useAuth()
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -65,13 +66,20 @@ export default function RegisterPage() {
       }
 
       // Handle registration logic here
-      console.log("Registration data:", formData)
+      const success = await register({
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        phone: formData.phone,
+        password: formData.password,
+        role: formData.role as 'client' | 'team'
+      })
 
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500))
-
-      // For demo purposes, redirect to login
-      router.push('/auth/login?registered=true')
+      if (success) {
+        router.push('/auth/login?registered=true')
+      } else {
+        setError("Registration failed. Please try again.")
+      }
 
     } catch (err) {
       setError("An error occurred during registration. Please try again.")
@@ -117,8 +125,6 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
-      <Header />
-
       <div className="container max-w-lg mx-auto px-4 py-6">
         <div className="mb-8">
           <Link href="/">

@@ -10,7 +10,7 @@ const navItems = [
   { href: "/tickets/buy", icon: Trophy, label: "Buy Tickets" },
   { href: "/tickets", icon: Calendar, label: "Tickets" },
   { href: "/wallet", icon: Wallet, label: "Wallet" },
-  { href: "/profile", icon: User, label: "Profile" },
+  { href: "/profile", icon: User, label: "Menu" },
 ]
 
 export function MobileBottomNav() {
