@@ -53,22 +53,41 @@ export default function TicketPurchasePage({ params }: TicketPurchasePageProps) 
   const vatAmount = Math.round((totalPrice + serviceFee) * 0.18) // 18% VAT (EBM)
   const finalTotal = totalPrice + serviceFee + vatAmount
 
-  const handlePurchase = () => {
-    if (!paymentMethod || !phoneNumber || !email || !fullName) {
-      alert("Please fill in all required fields")
+  const handlePurchase = async () => {
+    if (!paymentMethod || !phoneNumber || !fullName) {
+      alert("Please fill in all required fields (Name, Phone Number, and Payment Method)")
       return
     }
 
-    alert(`Ticket purchase successful! 
-    
-Match: ${match.home_team} vs ${match.away_team}
-Tickets: ${quantity}x ${ticketType.toUpperCase()}
-Subtotal: ${totalPrice.toLocaleString()} RWF
-Service Fee: ${serviceFee.toLocaleString()} RWF  
-VAT (18%): ${vatAmount.toLocaleString()} RWF
-Total: ${finalTotal.toLocaleString()} RWF
+    try {
+      const purchaseData = {
+        event_id: match.id,
+        ticket_type: ticketType,
+        quantity: quantity,
+        payment_method: paymentMethod,
+        customer_name: fullName,
+        customer_phone: phoneNumber,
+        customer_email: email || undefined
+      }
 
-EBM Receipt will be sent to ${email}`)
+      // In a real implementation, this would be an API call
+      // const response = await fetch('/api/v1/tickets/purchase', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(purchaseData)
+      // })
+      // const result = await response.json()
+
+      // For now, simulate success and redirect to success page
+      const paymentRef = `SSR${Date.now()}${Math.floor(Math.random() * 1000)}`
+
+      // Redirect to success page with payment reference
+      window.location.href = `/tickets/success?ref=${paymentRef}&event=${encodeURIComponent(match.home_team + ' vs ' + match.away_team)}&quantity=${quantity}&total=${finalTotal}`
+
+    } catch (error) {
+      console.error('Purchase failed:', error)
+      alert('Purchase failed. Please try again.')
+    }
   }
 
   return (
@@ -233,11 +252,11 @@ EBM Receipt will be sent to ${email}`)
                     />
                   </div>
                   <div>
-                    <Label htmlFor="email">Email Address *</Label>
+                    <Label htmlFor="email">Email Address (Optional)</Label>
                     <Input
                       id="email"
                       type="email"
-                      placeholder="your@email.com"
+                      placeholder="your@email.com (optional)"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                     />
@@ -264,25 +283,25 @@ EBM Receipt will be sent to ${email}`)
                         <SelectItem value="mtn">
                           <div className="flex items-center gap-2">
                             <Smartphone className="h-4 w-4" />
-                            MTN Mobile Money
+                            MTN Rwanda
                           </div>
                         </SelectItem>
                         <SelectItem value="airtel">
                           <div className="flex items-center gap-2">
                             <Smartphone className="h-4 w-4" />
-                            Airtel Money
+                            Airtel Rwanda
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="bank_transfer">
+                          <div className="flex items-center gap-2">
+                            <CreditCard className="h-4 w-4" />
+                            Bank Transfer
                           </div>
                         </SelectItem>
                         <SelectItem value="wallet">
                           <div className="flex items-center gap-2">
                             <DollarSign className="h-4 w-4" />
-                            My Wallet
-                          </div>
-                        </SelectItem>
-                        <SelectItem value="card">
-                          <div className="flex items-center gap-2">
-                            <CreditCard className="h-4 w-4" />
-                            Bank Card
+                            System Wallet
                           </div>
                         </SelectItem>
                       </SelectContent>
@@ -329,7 +348,7 @@ EBM Receipt will be sent to ${email}`)
                 </Button>
 
                 <div className="text-xs text-muted-foreground space-y-1">
-                  <p>• Digital tickets will be sent to your email</p>
+                  <p>• Digital tickets will be sent to your {email ? 'email' : 'phone number'}</p>
                   <p>• EBM VAT receipt included for tax purposes</p>
                   <p>• Tickets are non-refundable</p>
                   <p>• Present QR code at venue entrance</p>

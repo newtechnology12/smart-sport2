@@ -125,10 +125,10 @@ class EmailService {
     });
   }
 
-  // Send ticket confirmation email
-  async sendTicketConfirmation(user, tickets, event, payment) {
+  // Send ticket confirmation email with individual QR codes
+  async sendTicketConfirmation(user, tickets, event, payment, qrCodes = []) {
     const ticketAttachments = [];
-    
+
     // Generate PDF tickets as attachments
     for (const ticket of tickets) {
       try {
@@ -140,6 +140,21 @@ class EmailService {
         });
       } catch (error) {
         logger.error('Failed to generate ticket PDF:', error);
+      }
+    }
+
+    // Add individual QR code PNG attachments
+    for (const qrCode of qrCodes) {
+      try {
+        if (qrCode.qrBuffer) {
+          ticketAttachments.push({
+            filename: `qr-code-${qrCode.ticketNumber}.png`,
+            content: qrCode.qrBuffer,
+            contentType: 'image/png'
+          });
+        }
+      } catch (error) {
+        logger.error('Failed to attach QR code:', error);
       }
     }
 
@@ -167,9 +182,64 @@ class EmailService {
           method: payment.payment_method
         },
         totalTickets: tickets.length,
-        totalAmount: payment.total_amount
+        totalAmount: payment.total_amount,
+        qrCodesCount: qrCodes.length
       },
       attachments: ticketAttachments
+    });
+  }
+
+  // Send individual QR codes email
+  async sendIndividualQRCodes(user, tickets, event, payment, qrCodes) {
+    const qrAttachments = [];
+
+    // Add individual QR code PNG attachments
+    for (const qrCode of qrCodes) {
+      try {
+        if (qrCode.qrBuffer) {
+          qrAttachments.push({
+            filename: `ticket-${qrCode.ticketNumber}-qr.png`,
+            content: qrCode.qrBuffer,
+            contentType: 'image/png'
+          });
+        }
+      } catch (error) {
+        logger.error('Failed to attach QR code:', error);
+      }
+    }
+
+    return await this.sendEmail({
+      to: user.email,
+      subject: `Your QR Codes for ${event.title}`,
+      template: 'qr-codes',
+      data: {
+        name: `${user.first_name} ${user.last_name}`,
+        event: {
+          title: event.title,
+          date: new Date(event.start_datetime).toLocaleDateString(),
+          time: new Date(event.start_datetime).toLocaleTimeString(),
+          venue: event.venue_name
+        },
+        tickets: tickets.map((ticket, index) => ({
+          number: ticket.ticket_number,
+          type: ticket.ticket_type,
+          price: ticket.price,
+          qrCode: qrCodes[index]?.qrImage || null
+        })),
+        payment: {
+          reference: payment.payment_reference,
+          total: payment.total_amount,
+          method: payment.payment_method
+        },
+        totalTickets: tickets.length,
+        instructions: [
+          'Save these QR codes to your phone or print them',
+          'Each QR code is valid for one person only',
+          'Arrive at the venue 30 minutes before the event',
+          'Present your QR code at the entrance for scanning'
+        ]
+      },
+      attachments: qrAttachments
     });
   }
 

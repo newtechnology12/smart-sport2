@@ -11,7 +11,7 @@ export function Header() {
 
   const navItems = [
     { href: "/", icon: Home, label: "Home" },
-    { href: "/sports", icon: Trophy, label: "Sports" },
+    { href: "/tickets/buy", icon: Trophy, label: "Buy Tickets" },
     { href: "/tickets", icon: Calendar, label: "My Tickets" },
     { href: "/wallet", icon: Wallet, label: "Wallet" },
     { href: "/profile", icon: User, label: "Profile" },

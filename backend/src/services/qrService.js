@@ -334,26 +334,103 @@ class QRService {
   // Generate batch QR codes for multiple tickets
   async generateBatchQR(tickets) {
     const results = [];
-    
+
     for (const ticket of tickets) {
       try {
         const qrResult = await this.generateTicketQR(ticket);
         results.push({
           ticketId: ticket.ticket_id,
+          ticketNumber: ticket.ticket_number,
           success: true,
           qrCode: qrResult.qrString,
-          qrImage: qrResult.qrCodeDataURL
+          qrImage: qrResult.qrCodeDataURL,
+          qrBuffer: qrResult.qrCodeBuffer,
+          signature: qrResult.signature
         });
       } catch (error) {
         results.push({
           ticketId: ticket.ticket_id,
+          ticketNumber: ticket.ticket_number || 'Unknown',
           success: false,
           error: error.message
         });
       }
     }
-    
+
     return results;
+  }
+
+  // Generate individual QR codes for a purchase (one per ticket quantity)
+  async generateIndividualTicketQRs(purchaseData) {
+    try {
+      const {
+        event_id,
+        user_id,
+        ticket_type,
+        quantity,
+        payment_reference,
+        customer_name,
+        customer_phone,
+        customer_email
+      } = purchaseData;
+
+      const tickets = [];
+      const qrResults = [];
+
+      // Generate individual tickets for each quantity
+      for (let i = 1; i <= quantity; i++) {
+        const ticketNumber = `${payment_reference}-${String(i).padStart(3, '0')}`;
+        const ticketId = `${payment_reference}-ticket-${i}`;
+
+        const ticketData = {
+          ticket_id: ticketId,
+          ticket_number: ticketNumber,
+          event_id,
+          user_id,
+          ticket_type,
+          seat_number: `${ticket_type.toUpperCase()}-${String(i).padStart(4, '0')}`,
+          section: ticket_type.toUpperCase(),
+          row: Math.ceil(i / 10), // Simple row calculation
+          customer_name,
+          customer_phone,
+          customer_email,
+          purchase_reference: payment_reference
+        };
+
+        tickets.push(ticketData);
+
+        // Generate QR code for this individual ticket
+        const qrResult = await this.generateTicketQR(ticketData);
+        qrResults.push({
+          ticketId: ticketData.ticket_id,
+          ticketNumber: ticketData.ticket_number,
+          success: true,
+          qrCode: qrResult.qrString,
+          qrImage: qrResult.qrCodeDataURL,
+          qrBuffer: qrResult.qrCodeBuffer,
+          signature: qrResult.signature,
+          ticketData: ticketData
+        });
+      }
+
+      logger.logInfo('Individual QR codes generated', {
+        paymentReference: payment_reference,
+        quantity: quantity,
+        eventId: event_id,
+        userId: user_id
+      });
+
+      return {
+        success: true,
+        tickets: tickets,
+        qrCodes: qrResults,
+        totalGenerated: quantity
+      };
+
+    } catch (error) {
+      logger.error('Individual QR generation failed:', error);
+      throw new AppError('Failed to generate individual QR codes', 500);
+    }
   }
 
   // Generate QR code for wallet

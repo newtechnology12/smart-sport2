@@ -69,7 +69,7 @@ export default function HomePage() {
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/sports" className="w-full sm:w-auto">
+              <Link href="/tickets/buy" className="w-full sm:w-auto">
                 <Button
                   size="lg"
                   className="apple-button w-full sm:w-auto bg-primary hover:bg-primary/90 text-white rounded-2xl px-8 py-4 h-14 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"

@@ -88,9 +88,9 @@ export default function MultipleTicketPurchasePage() {
     }
   }
 
-  const handlePurchase = () => {
-    if (!paymentMethod || !phoneNumber || !email || !fullName) {
-      alert("Please fill in all required fields")
+  const handlePurchase = async () => {
+    if (!paymentMethod || !phoneNumber || !fullName) {
+      alert("Please fill in all required fields (Name, Phone Number, and Payment Method)")
       return
     }
 
@@ -99,25 +99,24 @@ export default function MultipleTicketPurchasePage() {
       return
     }
 
-    const totals = calculateGrandTotal()
-    const matchDetails = selectedMatches.map(match => {
-      const matchId = match.id.toString()
-      const ticketType = ticketTypes[matchId] || "regular"
-      const quantity = quantities[matchId] || 1
-      return `${match.home_team} vs ${match.away_team} - ${quantity}x ${ticketType.toUpperCase()}`
-    }).join("\n")
+    try {
+      const totals = calculateGrandTotal()
 
-    alert(`Multiple tickets purchase successful! 
+      // In a real implementation, this would handle multiple event purchases
+      // For now, simulate success and redirect to success page
+      const paymentRef = `SSR${Date.now()}${Math.floor(Math.random() * 1000)}`
+      const totalTickets = selectedMatches.reduce((sum, match) => {
+        const matchId = match.id.toString()
+        return sum + (quantities[matchId] || 1)
+      }, 0)
 
-Matches:
-${matchDetails}
+      // Redirect to success page with payment reference
+      window.location.href = `/tickets/success?ref=${paymentRef}&quantity=${totalTickets}&total=${totals.total}&multiple=true`
 
-Subtotal: ${totals.subtotal.toLocaleString()} RWF
-Service Fee: ${totals.serviceFee.toLocaleString()} RWF  
-VAT (18%): ${totals.vatAmount.toLocaleString()} RWF
-Total: ${totals.total.toLocaleString()} RWF
-
-EBM Receipt will be sent to ${email}`)
+    } catch (error) {
+      console.error('Purchase failed:', error)
+      alert('Purchase failed. Please try again.')
+    }
   }
 
   if (selectedMatches.length === 0) {
@@ -292,11 +291,11 @@ EBM Receipt will be sent to ${email}`)
                     />
                   </div>
                   <div>
-                    <Label htmlFor="email">Email Address *</Label>
+                    <Label htmlFor="email">Email Address (Optional)</Label>
                     <Input
                       id="email"
                       type="email"
-                      placeholder="your@email.com"
+                      placeholder="your@email.com (optional)"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                     />
@@ -323,19 +322,25 @@ EBM Receipt will be sent to ${email}`)
                         <SelectItem value="mtn">
                           <div className="flex items-center gap-2">
                             <Smartphone className="h-4 w-4" />
-                            MTN Mobile Money
+                            MTN Rwanda
                           </div>
                         </SelectItem>
                         <SelectItem value="airtel">
                           <div className="flex items-center gap-2">
                             <Smartphone className="h-4 w-4" />
-                            Airtel Money
+                            Airtel Rwanda
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="bank_transfer">
+                          <div className="flex items-center gap-2">
+                            <CreditCard className="h-4 w-4" />
+                            Bank Transfer
                           </div>
                         </SelectItem>
                         <SelectItem value="wallet">
                           <div className="flex items-center gap-2">
                             <DollarSign className="h-4 w-4" />
-                            SmartSports Wallet
+                            System Wallet
                           </div>
                         </SelectItem>
                       </SelectContent>
@@ -398,7 +403,7 @@ EBM Receipt will be sent to ${email}`)
                 </Button>
 
                 <div className="text-xs text-muted-foreground space-y-1">
-                  <p>• Digital tickets will be sent to your email</p>
+                  <p>• Digital tickets will be sent to your {email ? 'email' : 'phone number'}</p>
                   <p>• EBM VAT receipt included for tax purposes</p>
                   <p>• Tickets are non-refundable</p>
                   <p>• Present QR code at venue entrance</p>
