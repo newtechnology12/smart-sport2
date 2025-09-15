@@ -4,6 +4,7 @@ import { Playfair_Display, Source_Sans_3 } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import { AppNavigation } from "@/components/navigation/app-navigation"
+import { AuthProvider } from "@/lib/auth-context"
 import "./globals.css"
 
 const playfairDisplay = Playfair_Display({
@@ -33,10 +34,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`font-sans ${playfairDisplay.variable} ${sourceSans.variable}`} suppressHydrationWarning>
-        <AppNavigation />
-        <main className="pt-16 pb-20 md:pt-16 md:pb-0">
-          <Suspense fallback={null}>{children}</Suspense>
-        </main>
+        <AuthProvider>
+          <AppNavigation />
+          <main className="pt-16 pb-20 md:pt-16 md:pb-0">
+            <Suspense fallback={null}>{children}</Suspense>
+          </main>
+        </AuthProvider>
         <Analytics />
       </body>
     </html>
