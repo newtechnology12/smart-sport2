@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Header } from "@/components/header"
+
 import { ShoppingCart, Search, Star, Heart, ShoppingBag, Grid, List } from "lucide-react"
 import { storeProducts } from "@/lib/dummy-data"
 
@@ -34,7 +34,6 @@ export default function StorePage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
 
       <div className="container max-w-7xl mx-auto px-4 py-6">
         <div className="mb-8">
