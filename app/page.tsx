@@ -41,23 +41,21 @@ export default function HomePage() {
     <div className="min-h-screen bg-background">
 
       {/* Hero Section with Video Background */}
-      <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+      <section className="video-background-container">
         {/* Video Background */}
         <VideoBackgroundSlides
           videos={heroVideos}
           className="absolute inset-0 z-0"
           slideInterval={10000}
-          showIndicators={true}
-          showControls={true}
+          showIndicators={false}
+          showControls={false}
           autoPlay={true}
           muted={true}
           loop={true}
         />
 
-
-
         {/* Hero Content */}
-        <div className="relative z-10 container max-w-4xl mx-auto text-center px-4">
+        <div className="hero-content-centered container max-w-4xl mx-auto px-4">
           <div className="text-white">
             {/* Auto-typing Title */}
             <h1 className="apple-title text-3xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8 min-h-[4rem] md:min-h-[6rem] lg:min-h-[8rem] flex items-center justify-center">
