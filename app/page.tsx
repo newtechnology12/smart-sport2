@@ -9,7 +9,7 @@ import { Trophy, Calendar, Wallet, Users, Star, ArrowRight } from "lucide-react"
 import { matches } from "@/lib/dummy-data"
 import { getSportImage } from "@/lib/images"
 import { FootballIcon, BasketballIcon, VolleyballIcon, EventIcon, AllSportsIcon } from "@/components/icons/sport-icons"
-import { OptimizedVideoBackground } from "@/components/ui/optimized-video-background"
+import { VideoBackgroundSlides } from "@/components/ui/video-background-slides"
 import { AutoTyping } from "@/components/ui/auto-typing"
 
 export default function HomePage() {
@@ -43,11 +43,15 @@ export default function HomePage() {
       {/* Hero Section with Video Background */}
       <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
         {/* Video Background */}
-        <OptimizedVideoBackground
+        <VideoBackgroundSlides
           videos={heroVideos}
           className="absolute inset-0 z-0"
           slideInterval={10000}
           showIndicators={true}
+          showControls={true}
+          autoPlay={true}
+          muted={true}
+          loop={true}
         />
 
 

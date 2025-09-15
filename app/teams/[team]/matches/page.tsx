@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Header } from "@/components/header"
+
 import { ArrowLeft, Calendar, Clock, MapPin, Users, ShoppingCart } from "lucide-react"
 import { matches } from "@/lib/dummy-data"
 
@@ -82,7 +82,6 @@ export default function TeamMatchesPage({ params }: TeamMatchesPageProps) {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
 
       <div className="container max-w-6xl mx-auto px-4 py-6">
         <div className="mb-8">

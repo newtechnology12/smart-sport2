@@ -24,7 +24,6 @@ export default function RegisterPage() {
     phone: "",
     password: "",
     confirmPassword: "",
-    role: "",
     agreeToTerms: false,
   })
   const [showPassword, setShowPassword] = useState(false)

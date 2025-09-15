@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Header } from "@/components/header"
+
 import { ArrowLeft, Heart, Users, DollarSign, CreditCard, Smartphone } from "lucide-react"
 
 interface DonatePageProps {
@@ -47,7 +47,6 @@ export default function DonatePage({ params }: DonatePageProps) {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
 
       <div className="container max-w-4xl mx-auto px-4 py-6">
         <div className="mb-8">

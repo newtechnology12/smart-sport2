@@ -6,7 +6,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Header } from "@/components/header"
+
 import { CheckCircle, Download, QrCode, Mail, Phone, Calendar, MapPin, Ticket, ArrowLeft, Share2 } from "lucide-react"
 
 interface TicketData {
@@ -141,7 +141,6 @@ export default function PurchaseSuccessPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-background">
-        <Header />
         <div className="container max-w-4xl mx-auto px-4 py-6">
           <div className="text-center py-12">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
@@ -155,7 +154,6 @@ export default function PurchaseSuccessPage() {
   if (!purchaseData) {
     return (
       <div className="min-h-screen bg-background">
-        <Header />
         <div className="container max-w-4xl mx-auto px-4 py-6">
           <Card className="text-center py-12">
             <CardContent>
@@ -173,7 +171,6 @@ export default function PurchaseSuccessPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
       
       <div className="container max-w-6xl mx-auto px-4 py-6">
         {/* Success Header */}

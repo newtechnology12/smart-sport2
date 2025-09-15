@@ -10,8 +10,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { ArrowLeft, Mail, Lock, Eye, EyeOff, Loader2, Shield, Users, Trophy } from "lucide-react"
+import { ArrowLeft, Mail, Lock, Eye, EyeOff, Loader2 } from "lucide-react"
 
 export default function LoginPage() {
   const router = useRouter()
@@ -19,7 +18,6 @@ export default function LoginPage() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    role: "",
   })
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
@@ -31,11 +29,19 @@ export default function LoginPage() {
     setError("")
 
     try {
-      const success = await login(formData.email, formData.password, formData.role)
+      // Auto-detect role based on email or use default 'client'
+      let detectedRole = 'client'
+      if (formData.email.includes('admin')) {
+        detectedRole = 'admin'
+      } else if (formData.email.includes('team')) {
+        detectedRole = 'team'
+      }
+
+      const success = await login(formData.email, formData.password, detectedRole)
 
       if (success) {
-        // Redirect based on role
-        switch (formData.role) {
+        // Redirect based on detected role
+        switch (detectedRole) {
           case 'admin':
             router.push('/admin')
             break
@@ -49,7 +55,7 @@ export default function LoginPage() {
             router.push('/')
         }
       } else {
-        setError("Invalid credentials. Please check your email, password, and role.")
+        setError("Invalid credentials. Please check your email and password.")
       }
     } catch (err) {
       setError("An error occurred during login. Please try again.")
@@ -65,12 +71,7 @@ export default function LoginPage() {
     }))
   }
 
-  const handleRoleChange = (value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      role: value,
-    }))
-  }
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
@@ -108,43 +109,6 @@ export default function LoginPage() {
             )}
 
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="space-y-2">
-                <Label htmlFor="role" className="apple-caption font-medium">Account Type</Label>
-                <Select value={formData.role} onValueChange={handleRoleChange} required>
-                  <SelectTrigger className="apple-focus h-12 border-2">
-                    <SelectValue placeholder="Select your account type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="admin" className="apple-body">
-                      <div className="flex items-center gap-3">
-                        <Shield className="h-4 w-4 text-primary" />
-                        <div>
-                          <div className="font-medium">Administrator</div>
-                          <div className="text-xs text-muted-foreground">Manage users, teams & system</div>
-                        </div>
-                      </div>
-                    </SelectItem>
-                    <SelectItem value="client" className="apple-body">
-                      <div className="flex items-center gap-3">
-                        <Users className="h-4 w-4 text-blue-500" />
-                        <div>
-                          <div className="font-medium">Client/User</div>
-                          <div className="text-xs text-muted-foreground">Buy tickets & manage profile</div>
-                        </div>
-                      </div>
-                    </SelectItem>
-                    <SelectItem value="team" className="apple-body">
-                      <div className="flex items-center gap-3">
-                        <Trophy className="h-4 w-4 text-green-500" />
-                        <div>
-                          <div className="font-medium">Team</div>
-                          <div className="text-xs text-muted-foreground">Manage team info & sales</div>
-                        </div>
-                      </div>
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
 
               <div className="space-y-2">
                 <Label htmlFor="email" className="apple-caption font-medium">Email or Username</Label>

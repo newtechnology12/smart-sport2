@@ -16,7 +16,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Header } from "@/components/header"
+
 import {
   Wallet,
   Plus,
@@ -91,7 +91,6 @@ export default function WalletPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
 
       <div className="container max-w-6xl mx-auto px-4 py-6">
         <div className="mb-8">

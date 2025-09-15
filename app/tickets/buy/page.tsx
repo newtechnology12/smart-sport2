@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
-import { Header } from "@/components/header"
+
 import { Calendar, Clock, MapPin, Search, Trophy, Ticket } from "lucide-react"
 import { matches } from "@/lib/dummy-data"
 
@@ -31,7 +31,6 @@ export default function BuyTicketsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
       
       <div className="container max-w-7xl mx-auto px-4 py-6">
         {/* Header Section */}

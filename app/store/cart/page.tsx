@@ -5,7 +5,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Header } from "@/components/header"
+
 import { ShoppingCart, Minus, Plus, Trash2, ArrowLeft, CreditCard, Truck } from "lucide-react"
 import { storeProducts } from "@/lib/dummy-data"
 
@@ -29,7 +29,6 @@ export default function CartPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
 
       <div className="container max-w-6xl mx-auto px-4 py-6">
         <div className="mb-8">
