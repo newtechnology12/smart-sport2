@@ -104,6 +104,7 @@ export function VideoBackground({
       {/* Video Element */}
       {videos.length > 0 && (
         <video
+          key={videos[currentVideoIndex]} // Force re-render when video changes
           ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover z-0"
           autoPlay
@@ -118,6 +119,7 @@ export function VideoBackground({
             console.log("Video load start:", videos[currentVideoIndex])
             setIsLoading(true)
           }}
+          suppressHydrationWarning={true} // Prevent hydration warnings
           style={{ display: hasError ? 'none' : 'block' }}
         >
           <source src={videos[currentVideoIndex]} type="video/mp4" />
