@@ -9,7 +9,7 @@ import { Trophy, Calendar, Wallet, Users, Star, ArrowRight } from "lucide-react"
 import { matches } from "@/lib/dummy-data"
 import { getSportImage } from "@/lib/images"
 import { FootballIcon, BasketballIcon, VolleyballIcon, EventIcon, AllSportsIcon } from "@/components/icons/sport-icons"
-import { VideoBackground } from "@/components/ui/video-background"
+import { SimpleVideoBackground } from "@/components/ui/simple-video-background"
 import { AutoTyping } from "@/components/ui/auto-typing"
 
 export default function HomePage() {
@@ -43,24 +43,26 @@ export default function HomePage() {
       {/* Hero Section with Video Background */}
       <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
         {/* Video Background */}
-        <VideoBackground
+        <SimpleVideoBackground
           videos={heroVideos}
-          className="absolute inset-0"
-          autoSlide={true}
+          className="absolute inset-0 z-0"
           slideInterval={10000}
         />
+
+
 
         {/* Hero Content */}
         <div className="relative z-10 container max-w-4xl mx-auto text-center px-4">
           <div className="text-white">
             {/* Auto-typing Title */}
-            <h1 className="apple-title text-3xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8">
+            <h1 className="apple-title text-3xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8 min-h-[4rem] md:min-h-[6rem] lg:min-h-[8rem] flex items-center justify-center">
               <AutoTyping
                 texts={typingTexts}
                 typeSpeed={80}
                 deleteSpeed={40}
                 pauseDuration={3000}
-                className="text-white drop-shadow-lg"
+                className="text-white drop-shadow-lg text-center"
+                minHeight="3rem"
               />
             </h1>
 
