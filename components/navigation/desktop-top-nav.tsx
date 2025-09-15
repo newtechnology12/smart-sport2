@@ -2,13 +2,15 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Trophy, LogIn, Info, Phone } from "lucide-react"
+import { Home, Trophy, LogIn, Info, Phone, Calendar, User, Wallet } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { useAuth } from "@/lib/auth-context"
 import { cn } from "@/lib/utils"
 
 const navItems = [
+  { href: "/", icon: Home, label: "Home" },
+  { href: "/tickets/buy", icon: Trophy, label: "Buy Tickets" },
   { href: "/about", icon: Info, label: "About Us" },
   { href: "/contact", icon: Phone, label: "Contact Us" },
 ]
