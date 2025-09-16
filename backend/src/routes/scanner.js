@@ -4,11 +4,10 @@ const { db } = require('../config/database');
 const { authenticate, authorize } = require('../middleware/auth');
 const { catchAsync } = require('../middleware/errorHandler');
 const { AppError } = require('../middleware/errorHandler');
-const QRService = require('../services/qrService');
+const qrService = require('../services/qrService');
 const logger = require('../utils/logger');
 
 const router = express.Router();
-const qrService = new QRService();
 
 /**
  * @swagger

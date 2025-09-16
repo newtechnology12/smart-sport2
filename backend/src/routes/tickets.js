@@ -4,15 +4,12 @@ const { db } = require('../config/database');
 const { authenticate, authorize } = require('../middleware/auth');
 const { catchAsync } = require('../middleware/errorHandler');
 const { AppError } = require('../middleware/errorHandler');
-const QRService = require('../services/qrService');
-const PaymentService = require('../services/paymentService');
-const EmailService = require('../services/emailService');
+const qrService = require('../services/qrService');
+const paymentService = require('../services/paymentService');
+const emailService = require('../services/emailService');
 const logger = require('../utils/logger');
 
 const router = express.Router();
-const qrService = new QRService();
-const paymentService = new PaymentService();
-const emailService = new EmailService();
 
 /**
  * @swagger
