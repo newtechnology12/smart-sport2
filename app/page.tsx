@@ -1,19 +1,59 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
+import { ChevronUp } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Trophy, Calendar, Wallet, Users, Star, ArrowRight } from "lucide-react"
+import { Trophy, Calendar, Wallet, Users, Star, ArrowRight, Search, Clock, MapPin, Heart } from "lucide-react"
 import { matches } from "@/lib/dummy-data"
 import { getSportImage } from "@/lib/images"
 import { FootballIcon, BasketballIcon, VolleyballIcon, EventIcon, AllSportsIcon } from "@/components/icons/sport-icons"
-import { VideoBackgroundSlides } from "@/components/ui/video-background-slides"
+// import { VideoBackgroundSlides } from "@/components/ui/video-background-slides"
 import { AutoTyping } from "@/components/ui/auto-typing"
+import { PartnersSection } from "@/components/sections/partners-section"
+import { Footer } from "@/components/sections/footer"
 
 export default function HomePage() {
   const [selectedSport, setSelectedSport] = useState("All")
+  const [searchQuery, setSearchQuery] = useState("")
+  const [showSearchSuggestions, setShowSearchSuggestions] = useState(false)
+  const [currentPage, setCurrentPage] = useState(0)
+  const [showBackToTop, setShowBackToTop] = useState(false)
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
+
+  // Add scroll event listener
+  useEffect(() => {
+    const container = scrollContainerRef.current
+    if (container) {
+      container.addEventListener('scroll', handleScroll)
+      return () => container.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  // Back to top scroll listener
+  useEffect(() => {
+    const handleScrollToTop = () => {
+      if (window.scrollY > 300) {
+        setShowBackToTop(true)
+      } else {
+        setShowBackToTop(false)
+      }
+    }
+
+    window.addEventListener('scroll', handleScrollToTop)
+    return () => window.removeEventListener('scroll', handleScrollToTop)
+  }, [])
+
+  // Back to top function
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
+
 
   const filteredMatches = selectedSport === "All"
     ? matches.slice(0, 6)
@@ -21,13 +61,48 @@ export default function HomePage() {
 
   const upcomingMatches = filteredMatches.slice(0, 3)
 
-  // Video backgrounds
-  const heroVideos = [
-    "/videos/football.mp4",
-    "/videos/basketball.mp4",
-    "/videos/volleyball.mp4",
-    "/videos/handball.mp4"
-  ]
+  const handleSearch = (query: string) => {
+    setSearchQuery(query)
+    setShowSearchSuggestions(false)
+    // You can add navigation logic here
+    console.log('Searching for:', query)
+  }
+
+  // Handle scroll for pagination dots
+  const handleScroll = () => {
+    if (scrollContainerRef.current) {
+      const scrollLeft = scrollContainerRef.current.scrollLeft
+      const scrollWidth = scrollContainerRef.current.scrollWidth
+      const clientWidth = scrollContainerRef.current.clientWidth
+      
+      // Calculate which page we're on (0 or 1) - 2 pages total, 3 cards per page
+      const page = Math.round((scrollLeft / (scrollWidth - clientWidth)) * 1)
+      setCurrentPage(Math.min(page, 1))
+    }
+  }
+
+  // Handle dot click to scroll to specific page
+  const handleDotClick = (page: number) => {
+    if (scrollContainerRef.current) {
+      const scrollWidth = scrollContainerRef.current.scrollWidth
+      const clientWidth = scrollContainerRef.current.clientWidth
+      const maxScroll = scrollWidth - clientWidth
+      const scrollLeft = (page / 1) * maxScroll
+      
+      scrollContainerRef.current.scrollTo({
+        left: scrollLeft,
+        behavior: 'smooth'
+      })
+    }
+  }
+
+  // Video backgrounds - commented out, using image instead
+  // const heroVideos = [
+  //   "/videos/football.mp4",
+  //   "/videos/basketball.mp4",
+  //   "/videos/volleyball.mp4",
+  //   "/videos/handball.mp4"
+  // ]
 
   // Auto-typing texts
   const typingTexts = [
@@ -40,19 +115,20 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background">
 
-      {/* Hero Section with Video Background */}
-      <section className="video-background-container">
-        {/* Video Background */}
-        <VideoBackgroundSlides
-          videos={heroVideos}
-          className="absolute inset-0 z-0"
-          slideInterval={10000}
-          showIndicators={false}
-          showControls={false}
-          autoPlay={true}
-          muted={true}
-          loop={true}
-        />
+      {/* Hero Section with Image Background */}
+      <section className="relative min-h-screen">
+        {/* Image Background */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/std.jpg"
+            alt="Sports background"
+            fill
+            className="object-cover"
+            priority
+          />
+          {/* Overlay gradient for better content visibility */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/60" />
+        </div>
 
         {/* Hero Content */}
         <div className="hero-content-centered container max-w-4xl mx-auto px-4">
@@ -68,6 +144,68 @@ export default function HomePage() {
                 minHeight="3rem"
               />
             </h1>
+
+            {/* Google-style Search Bar */}
+            <div className="mb-6 md:mb-8">
+              <div className="relative max-w-2xl mx-auto">
+                <div className="relative">
+                  <div className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10">
+                    <div className="w-6 h-6 flex items-center justify-center">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="m21 21-4.35-4.35"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Search teams, matches, or events..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onFocus={() => setShowSearchSuggestions(true)}
+                    onBlur={() => setTimeout(() => setShowSearchSuggestions(false), 200)}
+                    className="w-full pl-12 pr-16 py-4 text-lg bg-white/95 backdrop-blur-sm border border-gray-200 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all duration-300 placeholder-gray-500 text-black"
+                  />
+                  <div className="absolute inset-y-0 right-0 pr-4 flex items-center">
+                    <button className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200">
+                      <svg className="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                        <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                {/* Search suggestions dropdown */}
+                <div className={`absolute top-full left-0 right-0 mt-2 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200 transition-all duration-300 z-[100] ${showSearchSuggestions ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+                  <div className="p-4">
+                    <div className="text-sm text-gray-500 mb-2">Popular searches</div>
+                    <div className="space-y-2">
+                      <div 
+                        className="flex items-center space-x-3 p-2 hover:bg-gray-50 rounded-lg cursor-pointer transition-colors duration-200"
+                        onClick={() => handleSearch("APR FC vs Rayon Sports")}
+                      >
+                        <Trophy className="h-4 w-4 text-gray-400" />
+                        <span className="text-gray-700">APR FC vs Rayon Sports</span>
+                      </div>
+                      <div 
+                        className="flex items-center space-x-3 p-2 hover:bg-gray-50 rounded-lg cursor-pointer transition-colors duration-200"
+                        onClick={() => handleSearch("Basketball matches")}
+                      >
+                        <Trophy className="h-4 w-4 text-gray-400" />
+                        <span className="text-gray-700">Basketball matches</span>
+                      </div>
+                      <div 
+                        className="flex items-center space-x-3 p-2 hover:bg-gray-50 rounded-lg cursor-pointer transition-colors duration-200"
+                        onClick={() => handleSearch("Volleyball tickets")}
+                      >
+                        <Trophy className="h-4 w-4 text-gray-400" />
+                        <span className="text-gray-700">Volleyball tickets</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -91,47 +229,174 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Sports Categories Navigation */}
-      <section className="px-4 py-6 md:py-8 bg-muted/20">
-        <div className="container max-w-4xl mx-auto">
-          <h2 className="font-serif text-xl md:text-2xl font-bold text-center mb-4 md:mb-6">Browse by Sport</h2>
-          <div className="grid grid-cols-2 md:flex md:flex-wrap md:justify-center gap-3 md:gap-4">
-            <Link href="/sports" className="w-full md:w-auto">
-              <Button variant="outline" size="lg" className="apple-button bg-white hover:bg-primary hover:text-white rounded-xl flex items-center justify-center gap-2 w-full md:w-auto h-12 md:h-auto text-sm md:text-base">
-                <AllSportsIcon size={18} className="md:w-5 md:h-5" />
-                <span className="hidden sm:inline">All Sports</span>
-                <span className="sm:hidden">All</span>
+          {/* Browse by Sport Section - Over Background */}
+          <div className="relative z-10 mt-8 md:mt-12">
+            <div className="container max-w-5xl mx-auto px-4">
+              {/* Header Section */}
+              <div className="text-center mb-6">
+                <div className="inline-flex items-center gap-2 mb-2">
+                  <div className="w-8 h-8 bg-white/90 backdrop-blur-sm rounded-lg flex items-center justify-center shadow-lg">
+                    <Trophy className="h-4 w-4 text-primary" />
+                  </div>
+                  <h2 className="font-serif text-xl md:text-2xl font-bold text-white drop-shadow-lg">Browse by Sport</h2>
+                </div>
+                <p className="text-white/90 text-xs md:text-sm max-w-xl mx-auto drop-shadow-md">
+                  Discover exciting sports and events happening across Rwanda
+                </p>
+              </div>
+
+              {/* Sport Buttons */}
+              <div className="flex flex-col lg:flex-row justify-center items-center gap-4 lg:gap-6">
+                {/* Mobile Layout - 3 cards per page with pagination on small screens */}
+                <div className="w-full lg:hidden">
+                  <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide snap-x snap-mandatory" ref={scrollContainerRef}>
+                    {/* Page 1 - First 3 buttons */}
+                    <div className="flex gap-3 flex-shrink-0 w-full snap-start">
+                      <Link href="/sports" className="group flex-1">
+                        <Button 
+                          variant="outline" 
+                          size="lg" 
+                          className="bg-white backdrop-blur-sm hover:bg-gradient-to-r hover:from-primary hover:to-secondary hover:text-white border-2 border-white/50 hover:border-primary text-gray-800 hover:text-white rounded-lg flex items-center justify-center gap-2 px-3 py-3 h-10 text-xs font-semibold transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer group whitespace-nowrap w-full"
+                        >
+                          <AllSportsIcon size={14} className="group-hover:scale-110 transition-transform duration-300" />
+                          <span>All Sports</span>
+                        </Button>
+                      </Link>
+                      <Link href="/sports/football" className="group flex-1">
+                        <Button 
+                          variant="outline" 
+                          size="lg" 
+                          className="bg-white backdrop-blur-sm hover:bg-gradient-to-r hover:from-primary hover:to-secondary hover:text-white border-2 border-white/50 hover:border-primary text-gray-800 hover:text-white rounded-lg flex items-center justify-center gap-2 px-3 py-3 h-10 text-xs font-semibold transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer group whitespace-nowrap w-full"
+                        >
+                          <FootballIcon size={14} className="group-hover:scale-110 transition-transform duration-300" />
+                          <span>Football</span>
+                        </Button>
+                      </Link>
+                      <Link href="/sports/basketball" className="group flex-1">
+                        <Button 
+                          variant="outline" 
+                          size="lg" 
+                          className="bg-white backdrop-blur-sm hover:bg-gradient-to-r hover:from-primary hover:to-secondary hover:text-white border-2 border-white/50 hover:border-primary text-gray-800 hover:text-white rounded-lg flex items-center justify-center gap-2 px-3 py-3 h-10 text-xs font-semibold transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer group whitespace-nowrap w-full"
+                        >
+                          <BasketballIcon size={14} className="group-hover:scale-110 transition-transform duration-300" />
+                          <span>Basketball</span>
+                        </Button>
+                      </Link>
+                    </div>
+                    
+                    {/* Page 2 - 3 buttons including All Sports */}
+                    <div className="flex gap-3 flex-shrink-0 w-full snap-start">
+                      <Link href="/sports" className="group flex-1">
+                        <Button 
+                          variant="outline" 
+                          size="lg" 
+                          className="bg-white backdrop-blur-sm hover:bg-gradient-to-r hover:from-primary hover:to-secondary hover:text-white border-2 border-white/50 hover:border-primary text-gray-800 hover:text-white rounded-lg flex items-center justify-center gap-2 px-3 py-3 h-10 text-xs font-semibold transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer group whitespace-nowrap w-full"
+                        >
+                          <AllSportsIcon size={14} className="group-hover:scale-110 transition-transform duration-300" />
+                          <span>All Sports</span>
+                        </Button>
+                      </Link>
+                      <Link href="/sports/volleyball" className="group flex-1">
+                        <Button 
+                          variant="outline" 
+                          size="lg" 
+                          className="bg-white backdrop-blur-sm hover:bg-gradient-to-r hover:from-primary hover:to-secondary hover:text-white border-2 border-white/50 hover:border-primary text-gray-800 hover:text-white rounded-lg flex items-center justify-center gap-2 px-3 py-3 h-10 text-xs font-semibold transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer group whitespace-nowrap w-full"
+                        >
+                          <VolleyballIcon size={14} className="group-hover:scale-110 transition-transform duration-300" />
+                          <span>Volleyball</span>
+                        </Button>
+                      </Link>
+                      <Link href="/sports/events" className="group flex-1">
+                        <Button 
+                          variant="outline" 
+                          size="lg" 
+                          className="bg-white backdrop-blur-sm hover:bg-gradient-to-r hover:from-primary hover:to-secondary hover:text-white border-2 border-white/50 hover:border-primary text-gray-800 hover:text-white rounded-lg flex items-center justify-center gap-2 px-3 py-3 h-10 text-xs font-semibold transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer group whitespace-nowrap w-full"
+                        >
+                          <EventIcon size={14} className="group-hover:scale-110 transition-transform duration-300" />
+                          <span>Events</span>
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
+                  
+                  {/* Pagination Dots */}
+                  <div className="flex justify-center mt-3 gap-2">
+                    <button 
+                      onClick={() => handleDotClick(0)}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${currentPage === 0 ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white/70'}`}
+                    ></button>
+                    <button 
+                      onClick={() => handleDotClick(1)}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${currentPage === 1 ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white/70'}`}
+                    ></button>
+          </div>
+        </div>
+
+                {/* Desktop Layout - 2-1-2 arrangement on large screens */}
+                <div className="hidden lg:flex items-center gap-4 xl:gap-6">
+                  {/* Left Side - 2 buttons */}
+                  <div className="flex gap-4">
+                    <Link href="/sports/football" className="group">
+                      <Button 
+                        variant="outline" 
+                        size="lg" 
+                        className="bg-white backdrop-blur-sm hover:bg-gradient-to-r hover:from-primary hover:to-secondary hover:text-white border-2 border-white/50 hover:border-primary text-gray-800 hover:text-white rounded-lg flex items-center justify-center gap-2 px-4 py-3 h-12 text-sm font-semibold transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer group"
+                      >
+                        <FootballIcon size={18} className="group-hover:scale-110 transition-transform duration-300" />
+                        <span>Football</span>
               </Button>
             </Link>
-            <Link href="/sports/football" className="w-full md:w-auto">
-              <Button variant="outline" size="lg" className="apple-button bg-white hover:bg-primary hover:text-white rounded-xl flex items-center justify-center gap-2 w-full md:w-auto h-12 md:h-auto text-sm md:text-base">
-                <FootballIcon size={18} className="md:w-5 md:h-5" />
-                Football
+                    <Link href="/sports/basketball" className="group">
+                      <Button 
+                        variant="outline" 
+                        size="lg" 
+                        className="bg-white backdrop-blur-sm hover:bg-gradient-to-r hover:from-primary hover:to-secondary hover:text-white border-2 border-white/50 hover:border-primary text-gray-800 hover:text-white rounded-lg flex items-center justify-center gap-2 px-4 py-3 h-12 text-sm font-semibold transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer group"
+                      >
+                        <BasketballIcon size={18} className="group-hover:scale-110 transition-transform duration-300" />
+                        <span>Basketball</span>
               </Button>
             </Link>
-            <Link href="/sports/basketball" className="w-full md:w-auto">
-              <Button variant="outline" size="lg" className="apple-button bg-white hover:bg-primary hover:text-white rounded-xl flex items-center justify-center gap-2 w-full md:w-auto h-12 md:h-auto text-sm md:text-base">
-                <BasketballIcon size={18} className="md:w-5 md:h-5" />
-                <span className="hidden sm:inline">Basketball</span>
-                <span className="sm:hidden">B-Ball</span>
+                  </div>
+
+                  {/* Center - All Sports */}
+                  <Link href="/sports" className="group">
+                    <Button 
+                      variant="outline" 
+                      size="lg" 
+                      className="bg-white backdrop-blur-sm hover:bg-gradient-to-r hover:from-primary hover:to-secondary hover:text-white border-2 border-white/50 hover:border-primary text-gray-800 hover:text-white rounded-lg flex items-center justify-center gap-2 px-6 py-3 h-12 text-sm font-semibold transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer group"
+                    >
+                      <AllSportsIcon size={18} className="group-hover:scale-110 transition-transform duration-300" />
+                      <span>All Sports</span>
               </Button>
             </Link>
-            <Link href="/sports/volleyball" className="w-full md:w-auto">
-              <Button variant="outline" size="lg" className="apple-button bg-white hover:bg-primary hover:text-white rounded-xl flex items-center justify-center gap-2 w-full md:w-auto h-12 md:h-auto text-sm md:text-base">
-                <VolleyballIcon size={18} className="md:w-5 md:h-5" />
-                <span className="hidden sm:inline">Volleyball</span>
-                <span className="sm:hidden">V-Ball</span>
+
+                  {/* Right Side - 2 buttons */}
+                  <div className="flex gap-4">
+                    <Link href="/sports/volleyball" className="group">
+                      <Button 
+                        variant="outline" 
+                        size="lg" 
+                        className="bg-white backdrop-blur-sm hover:bg-gradient-to-r hover:from-primary hover:to-secondary hover:text-white border-2 border-white/50 hover:border-primary text-gray-800 hover:text-white rounded-lg flex items-center justify-center gap-2 px-4 py-3 h-12 text-sm font-semibold transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer group"
+                      >
+                        <VolleyballIcon size={18} className="group-hover:scale-110 transition-transform duration-300" />
+                        <span>Volleyball</span>
               </Button>
             </Link>
-            <Link href="/sports/events" className="w-full md:w-auto col-span-2 md:col-span-1">
-              <Button variant="outline" size="lg" className="apple-button bg-white hover:bg-primary hover:text-white rounded-xl flex items-center justify-center gap-2 w-full md:w-auto h-12 md:h-auto text-sm md:text-base">
-                <EventIcon size={18} className="md:w-5 md:h-5" />
-                Events
+                    <Link href="/sports/events" className="group">
+                      <Button 
+                        variant="outline" 
+                        size="lg" 
+                        className="bg-white backdrop-blur-sm hover:bg-gradient-to-r hover:from-primary hover:to-secondary hover:text-white border-2 border-white/50 hover:border-primary text-gray-800 hover:text-white rounded-lg flex items-center justify-center gap-2 px-4 py-3 h-12 text-sm font-semibold transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer group"
+                      >
+                        <EventIcon size={18} className="group-hover:scale-110 transition-transform duration-300" />
+                        <span>Events</span>
               </Button>
             </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -139,91 +404,165 @@ export default function HomePage() {
 
 
       {/* Upcoming Matches */}
-      <section className="px-4 py-8 md:py-12 bg-muted/30">
-        <div className="container max-w-4xl mx-auto">
-          <div className="flex items-center justify-between mb-6 md:mb-8">
-            <h2 className="font-serif text-xl md:text-2xl font-bold">Upcoming Matches</h2>
-            <Link href="/sports">
-              <Button variant="outline" size="sm" className="apple-button rounded-xl text-xs md:text-sm">
-                <span className="hidden sm:inline">View All</span>
-                <span className="sm:hidden">All</span>
-                <ArrowRight className="ml-1 md:ml-2 h-3 md:h-4 w-3 md:w-4" />
-              </Button>
-            </Link>
+      <section className="px-4 py-12 md:py-16 bg-gradient-to-br from-slate-50 to-gray-100">
+        <div className="container max-w-6xl mx-auto">
+          {/* Header Section */}
+          <div className="text-center mb-12">
+            <div className="mb-4">
+              <h2 className="font-serif text-2xl md:text-3xl font-bold text-gray-900">Upcoming Sports & Events</h2>
+            </div>
+            <p className="text-gray-600 text-sm md:text-base max-w-2xl mx-auto">
+              Don't miss out on the most exciting sports events happening across Rwanda
+            </p>
           </div>
 
-          <div className="flex flex-wrap gap-2 mb-4 md:mb-6 overflow-x-auto pb-2">
+          {/* Filter Buttons */}
+          <div className="flex flex-wrap justify-center gap-3 mb-8">
             <Button
               variant={selectedSport === "All" ? "default" : "outline"}
-              size="sm"
-              className="apple-button rounded-xl"
+              size="lg"
+              className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 cursor-pointer border-2 ${
+                selectedSport === "All" 
+                  ? "bg-gradient-to-r from-primary to-secondary text-white shadow-lg hover:shadow-xl border-primary" 
+                  : "bg-white text-gray-700 border-2 border-gray-400 hover:border-primary hover:text-primary hover:bg-primary/5 shadow-sm hover:shadow-md"
+              }`}
               onClick={() => setSelectedSport("All")}
             >
               All
             </Button>
             <Button
               variant={selectedSport === "Football" ? "default" : "outline"}
-              size="sm"
-              className="apple-button rounded-xl"
+              size="lg"
+              className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 cursor-pointer border-2 ${
+                selectedSport === "Football" 
+                  ? "bg-gradient-to-r from-primary to-secondary text-white shadow-lg hover:shadow-xl border-primary" 
+                  : "bg-white text-gray-700 border-2 border-gray-400 hover:border-primary hover:text-primary hover:bg-primary/5 shadow-sm hover:shadow-md"
+              }`}
               onClick={() => setSelectedSport("Football")}
             >
+              <FootballIcon className="w-4 h-4 mr-2" />
               Football
             </Button>
             <Button
               variant={selectedSport === "Basketball" ? "default" : "outline"}
-              size="sm"
-              className="apple-button rounded-xl"
+              size="lg"
+              className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 cursor-pointer border-2 ${
+                selectedSport === "Basketball" 
+                  ? "bg-gradient-to-r from-primary to-secondary text-white shadow-lg hover:shadow-xl border-primary" 
+                  : "bg-white text-gray-700 border-2 border-gray-400 hover:border-primary hover:text-primary hover:bg-primary/5 shadow-sm hover:shadow-md"
+              }`}
               onClick={() => setSelectedSport("Basketball")}
             >
+              <BasketballIcon className="w-4 h-4 mr-2" />
               Basketball
             </Button>
             <Button
               variant={selectedSport === "Volleyball" ? "default" : "outline"}
-              size="sm"
-              className="apple-button rounded-xl"
+              size="lg"
+              className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 cursor-pointer border-2 ${
+                selectedSport === "Volleyball" 
+                  ? "bg-gradient-to-r from-primary to-secondary text-white shadow-lg hover:shadow-xl border-primary" 
+                  : "bg-white text-gray-700 border-2 border-gray-400 hover:border-primary hover:text-primary hover:bg-primary/5 shadow-sm hover:shadow-md"
+              }`}
               onClick={() => setSelectedSport("Volleyball")}
             >
+              <VolleyballIcon className="w-4 h-4 mr-2" />
               Volleyball
+            </Button>
+            <Button
+              variant={selectedSport === "Events" ? "default" : "outline"}
+              size="lg"
+              className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 cursor-pointer border-2 ${
+                selectedSport === "Events" 
+                  ? "bg-gradient-to-r from-primary to-secondary text-white shadow-lg hover:shadow-xl border-primary" 
+                  : "bg-white text-gray-700 border-2 border-gray-400 hover:border-primary hover:text-primary hover:bg-primary/5 shadow-sm hover:shadow-md"
+              }`}
+              onClick={() => setSelectedSport("Events")}
+            >
+              Events
             </Button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          {/* View All Button */}
+          <div className="text-center mb-8">
+            <Link href="/sports">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="bg-white hover:bg-primary hover:text-white border-primary text-primary hover:border-primary px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg cursor-pointer"
+              >
+                Explore All
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {filteredMatches.map((match) => (
-              <Card key={match.id} className="apple-card overflow-hidden rounded-2xl border-0 shadow-sm bg-card/50 backdrop-blur-sm">
-                <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/20 relative">
+              <Card key={match.id} className="group overflow-hidden !border-0 !rounded-none shadow-lg hover:shadow-2xl bg-white transition-all duration-500 hover:-translate-y-2">
+                <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/20 relative overflow-hidden">
                   <Image
                     src={match.image || getSportImage(match.sport)}
                     alt={`${match.home_team} vs ${match.away_team || "Event"}`}
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
-                  <div className="absolute inset-0 bg-black/20"></div>
-                  <div className="absolute bottom-2 left-2 text-white font-bold text-sm bg-black/50 px-2 py-1 rounded">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                  <div className="absolute top-4 left-4">
+                    <div className="bg-white/90 backdrop-blur-sm text-gray-900 font-bold text-xs px-3 py-1.5 rounded-full shadow-lg">
                     {match.sport}
                   </div>
                 </div>
-                <CardHeader>
-                  <CardTitle className="text-lg">
+                  <div className="absolute bottom-4 right-4">
+                    <div className="bg-primary text-white font-bold text-lg px-4 py-2 rounded-xl shadow-lg">
+                      {match.price.toLocaleString()} RWF
+                    </div>
+                  </div>
+                  <div className="absolute top-4 right-4">
+                     <Link href={`/tickets/purchase/${match.id}`}>
+                       <button
+                         className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 bg-white/90 backdrop-blur-sm text-gray-600 hover:bg-primary hover:text-white shadow-lg cursor-pointer"
+                         aria-label="Purchase ticket for this match"
+                       >
+                         <Heart className="h-5 w-5" />
+                       </button>
+                     </Link>
+                  </div>
+                </div>
+                <CardHeader className="pb-4">
+                  <CardTitle className="text-xl font-bold text-gray-900 group-hover:text-primary transition-colors duration-300">
                     {match.away_team ? `${match.home_team} vs ${match.away_team}` : match.home_team}
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-gray-600 text-sm">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Calendar className="h-4 w-4 text-primary" />
+                      <span>
                     {new Date(match.date).toLocaleDateString("en-US", {
                       weekday: "long",
                       year: "numeric",
                       month: "long",
                       day: "numeric",
-                    })}{" "}
-                    • {match.time} • {match.location}
+                        })}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <Clock className="h-4 w-4 text-primary" />
+                      <span>{match.time}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <MapPin className="h-4 w-4 text-primary" />
+                      <span>{match.location}</span>
+                    </div>
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <div className="flex items-center justify-between">
-                    <span className="text-lg font-semibold text-primary">{match.price.toLocaleString()} RWF</span>
-                    <Link href={`/tickets/purchase/${match.id}`}>
-                      <Button size="sm" className="apple-button rounded-xl">Buy Ticket</Button>
+                <CardContent className="pt-0">
+                  <Link href={`/tickets/purchase/${match.id}`} className="block">
+                    <Button className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white rounded-xl py-3 font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer">
+                      Buy Ticket
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
                     </Link>
-                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -231,7 +570,22 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Partners Section */}
+      <PartnersSection />
 
+      {/* Footer */}
+      <Footer />
+
+      {/* Back to Top Button */}
+      {showBackToTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 z-50 w-12 h-12 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 flex items-center justify-center group"
+          aria-label="Back to top"
+        >
+          <ChevronUp className="h-6 w-6 group-hover:-translate-y-0.5 transition-transform duration-300" />
+        </button>
+      )}
     </div>
   )
 }

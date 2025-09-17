@@ -47,8 +47,17 @@ export default function SportPage({ params }: SportPageProps) {
       "Police VC": 3800,
       "Gisagara VC": 2900,
       "University of Rwanda": 5600,
+      "Police FC": 1972,
+      "Gasogi United": 3200,
+      "Musanze FC": 2800,
+      "SC Kiyovu": 4500,
+      "Mukura VS": 3800,
+      "AS Kigali": 4200,
+      "UTB VC": 2100,
+      "REG VC": 1800,
+      "RRA VC": 1500,
     }
-    return counts[team] || Math.floor(Math.random() * 5000) + 1000
+    return counts[team] || 2500
   }
 
   return (
@@ -85,7 +94,7 @@ export default function SportPage({ params }: SportPageProps) {
             {sport.teams.map((team) => (
               <Card key={team} className="overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-105">
                 <div className="h-32 bg-gradient-to-br from-primary/20 to-secondary/20 relative">
-                  <img src="/sports-team-.jpg" alt={team} className="w-full h-full object-cover" />
+                  <img src="/image.jpg" alt={team} className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-black/30"></div>
                   <div className="absolute top-2 right-2">
                     <Badge variant="secondary" className="bg-white/90 text-black">

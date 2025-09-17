@@ -9,6 +9,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 import { ShoppingCart, Search, Star, Heart, ShoppingBag, Grid, List } from "lucide-react"
 import { storeProducts } from "@/lib/dummy-data"
+import { PartnersSection } from "@/components/sections/partners-section"
+import { Footer } from "@/components/sections/footer"
 
 export default function StorePage() {
   const [searchQuery, setSearchQuery] = useState("")
@@ -265,6 +267,12 @@ export default function StorePage() {
           </div>
         </section>
       </div>
+
+      {/* Partners Section */}
+      <PartnersSection />
+
+      {/* Footer */}
+      <Footer />
     </div>
   )
 }

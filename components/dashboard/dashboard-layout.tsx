@@ -173,7 +173,7 @@ const navigationItems: NavItem[] = [
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   const { user, logout } = useAuth()
-  const { userRole } = useRoleAccess()
+  const { userRole }: { userRole: 'admin' | 'client' | 'team' | undefined } = useRoleAccess()
   const pathname = usePathname()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 

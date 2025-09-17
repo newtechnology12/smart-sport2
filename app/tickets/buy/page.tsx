@@ -9,6 +9,8 @@ import { Input } from "@/components/ui/input"
 
 import { Calendar, Clock, MapPin, Search, Trophy, Ticket } from "lucide-react"
 import { matches } from "@/lib/dummy-data"
+import { PartnersSection } from "@/components/sections/partners-section"
+import { Footer } from "@/components/sections/footer"
 
 export default function BuyTicketsPage() {
   const [searchTerm, setSearchTerm] = useState("")
@@ -89,7 +91,7 @@ export default function BuyTicketsPage() {
             <Card key={match.id} className="overflow-hidden hover:shadow-lg transition-all duration-300 border-0 shadow-sm bg-card/50 backdrop-blur-sm">
               <div className="h-48 bg-gradient-to-br from-primary/20 to-secondary/20 relative">
                 <img
-                  src={match.image || "/football-stadium-crowd.png"}
+                  src={match.image || "/image.jpg"}
                   alt={`${match.home_team} vs ${match.away_team || 'Event'}`}
                   className="w-full h-full object-cover"
                 />
@@ -185,6 +187,12 @@ export default function BuyTicketsPage() {
           </Card>
         )}
       </div>
+
+      {/* Partners Section */}
+      <PartnersSection />
+
+      {/* Footer */}
+      <Footer />
     </div>
   )
 }

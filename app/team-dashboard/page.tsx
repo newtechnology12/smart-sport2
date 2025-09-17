@@ -168,6 +168,49 @@ function TeamDashboard() {
               </Card>
             </div>
 
+            {/* Quick Navigation */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <Card className="apple-card hover:shadow-lg transition-all duration-300 cursor-pointer" onClick={() => window.location.href = '/team-dashboard/sales'}>
+                <CardContent className="p-6 text-center">
+                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <DollarSign className="h-8 w-8 text-green-600" />
+                  </div>
+                  <h3 className="font-semibold mb-2">Sales Dashboard</h3>
+                  <p className="text-sm text-muted-foreground">Track ticket sales and revenue</p>
+                </CardContent>
+              </Card>
+
+              <Card className="apple-card hover:shadow-lg transition-all duration-300 cursor-pointer" onClick={() => window.location.href = '/team-dashboard/analytics'}>
+                <CardContent className="p-6 text-center">
+                  <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <BarChart3 className="h-8 w-8 text-purple-600" />
+                  </div>
+                  <h3 className="font-semibold mb-2">Team Analytics</h3>
+                  <p className="text-sm text-muted-foreground">Performance and fan insights</p>
+                </CardContent>
+              </Card>
+
+              <Card className="apple-card hover:shadow-lg transition-all duration-300 cursor-pointer" onClick={() => window.location.href = '/team-dashboard/finance'}>
+                <CardContent className="p-6 text-center">
+                  <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <DollarSign className="h-8 w-8 text-orange-600" />
+                  </div>
+                  <h3 className="font-semibold mb-2">Finance Management</h3>
+                  <p className="text-sm text-muted-foreground">Budget and financial tracking</p>
+                </CardContent>
+              </Card>
+
+              <Card className="apple-card hover:shadow-lg transition-all duration-300 cursor-pointer">
+                <CardContent className="p-6 text-center">
+                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Settings className="h-8 w-8 text-blue-600" />
+                  </div>
+                  <h3 className="font-semibold mb-2">Team Settings</h3>
+                  <p className="text-sm text-muted-foreground">Manage team configuration</p>
+                </CardContent>
+              </Card>
+            </div>
+
             {/* Performance Overview */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <Card className="apple-card">

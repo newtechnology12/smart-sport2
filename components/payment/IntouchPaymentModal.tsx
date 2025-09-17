@@ -1,9 +1,9 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { 
-  X, 
-  Smartphone, 
+import {
+  X,
+  Smartphone,
   CheckCircle,
   AlertCircle,
   Loader2,
@@ -12,12 +12,14 @@ import {
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { validateRwandanPhoneNumber } from '@/lib/utils/phone-validation'
 
 interface IntouchPaymentModalProps {
   isOpen: boolean
   onClose: () => void
   amount: number
   description: string
+  phoneNumber: string // Add phone number as a required prop
   onPaymentComplete?: (paymentData: any) => void
   onPaymentError?: (error: string) => void
 }
@@ -28,6 +30,8 @@ interface PaymentState {
   transactionId?: string
   intouchpayTransactionId?: string
   errorMessage?: string
+  processingMessage?: string
+  successMessage?: string
   statusCheckInterval?: NodeJS.Timeout
 }
 
@@ -36,12 +40,13 @@ export function IntouchPaymentModal({
   onClose,
   amount,
   description,
+  phoneNumber,
   onPaymentComplete,
   onPaymentError
 }: IntouchPaymentModalProps) {
   const [paymentState, setPaymentState] = useState<PaymentState>({
     step: 'input',
-    phoneNumber: ''
+    phoneNumber: phoneNumber || ''
   })
 
   // Cleanup interval on unmount
@@ -55,52 +60,31 @@ export function IntouchPaymentModal({
 
   if (!isOpen) return null
 
+  // Use the shared validation utility
   const validatePhoneNumber = (phone: string): boolean => {
-    // Remove any spaces or special characters
-    const cleanPhone = phone.replace(/\D/g, '')
-    
-    // Must be exactly 12 digits and start with 250
-    if (!/^250\d{9}$/.test(cleanPhone)) {
-      return false
-    }
-    
-    // Check if it starts with valid Rwandan prefixes
-    const validPrefixes = [
-      '250078', '250079', // MTN
-      '250072', '250073', '250075', '250076', '250077', // Airtel
-      '250781', '250782', '250783', '250784', '250785', '250786', '250787', '250788', '250789', // MTN
-      '250720', '250721', '250722', '250723', '250724', '250725', '250726', '250727', '250728', '250729' // Airtel
-    ]
-    
-    return validPrefixes.some(prefix => cleanPhone.startsWith(prefix))
+    const validation = validateRwandanPhoneNumber(phone)
+    return validation.isValid
   }
 
-  const formatPhoneNumber = (phone: string): string => {
-    const cleanPhone = phone.replace(/\D/g, '')
-    if (cleanPhone.length <= 3) return cleanPhone
-    if (cleanPhone.length <= 6) return `${cleanPhone.slice(0, 3)} ${cleanPhone.slice(3)}`
-    if (cleanPhone.length <= 9) return `${cleanPhone.slice(0, 3)} ${cleanPhone.slice(3, 6)} ${cleanPhone.slice(6)}`
-    return `${cleanPhone.slice(0, 3)} ${cleanPhone.slice(3, 6)} ${cleanPhone.slice(6, 9)} ${cleanPhone.slice(9, 12)}`
-  }
 
-  const handlePhoneNumberChange = (value: string) => {
-    const formatted = formatPhoneNumber(value)
-    if (formatted.replace(/\D/g, '').length <= 12) {
-      setPaymentState(prev => ({ ...prev, phoneNumber: formatted }))
-    }
-  }
 
   const handlePaymentRequest = async () => {
-    const cleanPhone = paymentState.phoneNumber.replace(/\D/g, '')
-    
-    if (!validatePhoneNumber(cleanPhone)) {
-      setPaymentState(prev => ({ 
-        ...prev, 
-        step: 'error', 
-        errorMessage: 'Please enter a valid Rwandan phone number (12 digits starting with 250)' 
+    console.log('Initiating payment with phone:', phoneNumber)
+
+    const validation = validateRwandanPhoneNumber(phoneNumber)
+
+    if (!validation.isValid) {
+      console.log('Phone validation failed:', validation.message)
+      setPaymentState(prev => ({
+        ...prev,
+        step: 'error',
+        errorMessage: validation.message || 'Please enter a valid Rwandan phone number'
       }))
       return
     }
+
+    const cleanPhone = validation.formattedNumber || phoneNumber.replace(/\D/g, '')
+    console.log('Clean phone number:', cleanPhone)
 
     setPaymentState(prev => ({ ...prev, step: 'processing' }))
 
@@ -120,21 +104,27 @@ export function IntouchPaymentModal({
       const data = await response.json()
 
       if (data.success) {
+        // Payment request was sent successfully, but payment is NOT complete yet
+        // We must wait for confirmation from the payment provider
         setPaymentState(prev => ({
           ...prev,
           transactionId: data.transactionId,
-          intouchpayTransactionId: data.intouchpayTransactionId
+          intouchpayTransactionId: data.intouchpayTransactionId,
+          step: 'processing' // Move to processing state, not success
         }))
-        
-        // Start checking payment status
+
+        console.log('Payment request sent, starting status checking...')
+
+        // Start checking payment status - this is where we wait for actual confirmation
         startStatusChecking(data.transactionId, data.intouchpayTransactionId)
       } else {
+        console.log('Payment request failed:', data.message)
         setPaymentState(prev => ({
           ...prev,
           step: 'error',
           errorMessage: data.message || 'Payment request failed'
         }))
-        
+
         if (onPaymentError) {
           onPaymentError(data.message || 'Payment request failed')
         }
@@ -155,11 +145,14 @@ export function IntouchPaymentModal({
 
   const startStatusChecking = (transactionId: string, intouchpayTransactionId: string) => {
     let attempts = 0
-    const maxAttempts = 60 // Check for 5 minutes (60 * 5 seconds)
-    
+    const maxAttempts = 72 // Check for 6 minutes (72 * 5 seconds) - more realistic timeout
+
+    console.log('Starting payment status checking for transaction:', transactionId)
+
     const interval = setInterval(async () => {
       attempts++
-      
+      console.log(`Payment status check attempt ${attempts}/${maxAttempts}`)
+
       try {
         const response = await fetch('/api/payments/status', {
           method: 'POST',
@@ -173,14 +166,30 @@ export function IntouchPaymentModal({
         })
 
         const data = await response.json()
+        console.log('Payment status response:', data)
 
         if (data.success && data.status) {
           const status = data.status.toLowerCase()
-          
-          if (status === 'successful' || status === 'success' || data.responseCode === '01') {
+
+          // Update the processing message based on current status
+          if (status === 'pending' || status === 'processing') {
+            setPaymentState(prev => ({
+              ...prev,
+              step: 'processing',
+              processingMessage: data.message || 'Processing payment...'
+            }))
+          }
+          // ONLY show success when payment is actually completed
+          else if (status === 'completed' || status === 'successful' || status === 'success' || data.responseCode === '01') {
+            console.log('Payment confirmed as successful!')
             clearInterval(interval)
-            setPaymentState(prev => ({ ...prev, step: 'success', statusCheckInterval: undefined }))
-            
+            setPaymentState(prev => ({
+              ...prev,
+              step: 'success',
+              statusCheckInterval: undefined,
+              successMessage: data.message || 'Payment completed successfully!'
+            }))
+
             if (onPaymentComplete) {
               onPaymentComplete({
                 transactionId,
@@ -191,7 +200,10 @@ export function IntouchPaymentModal({
                 phoneNumber: paymentState.phoneNumber
               })
             }
-          } else if (status === 'failed' || status === 'error' || data.responseCode !== '1000') {
+          }
+          // Handle payment failures
+          else if (status === 'failed' || status === 'error' || (data.responseCode && data.responseCode !== '1000' && data.responseCode !== '01')) {
+            console.log('Payment failed:', data.message)
             clearInterval(interval)
             setPaymentState(prev => ({
               ...prev,
@@ -199,7 +211,7 @@ export function IntouchPaymentModal({
               errorMessage: data.message || 'Payment failed',
               statusCheckInterval: undefined
             }))
-            
+
             if (onPaymentError) {
               onPaymentError(data.message || 'Payment failed')
             }
@@ -252,35 +264,27 @@ export function IntouchPaymentModal({
               </p>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium mb-2">
-                  Mobile Phone Number
-                </label>
-                <Input
-                  type="tel"
-                  placeholder="250 7XX XXX XXX"
-                  value={paymentState.phoneNumber}
-                  onChange={(e) => handlePhoneNumberChange(e.target.value)}
-                  className="text-center text-lg"
-                />
-                <p className="text-xs text-muted-foreground mt-1">
-                  Enter your MTN or Airtel mobile money number
-                </p>
-              </div>
-              
               <div className="bg-muted/50 p-3 rounded-lg">
                 <p className="text-sm font-medium">Payment Details:</p>
                 <p className="text-sm text-muted-foreground">{description}</p>
                 <p className="text-lg font-bold text-primary">{amount.toLocaleString()} RWF</p>
               </div>
 
+              <div className="bg-blue-50 border border-blue-200 p-3 rounded-lg">
+                <p className="text-sm font-medium text-blue-900">Payment will be sent to:</p>
+                <p className="text-lg font-mono text-blue-800">{phoneNumber}</p>
+                <p className="text-xs text-blue-600 mt-1">
+                  Make sure this number has sufficient mobile money balance
+                </p>
+              </div>
+
               <div className="flex gap-2">
                 <Button variant="outline" onClick={handleClose} className="flex-1">
                   Cancel
                 </Button>
-                <Button 
+                <Button
                   onClick={handlePaymentRequest}
-                  disabled={!validatePhoneNumber(paymentState.phoneNumber.replace(/\D/g, ''))}
+                  disabled={!validatePhoneNumber(phoneNumber)}
                   className="flex-1"
                 >
                   Pay Now
@@ -302,17 +306,21 @@ export function IntouchPaymentModal({
             <CardContent className="text-center space-y-4">
               <Loader2 className="w-12 h-12 animate-spin mx-auto text-primary" />
               <div>
-                <p className="font-medium">Payment request sent!</p>
+                <p className="font-medium">Processing Payment...</p>
                 <p className="text-sm text-muted-foreground">
-                  Please check your phone and enter your PIN to complete the payment
+                  {paymentState.processingMessage || 'Please check your phone and enter your PIN to complete the payment'}
                 </p>
               </div>
               <div className="bg-muted/50 p-3 rounded-lg">
                 <p className="text-sm">Amount: <span className="font-bold">{amount.toLocaleString()} RWF</span></p>
                 <p className="text-sm">Phone: <span className="font-bold">{paymentState.phoneNumber}</span></p>
               </div>
+              <div className="text-xs text-muted-foreground">
+                <p>⏱️ This may take up to 2 minutes</p>
+                <p>📱 Check your phone for the payment prompt</p>
+              </div>
               <Button variant="outline" onClick={handleClose}>
-                Cancel
+                Cancel Payment
               </Button>
             </CardContent>
           </>
@@ -330,7 +338,7 @@ export function IntouchPaymentModal({
             <CardContent className="text-center space-y-4">
               <div className="bg-green-50 p-4 rounded-lg">
                 <p className="text-green-800 font-medium">
-                  Your payment of {amount.toLocaleString()} RWF has been processed successfully.
+                  {paymentState.successMessage || `Your payment of ${amount.toLocaleString()} RWF has been processed successfully.`}
                 </p>
                 {paymentState.transactionId && (
                   <p className="text-sm text-green-600 mt-2">

@@ -18,6 +18,8 @@ import {
 
 import { Ticket, QrCode, Calendar, MapPin, Clock, Search, Eye, Download } from "lucide-react"
 import { userTickets } from "@/lib/dummy-data"
+import { PartnersSection } from "@/components/sections/partners-section"
+import { Footer } from "@/components/sections/footer"
 
 export default function MyTicketsPage() {
   const [searchCode, setSearchCode] = useState("")
@@ -307,6 +309,12 @@ export default function MyTicketsPage() {
           </div>
         )}
       </div>
+
+      {/* Partners Section */}
+      <PartnersSection />
+
+      {/* Footer */}
+      <Footer />
     </div>
   )
 }

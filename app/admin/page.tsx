@@ -37,6 +37,7 @@ import {
   Activity
 } from "lucide-react"
 import { matches, userTickets, storeProducts } from "@/lib/dummy-data"
+import Link from "next/link"
 
 function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("overview")
@@ -134,10 +135,43 @@ function AdminDashboard() {
           </div>
         </div>
 
+        {/* Quick Navigation */}
+        <Card className="apple-card">
+          <CardHeader>
+            <CardTitle className="apple-subtitle">Admin Panel</CardTitle>
+            <CardDescription>Access all administrative functions</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              <Link href="/admin/users">
+                <Button className="w-full h-20 apple-button flex-col gap-2" variant="outline">
+                  <Users className="h-6 w-6" />
+                  <span>User Management</span>
+                </Button>
+              </Link>
+              <Link href="/admin/reports">
+                <Button className="w-full h-20 apple-button flex-col gap-2" variant="outline">
+                  <FileText className="h-6 w-6" />
+                  <span>Reports</span>
+                </Button>
+              </Link>
+              <Link href="/admin/finance">
+                <Button className="w-full h-20 apple-button flex-col gap-2" variant="outline">
+                  <DollarSign className="h-6 w-6" />
+                  <span>Finance</span>
+                </Button>
+              </Link>
+              <Button className="w-full h-20 apple-button flex-col gap-2" variant="outline">
+                <Settings className="h-6 w-6" />
+                <span>Settings</span>
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-7 h-auto">
+          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-6 h-auto">
             <TabsTrigger value="overview" className="apple-button">Overview</TabsTrigger>
-            <TabsTrigger value="users" className="apple-button">Users</TabsTrigger>
             <TabsTrigger value="teams" className="apple-button">Teams</TabsTrigger>
             <TabsTrigger value="events" className="apple-button">Events</TabsTrigger>
             <TabsTrigger value="tickets" className="apple-button">Tickets</TabsTrigger>
@@ -306,111 +340,7 @@ function AdminDashboard() {
             </div>
           </TabsContent>
 
-          <TabsContent value="users" className="space-y-6">
-            <Card className="apple-card">
-              <CardHeader>
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                  <div>
-                    <CardTitle className="apple-subtitle">User Management</CardTitle>
-                    <CardDescription>Manage registered users and their accounts</CardDescription>
-                  </div>
-                  <div className="flex gap-2">
-                    <Button variant="outline" className="apple-button">
-                      <Download className="mr-2 h-4 w-4" />
-                      Export
-                    </Button>
-                    <Button className="apple-button">
-                      <Plus className="mr-2 h-4 w-4" />
-                      Add User
-                    </Button>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {/* Search and Filter */}
-                <div className="flex flex-col md:flex-row gap-4">
-                  <div className="relative flex-1">
-                    <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                    <Input
-                      placeholder="Search users..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-10 apple-focus"
-                    />
-                  </div>
-                  <Select value={selectedFilter} onValueChange={setSelectedFilter}>
-                    <SelectTrigger className="w-full md:w-48 apple-focus">
-                      <SelectValue placeholder="Filter by status" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All Users</SelectItem>
-                      <SelectItem value="active">Active</SelectItem>
-                      <SelectItem value="pending">Pending</SelectItem>
-                      <SelectItem value="suspended">Suspended</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
 
-                {/* Users Table */}
-                <div className="border rounded-lg overflow-hidden">
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead>User</TableHead>
-                        <TableHead>Role</TableHead>
-                        <TableHead>Status</TableHead>
-                        <TableHead>Last Login</TableHead>
-                        <TableHead>Actions</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {filteredUsers.map((user) => (
-                        <TableRow key={user.id}>
-                          <TableCell>
-                            <div className="flex items-center gap-3">
-                              <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                                <Users className="h-4 w-4 text-primary" />
-                              </div>
-                              <div>
-                                <div className="font-medium">{user.name}</div>
-                                <div className="text-sm text-muted-foreground">{user.email}</div>
-                              </div>
-                            </div>
-                          </TableCell>
-                          <TableCell>
-                            <Badge variant="outline" className="capitalize">
-                              {user.role}
-                            </Badge>
-                          </TableCell>
-                          <TableCell>
-                            <Badge className={getStatusColor(user.status)}>
-                              {user.status}
-                            </Badge>
-                          </TableCell>
-                          <TableCell className="text-sm text-muted-foreground">
-                            {user.lastLogin}
-                          </TableCell>
-                          <TableCell>
-                            <div className="flex gap-1">
-                              <Button variant="ghost" size="sm" className="apple-button">
-                                <Eye className="h-4 w-4" />
-                              </Button>
-                              <Button variant="ghost" size="sm" className="apple-button">
-                                <Edit className="h-4 w-4" />
-                              </Button>
-                              <Button variant="ghost" size="sm" className="text-red-600 apple-button">
-                                <Trash2 className="h-4 w-4" />
-                              </Button>
-                            </div>
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
 
           <TabsContent value="teams" className="space-y-6">
             <Card className="apple-card">

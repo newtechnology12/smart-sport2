@@ -12,6 +12,8 @@ import {
   Shield,
   Zap
 } from "lucide-react"
+import { PartnersSection } from "@/components/sections/partners-section"
+import { Footer } from "@/components/sections/footer"
 
 export default function AboutPage() {
   const features = [
@@ -151,6 +153,12 @@ export default function AboutPage() {
           </div>
         </div>
       </div>
+
+      {/* Partners Section */}
+      <PartnersSection />
+
+      {/* Footer */}
+      <Footer />
     </div>
   )
 }
