@@ -4,8 +4,8 @@
   "description": "SmartSports Rwanda - Professional Sports Ticketing Backend API",
   "main": "src/server.js",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js",
+    "start": "node server-no-db.js",
+    "dev": "nodemon server-no-db.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "migrate": "knex migrate:latest",

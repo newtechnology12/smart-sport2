@@ -20,7 +20,7 @@ require('dotenv').config();
 require('express-async-errors');
 
 const logger = require('./utils/logger');
-const errorHandler = require('./middleware/errorHandler');
+const { errorHandler } = require('./middleware/errorHandler');
 const { connectDB } = require('./config/database');
 const { connectRedis } = require('./config/redis');
 
@@ -251,13 +251,13 @@ const PORT = process.env.PORT || 5000;
 
 async function startServer() {
   try {
-    // Connect to database
-    await connectDB();
-    logger.info('Database connected successfully');
-    
-    // Connect to Redis
-    await connectRedis();
-    logger.info('Redis connected successfully');
+    // Connect to database (temporarily disabled)
+    // await connectDB();
+    // logger.info('Database connected successfully');
+
+    // Connect to Redis (temporarily disabled)
+    // await connectRedis();
+    // logger.info('Redis connected successfully');
     
     // Start server
     server.listen(PORT, () => {

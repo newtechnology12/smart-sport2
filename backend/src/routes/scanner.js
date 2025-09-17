@@ -8,7 +8,7 @@ const QRService = require('../services/qrService');
 const logger = require('../utils/logger');
 
 const router = express.Router();
-const qrService = new QRService();
+const qrService = QRService;
 
 /**
  * @swagger

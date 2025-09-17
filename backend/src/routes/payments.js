@@ -8,7 +8,7 @@ const PaymentService = require('../services/paymentService');
 const logger = require('../utils/logger');
 
 const router = express.Router();
-const paymentService = new PaymentService();
+const paymentService = PaymentService;
 
 /**
  * @swagger

@@ -7,25 +7,35 @@ const { AppError } = require('../middleware/errorHandler');
 
 class EmailService {
   constructor() {
-    this.transporter = nodemailer.createTransporter({
-      host: process.env.EMAIL_HOST,
-      port: process.env.EMAIL_PORT,
-      secure: process.env.EMAIL_PORT == 465,
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-      }
-    });
+    try {
+      this.transporter = nodemailer.createTransport({
+        host: process.env.EMAIL_HOST,
+        port: process.env.EMAIL_PORT,
+        secure: process.env.EMAIL_PORT == 465,
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS
+        }
+      });
 
-    this.from = process.env.EMAIL_FROM || 'SmartSports Rwanda <noreply@smartsports.rw>';
-    this.templatesPath = path.join(__dirname, '../templates/email');
+      this.from = process.env.EMAIL_FROM || 'SmartSports Rwanda <noreply@smartsports.rw>';
+      this.templatesPath = path.join(__dirname, '../templates/email');
+    } catch (error) {
+      logger.error('EmailService initialization failed:', error);
+      this.transporter = null;
+    }
   }
 
   // Send email with template
   async sendEmail({ to, subject, template, data = {}, attachments = [] }) {
     try {
+      if (!this.transporter) {
+        logger.warn('Email service not initialized, skipping email send');
+        return { success: false, error: 'Email service not available' };
+      }
+
       let html = '';
-      
+
       if (template) {
         html = await this.renderTemplate(template, data);
       } else if (data.html) {
@@ -405,4 +415,18 @@ class EmailService {
   }
 }
 
-module.exports = new EmailService();
+// Temporarily disable to test server startup
+// module.exports = new EmailService();
+module.exports = {
+  sendEmail: () => Promise.resolve({ success: false, error: 'Email service disabled' }),
+  sendWelcomeEmail: () => Promise.resolve({ success: false }),
+  sendEmailVerification: () => Promise.resolve({ success: false }),
+  sendPasswordReset: () => Promise.resolve({ success: false }),
+  sendTicketConfirmation: () => Promise.resolve({ success: false }),
+  sendEventReminder: () => Promise.resolve({ success: false }),
+  sendPaymentConfirmation: () => Promise.resolve({ success: false }),
+  sendWalletTopupConfirmation: () => Promise.resolve({ success: false }),
+  sendEventCancellation: () => Promise.resolve({ success: false }),
+  sendPromotionalEmail: () => Promise.resolve({ success: false }),
+  testConnection: () => Promise.resolve(false)
+};

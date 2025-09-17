@@ -10,9 +10,9 @@ const EmailService = require('../services/emailService');
 const logger = require('../utils/logger');
 
 const router = express.Router();
-const qrService = new QRService();
-const paymentService = new PaymentService();
-const emailService = new EmailService();
+const qrService = QRService;
+const paymentService = PaymentService;
+const emailService = EmailService;
 
 /**
  * @swagger
