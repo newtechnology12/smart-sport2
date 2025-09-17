@@ -1,5 +1,5 @@
 import { Repository } from 'typeorm';
-import { AppDataSource } from '../config/database';
+import { AppDataSource } from '../config/data-source';
 import { Ticket, TicketStatus } from '../entities/Ticket';
 
 export class TicketRepository {

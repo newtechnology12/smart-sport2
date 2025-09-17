@@ -1,5 +1,5 @@
 import { Repository, Between } from 'typeorm';
-import { AppDataSource } from '../config/database';
+import { AppDataSource } from '../config/data-source';
 import { Match, MatchStatus } from '../entities/Match';
 
 export class MatchRepository {
@@ -55,6 +55,13 @@ export class MatchRepository {
       .leftJoinAndSelect('match.league', 'league')
       .orderBy('match.match_date', 'ASC')
       .getMany();
+  }
+
+  async findById(matchId: string): Promise<Match | null> {
+    return this.repository.findOne({
+      where: { id: matchId },
+      relations: ['home_team', 'away_team', 'venue', 'league'],
+    });
   }
 
   async updateTicketsSold(matchId: string): Promise<void> {

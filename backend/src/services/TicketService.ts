@@ -1,7 +1,7 @@
 import { TicketRepository } from '../repositories/TicketRepository';
 import { UserRepository } from '../repositories/UserRepository';
 import { MatchRepository } from '../repositories/MatchRepository';
-import { Ticket, PaymentMethod } from '../entities/Ticket';
+import { Ticket, PaymentMethod, TicketStatus } from '../entities/Ticket';
 
 interface PurchaseTicketData {
   userId: string;
@@ -27,10 +27,7 @@ export class TicketService {
     const user = await this.userRepository.findByPhoneNumber(data.userId);
     if (!user) throw new Error('User not found');
 
-    const match = await Match.findOne({ 
-      where: { id: data.matchId },
-      relations: ['venue', 'league']
-    });
+    const match = await this.matchRepository.findById(data.matchId);
     if (!match) throw new Error('Match not found');
 
     // Check if match allows ticket sales
@@ -53,7 +50,7 @@ export class TicketService {
       payment_method: data.paymentMethod,
       purchase_phone: data.purchasePhone,
       seat_category: data.seatCategory || 'general',
-      status: 'active',
+      status: TicketStatus.ACTIVE,
     });
 
     // Update match tickets sold

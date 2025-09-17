@@ -134,7 +134,7 @@ Price: ${selectedMatch.ticket_price} RWF
           const ticket = await this.ticketService.purchaseTicket({
             userId: user.id,
             matchId: selectedMatch.id,
-            paymentMethod: 'ussd',
+            paymentMethod: 'USSD' as any,
             purchasePhone: phoneNumber,
           });
 

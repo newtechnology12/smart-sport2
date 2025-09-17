@@ -1,1 +1,1048 @@
 {"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Database connection failed:\u001b[39m","timestamp":"2025-09-17 01:38:47:3847"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m⚠️  Skipping database connection for testing\u001b[39m","timestamp":"2025-09-17 01:40:10:4010"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m⚠️  Skipping Redis connection for testing\u001b[39m","timestamp":"2025-09-17 01:40:10:4010"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🚀 SmartSports Rwanda API Server running on port 5000\u001b[39m","timestamp":"2025-09-17 01:40:10:4010"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m📚 API Documentation: http://localhost:5000/api/docs\u001b[39m","timestamp":"2025-09-17 01:40:10:4010"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🏥 Health Check: http://localhost:5000/health\u001b[39m","timestamp":"2025-09-17 01:40:10:4010"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🌍 Environment: development\u001b[39m","timestamp":"2025-09-17 01:40:10:4010"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:16:4116"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:16:4116"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:16:4116"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:16:4116"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:16:4116"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:16:4116"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:16:4116"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:16:4116"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:17:4117"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:17:4117"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:17:4117"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:17:4117"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31mCache get error:\u001b[39m","timestamp":"2025-09-17 01:41:17:4117"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:17:4117"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:17:4117"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:17:4117"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:17:4117"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:17:4117"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:17:4117"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:17:4117"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:17:4117"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:17:4117"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:18:4118"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:18:4118"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:18:4118"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31mCache set error:\u001b[39m","timestamp":"2025-09-17 01:41:18:4118"}
+{"correlation_id":"11be4661-a3e0-489d-a9b7-cbc3cd32421c","ip":"::1","level":"\u001b[32minfo\u001b[39m","message":"\u001b[32mRequest started\u001b[39m","method":"GET","path":"/health","timestamp":"2025-09-17 01:41:18:4118","user_agent":"curl/8.15.0"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:18:4118"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:18:4118"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:18:4118"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:19:4119"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:19:4119"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:19:4119"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:19:4119"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:19:4119"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:19:4119"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:20:4120"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:20:4120"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:20:4120"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:20:4120"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:20:4120"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:20:4120"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:21:4121"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:21:4121"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:21:4121"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:22:4122"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:22:4122"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:22:4122"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:23:4123"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:23:4123"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:23:4123"}
+{"correlation_id":"11be4661-a3e0-489d-a9b7-cbc3cd32421c","level":"\u001b[32minfo\u001b[39m","message":"\u001b[32mRequest completed\u001b[39m","method":"GET","path":"/health","response_time":5016,"status_code":503,"timestamp":"2025-09-17 01:41:23:4123"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:23:4123"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:23:4123"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:23:4123"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:24:4124"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:24:4124"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:24:4124"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:25:4125"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:25:4125"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:25:4125"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:26:4126"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:26:4126"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:26:4126"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:27:4127"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:27:4127"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:27:4127"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:28:4128"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:28:4128"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:28:4128"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:29:4129"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:29:4129"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:29:4129"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:30:4130"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:30:4130"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:30:4130"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:32:4132"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:32:4132"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:32:4132"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:33:4133"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:33:4133"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:33:4133"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:34:4134"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:34:4134"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:34:4134"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31mCache get error:\u001b[39m","timestamp":"2025-09-17 01:41:35:4135"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:36:4136"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:36:4136"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:36:4136"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31mCache set error:\u001b[39m","timestamp":"2025-09-17 01:41:36:4136"}
+{"correlation_id":"dccd752c-d807-4cdc-b348-c42a624dd6a6","ip":"::1","level":"\u001b[32minfo\u001b[39m","message":"\u001b[32mRequest started\u001b[39m","method":"GET","path":"/api/docs","timestamp":"2025-09-17 01:41:36:4136","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:37:4137"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:37:4137"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:37:4137"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:38:4138"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:38:4138"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:38:4138"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:40:4140"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:40:4140"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:40:4140"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31mCache get error:\u001b[39m","timestamp":"2025-09-17 01:41:41:4141"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:42:4142"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:42:4142"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:42:4142"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31mCache set error:\u001b[39m","timestamp":"2025-09-17 01:41:42:4142"}
+{"correlation_id":"ebee94c3-7b6c-4faa-9269-ec27f9f205b6","ip":"::1","level":"\u001b[32minfo\u001b[39m","message":"\u001b[32mRequest started\u001b[39m","method":"GET","path":"/api/docs/","timestamp":"2025-09-17 01:41:42:4142","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:43:4143"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:43:4143"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:43:4143"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:45:4145"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:45:4145"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:45:4145"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:47:4147"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:47:4147"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:47:4147"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31mCache get error:\u001b[39m","timestamp":"2025-09-17 01:41:47:4147"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31mCache get error:\u001b[39m","timestamp":"2025-09-17 01:41:47:4147"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31mCache get error:\u001b[39m","timestamp":"2025-09-17 01:41:47:4147"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31mCache get error:\u001b[39m","timestamp":"2025-09-17 01:41:47:4147"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:48:4148"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:48:4148"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:48:4148"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31mCache set error:\u001b[39m","timestamp":"2025-09-17 01:41:48:4148"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31mCache set error:\u001b[39m","timestamp":"2025-09-17 01:41:48:4148"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31mCache set error:\u001b[39m","timestamp":"2025-09-17 01:41:48:4148"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31mCache set error:\u001b[39m","timestamp":"2025-09-17 01:41:48:4148"}
+{"correlation_id":"01451044-7ded-46a8-9b59-a004753d76a4","ip":"::1","level":"\u001b[32minfo\u001b[39m","message":"\u001b[32mRequest started\u001b[39m","method":"GET","path":"/api/docs/swagger-ui.css","timestamp":"2025-09-17 01:41:48:4148","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"}
+{"correlation_id":"067b08fe-ca15-4272-9aa4-36ff051f96ea","ip":"::1","level":"\u001b[32minfo\u001b[39m","message":"\u001b[32mRequest started\u001b[39m","method":"GET","path":"/api/docs/swagger-ui-standalone-preset.js","timestamp":"2025-09-17 01:41:48:4148","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"}
+{"correlation_id":"a1e17b05-7cf0-4709-9cf7-fdb70be74a71","ip":"::1","level":"\u001b[32minfo\u001b[39m","message":"\u001b[32mRequest started\u001b[39m","method":"GET","path":"/api/docs/swagger-ui-bundle.js","timestamp":"2025-09-17 01:41:48:4148","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"}
+{"correlation_id":"5ab91082-08c4-4af1-8953-6f749d8338ae","ip":"::1","level":"\u001b[32minfo\u001b[39m","message":"\u001b[32mRequest started\u001b[39m","method":"GET","path":"/api/docs/swagger-ui-init.js","timestamp":"2025-09-17 01:41:48:4148","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:50:4150"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:50:4150"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:50:4150"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:52:4152"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:52:4152"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:52:4152"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:54:4154"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:54:4154"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:54:4154"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31mCache get error:\u001b[39m","timestamp":"2025-09-17 01:41:55:4155"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:56:4156"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:56:4156"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:56:4156"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31mCache set error:\u001b[39m","timestamp":"2025-09-17 01:41:56:4156"}
+{"correlation_id":"c55f5546-b2d9-4a45-b489-16c0b6566c15","ip":"::1","level":"\u001b[32minfo\u001b[39m","message":"\u001b[32mRequest started\u001b[39m","method":"GET","path":"/api/docs/favicon-32x32.png","timestamp":"2025-09-17 01:41:56:4156","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:41:58:4158"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:41:58:4158"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:41:58:4158"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:42:00:420"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:42:00:420"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:42:00:420"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:42:02:422"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:42:02:422"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:42:02:422"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:42:04:424"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:42:04:424"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:42:04:424"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:42:06:426"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:42:06:426"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:42:06:426"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:42:08:428"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:42:08:428"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:42:08:428"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:42:10:4210"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:42:10:4210"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:42:10:4210"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:42:12:4212"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:42:12:4212"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:42:12:4212"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:42:14:4214"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:42:14:4214"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:42:14:4214"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:42:16:4216"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:42:16:4216"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:42:16:4216"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:42:18:4218"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:42:18:4218"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:42:18:4218"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:42:20:4220"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:42:20:4220"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:42:20:4220"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:42:22:4222"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:42:22:4222"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:42:22:4222"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31mFailed to log request to database: Knex: Timeout acquiring a connection. The pool is probably full. Are you missing a .transacting(trx) call?\u001b[39m","name":"KnexTimeoutError","originalStack":"KnexTimeoutError: Knex: Timeout acquiring a connection. The pool is probably full. Are you missing a .transacting(trx) call?\n    at Client_PG.acquireConnection (C:\\Users\\sentongo\\Documents\\projects\\smartsports-rw\\backend\\node_modules\\knex\\lib\\client.js:332:26)\n    at async Runner.ensureConnection (C:\\Users\\sentongo\\Documents\\projects\\smartsports-rw\\backend\\node_modules\\knex\\lib\\execution\\runner.js:305:28)\n    at async Runner.run (C:\\Users\\sentongo\\Documents\\projects\\smartsports-rw\\backend\\node_modules\\knex\\lib\\execution\\runner.js:30:19)\n    at async Immediate.<anonymous> (C:\\Users\\sentongo\\Documents\\projects\\smartsports-rw\\backend\\src\\middleware\\security.js:162:9)","stack":"KnexTimeoutError: Knex: Timeout acquiring a connection. The pool is probably full. Are you missing a .transacting(trx) call?\n    at Object.queryBuilder (C:\\Users\\sentongo\\Documents\\projects\\smartsports-rw\\backend\\node_modules\\knex\\lib\\knex-builder\\make-knex.js:112:26)\n    at createQueryBuilder (C:\\Users\\sentongo\\Documents\\projects\\smartsports-rw\\backend\\node_modules\\knex\\lib\\knex-builder\\make-knex.js:320:26)\n    at knex (C:\\Users\\sentongo\\Documents\\projects\\smartsports-rw\\backend\\node_modules\\knex\\lib\\knex-builder\\make-knex.js:101:12)\n    at Immediate.<anonymous> (C:\\Users\\sentongo\\Documents\\projects\\smartsports-rw\\backend\\src\\middleware\\security.js:162:15)\n    at process.processImmediate (node:internal/timers:485:21)","timestamp":"2025-09-17 01:42:23:4223"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:42:24:4224"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:42:24:4224"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:42:24:4224"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:42:26:4226"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:42:26:4226"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:42:26:4226"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:42:28:4228"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:42:28:4228"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:42:28:4228"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:42:30:4230"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:42:30:4230"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:42:30:4230"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:42:32:4232"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:42:32:4232"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:42:32:4232"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:42:34:4234"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:42:34:4234"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:42:34:4234"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:42:36:4236"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:42:36:4236"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:42:36:4236"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:42:38:4238"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:42:38:4238"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:42:38:4238"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:42:40:4240"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:42:40:4240"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:42:40:4240"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:42:42:4242"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:42:42:4242"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:42:42:4242"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:42:44:4244"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:42:44:4244"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:42:44:4244"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:42:46:4246"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:42:46:4246"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:42:46:4246"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:42:48:4248"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:42:48:4248"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:42:48:4248"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:42:50:4250"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:42:50:4250"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:42:50:4250"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:42:52:4252"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:42:52:4252"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:42:52:4252"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:42:54:4254"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:42:54:4254"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:42:54:4254"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:42:56:4256"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:42:56:4256"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:42:56:4256"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:42:58:4258"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:42:58:4258"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:42:58:4258"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:43:00:430"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:43:00:430"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:43:00:430"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:43:02:432"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:43:02:432"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:43:02:432"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:43:04:434"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:43:04:434"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:43:04:434"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:43:06:436"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:43:06:436"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:43:06:436"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:43:08:438"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:43:08:438"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:43:08:438"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:43:10:4310"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:43:10:4310"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:43:10:4310"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:43:12:4312"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:43:12:4312"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:43:12:4312"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:43:14:4314"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:43:14:4314"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:43:14:4314"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:43:16:4316"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:43:16:4316"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:43:16:4316"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:43:18:4318"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:43:18:4318"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:43:18:4318"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:43:20:4320"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:43:20:4320"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:43:20:4320"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:43:22:4322"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:43:23:4323"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:43:23:4323"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:43:25:4325"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:43:25:4325"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:43:25:4325"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:43:27:4327"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:43:27:4327"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:43:27:4327"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:43:29:4329"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:43:29:4329"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:43:29:4329"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:43:31:4331"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:43:31:4331"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:43:31:4331"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:43:33:4333"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:43:33:4333"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:43:33:4333"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:43:35:4335"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:43:35:4335"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:43:35:4335"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:43:37:4337"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:43:37:4337"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:43:37:4337"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:43:39:4339"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:43:39:4339"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:43:39:4339"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:43:41:4341"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:43:41:4341"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:43:41:4341"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:43:43:4343"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:43:43:4343"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:43:43:4343"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:43:45:4345"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:43:45:4345"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:43:45:4345"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:43:47:4347"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:43:47:4347"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:43:47:4347"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:43:49:4349"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:43:49:4349"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:43:49:4349"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:43:51:4351"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:43:51:4351"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:43:51:4351"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:43:53:4353"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:43:53:4353"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:43:53:4353"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:43:55:4355"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:43:55:4355"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:43:55:4355"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:43:57:4357"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:43:57:4357"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:43:57:4357"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:43:59:4359"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:43:59:4359"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:43:59:4359"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:44:01:441"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:44:01:441"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:44:01:441"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:44:03:443"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:44:03:443"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:44:03:443"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:44:05:445"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:44:05:445"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:44:05:445"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:44:07:447"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:44:07:447"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:44:07:447"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:44:09:449"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:44:09:449"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:44:09:449"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:44:12:4412"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:44:12:4412"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:44:12:4412"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:44:14:4414"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:44:14:4414"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:44:14:4414"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:44:16:4416"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:44:16:4416"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:44:16:4416"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:44:18:4418"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:44:18:4418"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:44:18:4418"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:44:20:4420"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:44:20:4420"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:44:20:4420"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:44:22:4422"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:44:22:4422"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:44:22:4422"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:44:24:4424"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:44:24:4424"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:44:24:4424"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:44:26:4426"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:44:26:4426"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:44:26:4426"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:44:28:4428"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:44:28:4428"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:44:28:4428"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:44:30:4430"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:44:30:4430"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:44:30:4430"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:44:32:4432"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:44:32:4432"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:44:32:4432"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:44:34:4434"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:44:34:4434"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:44:34:4434"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:44:36:4436"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:44:36:4436"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:44:36:4436"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:44:38:4438"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:44:38:4438"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:44:38:4438"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:44:40:4440"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:44:40:4440"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:44:40:4440"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:44:42:4442"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:44:42:4442"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:44:42:4442"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:44:44:4444"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:44:44:4444"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:44:44:4444"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:44:46:4446"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:44:46:4446"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:44:46:4446"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:44:48:4448"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:44:48:4448"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:44:48:4448"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:44:50:4450"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:44:50:4450"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:44:50:4450"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:44:52:4452"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:44:52:4452"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:44:52:4452"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:44:54:4454"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:44:54:4454"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:44:54:4454"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:44:56:4456"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:44:56:4456"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:44:56:4456"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:44:58:4458"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:44:58:4458"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:44:58:4458"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:45:00:450"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:45:00:450"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:45:00:450"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:45:02:452"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:45:02:452"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:45:02:452"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:45:04:454"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:45:04:454"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:45:04:454"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:45:06:456"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:45:06:456"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:45:06:456"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:45:08:458"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:45:08:458"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:45:08:458"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:45:10:4510"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:45:10:4510"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:45:10:4510"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:45:12:4512"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:45:12:4512"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:45:12:4512"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:45:14:4514"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:45:14:4514"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:45:14:4514"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:45:16:4516"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:45:16:4516"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:45:16:4516"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:45:18:4518"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:45:18:4518"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:45:18:4518"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:45:20:4520"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:45:20:4520"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:45:20:4520"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:45:22:4522"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:45:22:4522"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:45:22:4522"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:45:24:4524"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:45:24:4524"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:45:24:4524"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:45:26:4526"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:45:26:4526"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:45:26:4526"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:45:28:4528"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:45:28:4528"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:45:28:4528"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:45:30:4530"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:45:30:4530"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:45:30:4530"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:45:32:4532"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:45:32:4532"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:45:32:4532"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:45:34:4534"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:45:34:4534"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:45:34:4534"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:45:36:4536"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:45:36:4536"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:45:36:4536"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:45:38:4538"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:45:38:4538"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:45:38:4538"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:45:40:4540"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:45:40:4540"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:45:40:4540"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:45:42:4542"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:45:42:4542"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:45:42:4542"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:45:44:4544"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:45:44:4544"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:45:44:4544"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:45:46:4546"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:45:46:4546"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:45:46:4546"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:45:48:4548"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:45:48:4548"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:45:48:4548"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:45:50:4550"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:45:50:4550"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:45:50:4550"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:45:52:4552"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:45:52:4552"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:45:52:4552"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:45:54:4554"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:45:54:4554"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:45:54:4554"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:45:56:4556"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:45:56:4556"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:45:56:4556"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:45:58:4558"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:45:58:4558"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:45:58:4558"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:46:00:460"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:46:00:460"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:46:01:461"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:46:03:463"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:46:03:463"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:46:03:463"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:46:05:465"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:46:05:465"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:46:05:465"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:46:07:467"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:46:07:467"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:46:07:467"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:46:09:469"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:46:09:469"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:46:09:469"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:46:11:4611"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:46:11:4611"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:46:11:4611"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:46:13:4613"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:46:13:4613"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:46:13:4613"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:46:15:4615"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:46:15:4615"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:46:15:4615"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:46:17:4617"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:46:17:4617"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:46:17:4617"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:46:19:4619"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:46:19:4619"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:46:19:4619"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:46:21:4621"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:46:21:4621"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:46:21:4621"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:46:23:4623"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:46:23:4623"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:46:23:4623"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:46:25:4625"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:46:25:4625"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:46:25:4625"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:46:27:4627"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:46:27:4627"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:46:27:4627"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:46:29:4629"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:46:29:4629"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:46:29:4629"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:46:31:4631"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:46:31:4631"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:46:31:4631"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:46:33:4633"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:46:33:4633"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:46:33:4633"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:46:35:4635"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:46:35:4635"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:46:35:4635"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:46:37:4637"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:46:37:4637"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:46:37:4637"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:46:39:4639"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:46:39:4639"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:46:39:4639"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:46:41:4641"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:46:41:4641"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:46:41:4641"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:46:43:4643"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:46:43:4643"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:46:43:4643"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:46:45:4645"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:46:45:4645"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:46:45:4645"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:46:47:4647"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:46:47:4647"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:46:47:4647"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:46:49:4649"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:46:49:4649"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:46:49:4649"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:46:51:4651"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:46:51:4651"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:46:51:4651"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:46:53:4653"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:46:53:4653"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:46:53:4653"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:46:55:4655"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:46:55:4655"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:46:55:4655"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:46:57:4657"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:46:57:4657"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:46:57:4657"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:46:59:4659"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:46:59:4659"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:46:59:4659"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:47:01:471"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:47:01:471"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:47:01:471"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:47:03:473"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:47:03:473"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:47:03:473"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:47:05:475"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:47:05:475"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:47:05:475"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:47:07:477"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:47:07:477"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:47:07:477"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:47:09:479"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:47:09:479"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:47:09:479"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:47:11:4711"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:47:11:4711"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:47:11:4711"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:47:13:4713"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:47:13:4713"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:47:13:4713"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:47:15:4715"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:47:15:4715"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:47:15:4715"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:47:17:4717"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:47:17:4717"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:47:17:4717"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:47:19:4719"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:47:19:4719"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:47:19:4719"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:47:21:4721"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:47:21:4721"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:47:21:4721"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:47:23:4723"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:47:23:4723"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:47:23:4723"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:47:25:4725"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:47:25:4725"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:47:25:4725"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:47:27:4727"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:47:27:4727"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:47:27:4727"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:47:29:4729"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:47:29:4729"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:47:29:4729"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:47:31:4731"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:47:31:4731"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:47:31:4731"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:47:33:4733"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:47:33:4733"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:47:33:4733"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31mCache get error:\u001b[39m","timestamp":"2025-09-17 01:47:34:4734"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:47:35:4735"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:47:35:4735"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:47:35:4735"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31mCache set error:\u001b[39m","timestamp":"2025-09-17 01:47:35:4735"}
+{"correlation_id":"7328be44-c11a-472e-ae06-f31b8f378ea2","ip":"::1","level":"\u001b[32minfo\u001b[39m","message":"\u001b[32mRequest started\u001b[39m","method":"GET","path":"/api/docs/","timestamp":"2025-09-17 01:47:35:4735","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:47:37:4737"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:47:37:4737"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:47:37:4737"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:47:39:4739"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:47:39:4739"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:47:39:4739"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31mCache get error:\u001b[39m","timestamp":"2025-09-17 01:47:40:4740"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31mCache get error:\u001b[39m","timestamp":"2025-09-17 01:47:40:4740"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31mCache get error:\u001b[39m","timestamp":"2025-09-17 01:47:40:4740"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31mCache get error:\u001b[39m","timestamp":"2025-09-17 01:47:40:4740"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:47:41:4741"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:47:41:4741"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:47:41:4741"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:47:43:4743"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:47:43:4743"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:47:43:4743"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31mCache set error:\u001b[39m","timestamp":"2025-09-17 01:47:43:4743"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31mCache set error:\u001b[39m","timestamp":"2025-09-17 01:47:43:4743"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31mCache set error:\u001b[39m","timestamp":"2025-09-17 01:47:43:4743"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31mCache set error:\u001b[39m","timestamp":"2025-09-17 01:47:43:4743"}
+{"correlation_id":"a8a7bd91-9bfd-4c27-ba1f-540b7fdf0cce","ip":"::1","level":"\u001b[32minfo\u001b[39m","message":"\u001b[32mRequest started\u001b[39m","method":"GET","path":"/api/docs/swagger-ui.css","timestamp":"2025-09-17 01:47:43:4743","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"}
+{"correlation_id":"7ebf788d-7aa8-4f2e-b34b-4a864765f5a9","ip":"::1","level":"\u001b[32minfo\u001b[39m","message":"\u001b[32mRequest started\u001b[39m","method":"GET","path":"/api/docs/swagger-ui-bundle.js","timestamp":"2025-09-17 01:47:43:4743","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"}
+{"correlation_id":"70aee606-747e-4362-8e1b-99df3dc2aa20","ip":"::1","level":"\u001b[32minfo\u001b[39m","message":"\u001b[32mRequest started\u001b[39m","method":"GET","path":"/api/docs/swagger-ui-init.js","timestamp":"2025-09-17 01:47:43:4743","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"}
+{"correlation_id":"9ba90b86-847d-4783-955a-cabff92afd39","ip":"::1","level":"\u001b[32minfo\u001b[39m","message":"\u001b[32mRequest started\u001b[39m","method":"GET","path":"/api/docs/swagger-ui-standalone-preset.js","timestamp":"2025-09-17 01:47:43:4743","user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:47:45:4745"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:47:45:4745"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:47:45:4745"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:47:47:4747"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:47:47:4747"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:47:47:4747"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:47:49:4749"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:47:49:4749"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:47:49:4749"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:47:51:4751"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:47:51:4751"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:47:51:4751"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:47:53:4753"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:47:53:4753"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:47:53:4753"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:47:55:4755"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:47:55:4755"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:47:55:4755"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:47:57:4757"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:47:57:4757"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:47:57:4757"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:47:59:4759"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:47:59:4759"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:47:59:4759"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:48:01:481"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:48:01:481"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:48:01:481"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:48:03:483"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:48:03:483"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:48:03:483"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:48:06:486"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:48:06:486"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:48:06:486"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:48:08:488"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:48:08:488"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:48:08:488"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:48:10:4810"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:48:10:4810"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:48:10:4810"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:48:12:4812"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:48:12:4812"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:48:12:4812"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:48:14:4814"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:48:14:4814"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:48:14:4814"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:48:16:4816"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:48:16:4816"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:48:16:4816"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:48:18:4818"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:48:18:4818"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:48:18:4818"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:48:20:4820"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:48:20:4820"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:48:20:4820"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:48:22:4822"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:48:22:4822"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:48:22:4822"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:48:24:4824"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:48:24:4824"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:48:24:4824"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:48:26:4826"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:48:26:4826"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:48:26:4826"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:48:28:4828"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:48:28:4828"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:48:28:4828"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:48:30:4830"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:48:30:4830"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:48:30:4830"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:48:32:4832"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:48:32:4832"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:48:32:4832"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:48:34:4834"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:48:34:4834"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:48:34:4834"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:48:36:4836"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:48:36:4836"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:48:36:4836"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:48:38:4838"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:48:38:4838"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:48:38:4838"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:48:40:4840"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:48:40:4840"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:48:40:4840"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:48:42:4842"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:48:42:4842"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:48:42:4842"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:48:44:4844"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:48:44:4844"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:48:44:4844"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:48:46:4846"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:48:46:4846"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:48:46:4846"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:48:48:4848"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:48:48:4848"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:48:48:4848"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:48:50:4850"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:48:50:4850"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:48:50:4850"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:48:52:4852"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:48:52:4852"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:48:52:4852"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:48:54:4854"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:48:54:4854"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:48:54:4854"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:48:56:4856"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:48:56:4856"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:48:56:4856"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:48:58:4858"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:48:58:4858"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:48:58:4858"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:49:00:490"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:49:00:490"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:49:00:490"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:49:02:492"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:49:02:492"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:49:02:492"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:49:04:494"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:49:04:494"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:49:04:494"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:49:06:496"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:49:06:496"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:49:06:496"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:49:08:498"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:49:08:498"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:49:08:498"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:49:10:4910"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:49:10:4910"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:49:10:4910"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:49:12:4912"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:49:12:4912"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:49:12:4912"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:49:14:4914"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:49:14:4914"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:49:14:4914"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:49:16:4916"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:49:16:4916"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:49:16:4916"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:49:18:4918"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:49:18:4918"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:49:18:4918"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:49:20:4920"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:49:20:4920"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:49:20:4920"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:49:22:4922"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:49:22:4922"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:49:22:4922"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:49:24:4924"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:49:24:4924"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:49:24:4924"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:49:26:4926"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:49:26:4926"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:49:26:4926"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:49:28:4928"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:49:28:4928"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:49:28:4928"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:49:30:4930"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:49:30:4930"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:49:30:4930"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:49:32:4932"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:49:32:4932"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:49:32:4932"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:49:34:4934"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:49:34:4934"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:49:34:4934"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:49:36:4936"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:49:36:4936"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:49:36:4936"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:49:38:4938"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:49:38:4938"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:49:38:4938"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:49:40:4940"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:49:40:4940"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:49:40:4940"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:49:42:4942"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:49:42:4942"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:49:42:4942"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:49:44:4944"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:49:44:4944"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:49:44:4944"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:49:46:4946"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:49:46:4946"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:49:46:4946"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:49:48:4948"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:49:48:4948"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:49:48:4948"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:49:50:4950"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:49:50:4950"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:49:50:4950"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:49:52:4952"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:49:52:4952"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:49:52:4952"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:49:54:4954"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:49:54:4954"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:49:54:4954"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:49:56:4956"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:49:56:4956"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:49:56:4956"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:49:58:4958"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:49:58:4958"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:49:58:4958"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:50:00:500"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:50:00:500"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:50:00:500"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:50:02:502"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:50:02:502"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:50:02:502"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:50:04:504"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:50:04:504"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:50:04:504"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:50:06:506"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:50:06:506"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:50:06:506"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:50:08:508"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:50:08:508"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:50:08:508"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:50:10:5010"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:50:10:5010"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:50:10:5010"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:50:12:5012"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:50:12:5012"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:50:12:5012"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:50:14:5014"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:50:14:5014"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:50:14:5014"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:50:16:5016"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:50:16:5016"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:50:16:5016"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:50:18:5018"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:50:18:5018"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:50:18:5018"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:50:20:5020"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:50:20:5020"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:50:20:5020"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:50:22:5022"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:50:22:5022"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:50:22:5022"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:50:24:5024"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:50:24:5024"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:50:24:5024"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:50:26:5026"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:50:26:5026"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:50:26:5026"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:50:28:5028"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:50:28:5028"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:50:28:5028"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:50:30:5030"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:50:30:5030"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:50:30:5030"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:50:32:5032"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:50:32:5032"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:50:32:5032"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:50:34:5034"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:50:34:5034"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:50:34:5034"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:50:36:5036"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:50:36:5036"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:50:36:5036"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:50:38:5038"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:50:38:5038"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:50:38:5038"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:50:40:5040"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:50:40:5040"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:50:40:5040"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:50:42:5042"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:50:42:5042"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:50:42:5042"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:50:44:5044"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:50:44:5044"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:50:44:5044"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:50:46:5046"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:50:46:5046"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:50:46:5046"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:50:48:5048"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:50:48:5048"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:50:48:5048"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:50:50:5050"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:50:50:5050"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:50:50:5050"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:50:52:5052"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:50:52:5052"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:50:52:5052"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:50:54:5054"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:50:54:5054"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:50:54:5054"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:50:56:5056"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:50:56:5056"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:50:56:5056"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:50:58:5058"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:50:58:5058"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:50:58:5058"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:51:00:510"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:51:00:510"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:51:00:510"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:51:02:512"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:51:02:512"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:51:02:512"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:51:05:515"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:51:05:515"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:51:05:515"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:51:07:517"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:51:07:517"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:51:07:517"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:51:09:519"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:51:09:519"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:51:09:519"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:51:11:5111"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:51:11:5111"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:51:11:5111"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:51:13:5113"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:51:13:5113"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:51:13:5113"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:51:15:5115"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:51:15:5115"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:51:15:5115"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:51:17:5117"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:51:17:5117"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:51:17:5117"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:51:19:5119"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:51:19:5119"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:51:19:5119"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:51:21:5121"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:51:21:5121"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:51:21:5121"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:51:23:5123"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:51:23:5123"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:51:23:5123"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:51:25:5125"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:51:25:5125"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:51:25:5125"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:51:27:5127"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:51:27:5127"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:51:27:5127"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:51:29:5129"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:51:29:5129"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:51:29:5129"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:51:31:5131"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:51:31:5131"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:51:31:5131"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:51:33:5133"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:51:33:5133"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:51:33:5133"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:51:35:5135"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:51:35:5135"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:51:35:5135"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:51:37:5137"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:51:37:5137"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:51:37:5137"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:51:39:5139"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:51:39:5139"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:51:39:5139"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:51:41:5141"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:51:41:5141"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:51:41:5141"}
+{"level":"\u001b[31merror\u001b[39m","message":"\u001b[31m❌ Redis connection error:\u001b[39m","timestamp":"2025-09-17 01:51:43:5143"}
+{"level":"\u001b[33mwarn\u001b[39m","message":"\u001b[33m⚠️  Redis connection closed\u001b[39m","timestamp":"2025-09-17 01:51:43:5143"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🔄 Redis reconnecting...\u001b[39m","timestamp":"2025-09-17 01:51:43:5143"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m⚠️  Skipping database connection for testing\u001b[39m","timestamp":"2025-09-17 01:51:49:5149"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m⚠️  Skipping Redis connection for testing\u001b[39m","timestamp":"2025-09-17 01:51:49:5149"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🚀 SmartSports Rwanda API Server running on port 5000\u001b[39m","timestamp":"2025-09-17 01:51:49:5149"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m📚 API Documentation: http://localhost:5000/api/docs\u001b[39m","timestamp":"2025-09-17 01:51:49:5149"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🏥 Health Check: http://localhost:5000/health\u001b[39m","timestamp":"2025-09-17 01:51:49:5149"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32m🌍 Environment: development\u001b[39m","timestamp":"2025-09-17 01:51:49:5149"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32mSIGINT received, shutting down gracefully\u001b[39m","timestamp":"2025-09-17 01:52:02:522"}
