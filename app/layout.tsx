@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 import { Playfair_Display, Source_Sans_3 } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
-import { AppNavigation } from "@/components/navigation/app-navigation"
+import { ConditionalNavigation } from "@/components/navigation/conditional-navigation"
 import { AuthProvider } from "@/lib/auth-context"
 import "./globals.css"
 
@@ -33,9 +33,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+      </head>
       <body className={`font-sans ${playfairDisplay.variable} ${sourceSans.variable}`} suppressHydrationWarning>
         <AuthProvider>
-          <AppNavigation />
+          <ConditionalNavigation />
           <main className="pt-20 pb-20 md:pt-20 md:pb-0">
             <Suspense fallback={null}>{children}</Suspense>
           </main>

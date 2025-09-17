@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { LogoutModal } from '@/components/ui/logout-modal'
 
 export interface User {
   id: string
@@ -42,6 +43,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined)
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [showLogoutModal, setShowLogoutModal] = useState(false)
   const router = useRouter()
 
   const isAuthenticated = !!user
@@ -58,11 +60,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       } catch (error) {
         console.error('Error checking auth:', error)
         localStorage.removeItem('user')
-      } finally {
-        setIsLoading(false)
       }
+      // Set loading to false immediately after checking
+      setIsLoading(false)
     }
 
+    // Check auth immediately for faster loading
     checkAuth()
   }, [])
 
@@ -73,8 +76,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       // Default credentials check
       const defaultCredentials = {
         admin: { email: "admin", password: "admin", role: "admin" },
+        adminEmail: { email: "admin@admin.com", password: "123456", role: "admin" },
         client: { email: "client", password: "client", role: "client" },
-        team: { email: "team", password: "team", role: "team" }
+        clientEmail: { email: "client@client.com", password: "123456", role: "client" },
+        team: { email: "team", password: "team", role: "team" },
+        teamEmail: { email: "team@team.com", password: "123456", role: "team" }
       }
 
       const credential = Object.values(defaultCredentials).find(
@@ -154,9 +160,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   const logout = () => {
+    setShowLogoutModal(true)
+  }
+
+  const confirmLogout = () => {
+    // Clear user data immediately
     setUser(null)
     localStorage.removeItem('user')
-    router.push('/auth/login')
+    setShowLogoutModal(false)
+    
+    // Force immediate redirect to home page
+    if (typeof window !== 'undefined') {
+      window.location.replace('/')
+    }
+  }
+
+  const cancelLogout = () => {
+    setShowLogoutModal(false)
   }
 
   const updateUser = (userData: Partial<User>) => {
@@ -180,6 +200,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   return (
     <AuthContext.Provider value={value}>
       {children}
+      <LogoutModal
+        isOpen={showLogoutModal}
+        onClose={cancelLogout}
+        onConfirm={confirmLogout}
+      />
     </AuthContext.Provider>
   )
 }

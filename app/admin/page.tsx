@@ -115,59 +115,528 @@ function AdminDashboard() {
 
   return (
     <DashboardLayout>
-      <div className="p-6 space-y-8">
-        {/* Header */}
-        <div className="bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 text-white">
-          <div className="flex items-center justify-between">
+      <div className="space-y-0">
+        {/* Welcome Header */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-0">
+          <div className="flex items-center justify-between p-2">
             <div>
-              <h1 className="text-3xl font-bold apple-title mb-2">
-                Admin Dashboard
+              <h1 className="text-2xl font-bold text-gray-900 mb-1">
+                Good evening, SmartSports Admin.
               </h1>
-              <p className="text-white/90 apple-body text-lg">
-                Manage your SmartSports RW platform
+              <p className="text-gray-600">
+                Here's your ticketing overview for today
               </p>
             </div>
-            <div className="hidden md:block">
-              <div className="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center">
-                <Shield className="h-12 w-12 text-white" />
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
+                <Button variant="outline" size="sm" className="bg-blue-600 text-white hover:bg-blue-700">
+                  Today
+                </Button>
+                <Button variant="outline" size="sm">
+                  Yesterday
+                </Button>
+                <Button variant="outline" size="sm">
+                  Last 7 Days
+                </Button>
+                <Button variant="outline" size="sm">
+                  This Month
+                </Button>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Quick Navigation */}
-        <Card className="apple-card">
-          <CardHeader>
-            <CardTitle className="apple-subtitle">Admin Panel</CardTitle>
-            <CardDescription>Access all administrative functions</CardDescription>
+        {/* Advanced Key Metrics Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Revenue Card */}
+          <Card className="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 shadow-lg hover:shadow-xl transition-all duration-300">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between mb-4">
+                <div className="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center shadow-lg">
+                  <DollarSign className="h-6 w-6 text-white" />
+                </div>
+                <div className="flex items-center gap-1 bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-medium">
+                  <TrendingUp className="h-3 w-3" />
+                  +20%
+                </div>
+              </div>
+              <div>
+                <p className="text-sm text-green-600 font-medium mb-1">Total Revenue</p>
+                <p className="text-3xl font-bold text-gray-900 mb-1">4,560,000</p>
+                <p className="text-sm text-gray-500">RWF this month</p>
+                <div className="mt-3 flex items-center text-xs text-green-600">
+                  <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                  +20% from last month
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Tickets Sold Card */}
+          <Card className="bg-gradient-to-br from-blue-50 to-cyan-50 border border-blue-200 shadow-lg hover:shadow-xl transition-all duration-300">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between mb-4">
+                <div className="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center shadow-lg">
+                  <Ticket className="h-6 w-6 text-white" />
+                </div>
+                <div className="flex items-center gap-1 bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">
+                  <TrendingUp className="h-3 w-3" />
+                  +15%
+                </div>
+              </div>
+              <div>
+                <p className="text-sm text-blue-600 font-medium mb-1">Tickets Sold</p>
+                <p className="text-3xl font-bold text-gray-900 mb-1">1,140</p>
+                <p className="text-sm text-gray-500">this month</p>
+                <div className="mt-3 flex items-center text-xs text-blue-600">
+                  <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                  +15% from last month
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Active Users Card */}
+          <Card className="bg-gradient-to-br from-purple-50 to-violet-50 border border-purple-200 shadow-lg hover:shadow-xl transition-all duration-300">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between mb-4">
+                <div className="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center shadow-lg">
+                  <Users className="h-6 w-6 text-white" />
+                </div>
+                <div className="flex items-center gap-1 bg-purple-100 text-purple-700 px-2 py-1 rounded-full text-xs font-medium">
+                  <TrendingUp className="h-3 w-3" />
+                  +8%
+                </div>
+              </div>
+              <div>
+                <p className="text-sm text-purple-600 font-medium mb-1">Active Users</p>
+                <p className="text-3xl font-bold text-gray-900 mb-1">2,847</p>
+                <p className="text-sm text-gray-500">this month</p>
+                <div className="mt-3 flex items-center text-xs text-purple-600">
+                  <span className="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
+                  +8% from last month
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Upcoming Events Card */}
+          <Card className="bg-gradient-to-br from-orange-50 to-amber-50 border border-orange-200 shadow-lg hover:shadow-xl transition-all duration-300">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between mb-4">
+                <div className="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center shadow-lg">
+                  <Calendar className="h-6 w-6 text-white" />
+                </div>
+                <div className="flex items-center gap-1 bg-orange-100 text-orange-700 px-2 py-1 rounded-full text-xs font-medium">
+                  <Clock className="h-3 w-3" />
+                  Live
+                </div>
+              </div>
+              <div>
+                <p className="text-sm text-orange-600 font-medium mb-1">Upcoming Events</p>
+                <p className="text-3xl font-bold text-gray-900 mb-1">2</p>
+                <p className="text-sm text-gray-500">scheduled</p>
+                <div className="mt-3 flex items-center text-xs text-orange-600">
+                  <span className="w-2 h-2 bg-orange-500 rounded-full mr-2"></span>
+                  Next: vs. Rayon Sports on Oct 26
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Advanced Performance Overview and Recent Transactions */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Performance Overview with Advanced Chart */}
+          <Card className="bg-white border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300">
+            <CardHeader className="pb-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <CardTitle className="text-xl font-bold text-gray-900">Performance Overview</CardTitle>
+                  <p className="text-sm text-gray-500 mt-1">Revenue and ticket sales trends</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Button variant="outline" size="sm" className="text-xs">Last 7 Days</Button>
+                  <Button variant="outline" size="sm" className="bg-blue-600 text-white hover:bg-blue-700 text-xs">Last 30 Days</Button>
+                  <Button variant="outline" size="sm" className="text-xs">Last Quarter</Button>
+                </div>
+              </div>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <Link href="/admin/users">
-                <Button className="w-full h-20 apple-button flex-col gap-2" variant="outline">
-                  <Users className="h-6 w-6" />
-                  <span>User Management</span>
-                </Button>
-              </Link>
-              <Link href="/admin/reports">
-                <Button className="w-full h-20 apple-button flex-col gap-2" variant="outline">
-                  <FileText className="h-6 w-6" />
-                  <span>Reports</span>
-                </Button>
-              </Link>
-              <Link href="/admin/finance">
-                <Button className="w-full h-20 apple-button flex-col gap-2" variant="outline">
-                  <DollarSign className="h-6 w-6" />
-                  <span>Finance</span>
-                </Button>
-              </Link>
-              <Button className="w-full h-20 apple-button flex-col gap-2" variant="outline">
-                <Settings className="h-6 w-6" />
-                <span>Settings</span>
-              </Button>
+              {/* Advanced Bar Chart Visualization */}
+              <div className="h-80 relative">
+                <div className="absolute inset-0 flex flex-col justify-between">
+                  {/* Y-axis labels */}
+                  <div className="flex flex-col justify-between h-full pr-4">
+                    <div className="text-xs text-gray-500 font-medium">500K</div>
+                    <div className="text-xs text-gray-500 font-medium">400K</div>
+                    <div className="text-xs text-gray-500 font-medium">300K</div>
+                    <div className="text-xs text-gray-500 font-medium">200K</div>
+                    <div className="text-xs text-gray-500 font-medium">100K</div>
+                    <div className="text-xs text-gray-500 font-medium">0</div>
+                  </div>
+                  
+                  {/* Chart area */}
+                  <div className="flex-1 ml-8 flex items-end justify-between px-4">
+                    {/* Bar 1 */}
+                    <div className="flex flex-col items-center">
+                      <div className="w-8 bg-gradient-to-t from-blue-500 to-blue-400 rounded-t-lg mb-2" style={{height: '60%'}}></div>
+                      <div className="text-xs text-gray-500">Mon</div>
+                    </div>
+                    {/* Bar 2 */}
+                    <div className="flex flex-col items-center">
+                      <div className="w-8 bg-gradient-to-t from-blue-500 to-blue-400 rounded-t-lg mb-2" style={{height: '75%'}}></div>
+                      <div className="text-xs text-gray-500">Tue</div>
+                    </div>
+                    {/* Bar 3 */}
+                    <div className="flex flex-col items-center">
+                      <div className="w-8 bg-gradient-to-t from-blue-500 to-blue-400 rounded-t-lg mb-2" style={{height: '45%'}}></div>
+                      <div className="text-xs text-gray-500">Wed</div>
+                    </div>
+                    {/* Bar 4 */}
+                    <div className="flex flex-col items-center">
+                      <div className="w-8 bg-gradient-to-t from-blue-500 to-blue-400 rounded-t-lg mb-2" style={{height: '85%'}}></div>
+                      <div className="text-xs text-gray-500">Thu</div>
+                    </div>
+                    {/* Bar 5 */}
+                    <div className="flex flex-col items-center">
+                      <div className="w-8 bg-gradient-to-t from-blue-500 to-blue-400 rounded-t-lg mb-2" style={{height: '90%'}}></div>
+                      <div className="text-xs text-gray-500">Fri</div>
+                    </div>
+                    {/* Bar 6 */}
+                    <div className="flex flex-col items-center">
+                      <div className="w-8 bg-gradient-to-t from-blue-500 to-blue-400 rounded-t-lg mb-2" style={{height: '70%'}}></div>
+                      <div className="text-xs text-gray-500">Sat</div>
+                    </div>
+                    {/* Bar 7 */}
+                    <div className="flex flex-col items-center">
+                      <div className="w-8 bg-gradient-to-t from-blue-500 to-blue-400 rounded-t-lg mb-2" style={{height: '55%'}}></div>
+                      <div className="text-xs text-gray-500">Sun</div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Grid lines */}
+                <div className="absolute inset-0 ml-8">
+                  <div className="h-full flex flex-col justify-between">
+                    {[0, 1, 2, 3, 4, 5].map((i) => (
+                      <div key={i} className="border-t border-gray-100"></div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              
+              {/* Chart Legend */}
+              <div className="mt-4 flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-blue-500 rounded"></div>
+                    <span className="text-sm text-gray-600">Revenue (RWF)</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-green-500 rounded"></div>
+                    <span className="text-sm text-gray-600">Tickets Sold</span>
+                  </div>
+                </div>
+                <div className="text-sm text-gray-500">
+                  Peak: 450K RWF on Friday
+                </div>
             </div>
           </CardContent>
         </Card>
+
+          {/* Enhanced Recent Transactions */}
+          <Card className="bg-white border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300">
+            <CardHeader className="pb-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <CardTitle className="text-xl font-bold text-gray-900">Recent Transactions</CardTitle>
+                  <p className="text-sm text-gray-500 mt-1">Latest ticket sales and payments</p>
+                </div>
+                <Button variant="outline" size="sm" className="text-blue-600 border-blue-200 hover:bg-blue-50">
+                  View All
+              </Button>
+            </div>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                {/* Transaction 1 */}
+                <div className="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-200 rounded-xl hover:shadow-md transition-all duration-200">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center shadow-lg">
+                      <Ticket className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-sm text-gray-900">#TKT10045</p>
+                      <p className="text-sm text-gray-600">Tribune East</p>
+                      <div className="flex items-center gap-2 mt-1">
+                        <Badge variant="secondary" className="text-xs bg-green-100 text-green-700">Completed</Badge>
+                        <span className="text-xs text-gray-500">•</span>
+                        <span className="text-xs text-gray-500">2 tickets</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="font-bold text-lg text-gray-900">2,000 RWF</p>
+                    <p className="text-xs text-gray-500">2 hrs ago</p>
+                    <div className="flex items-center gap-1 mt-1">
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <span className="text-xs text-green-600">Paid</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Transaction 2 */}
+                <div className="flex items-center justify-between p-4 bg-gradient-to-r from-purple-50 to-violet-50 border border-purple-200 rounded-xl hover:shadow-md transition-all duration-200">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center shadow-lg">
+                      <Ticket className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-sm text-gray-900">#TKT10044</p>
+                      <p className="text-sm text-gray-600">VVIP Section</p>
+                      <div className="flex items-center gap-2 mt-1">
+                        <Badge variant="secondary" className="text-xs bg-yellow-100 text-yellow-700">High Value</Badge>
+                        <span className="text-xs text-gray-500">•</span>
+                        <span className="text-xs text-gray-500">1 ticket</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="font-bold text-lg text-gray-900">15,000 RWF</p>
+                    <p className="text-xs text-gray-500">3 hrs ago</p>
+                    <div className="flex items-center gap-1 mt-1">
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <span className="text-xs text-green-600">Paid</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Transaction 3 */}
+                <div className="flex items-center justify-between p-4 bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-xl hover:shadow-md transition-all duration-200">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center shadow-lg">
+                      <Ticket className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-sm text-gray-900">#TKT10043</p>
+                      <p className="text-sm text-gray-600">Tribune West</p>
+                      <div className="flex items-center gap-2 mt-1">
+                        <Badge variant="secondary" className="text-xs bg-blue-100 text-blue-700">Processing</Badge>
+                        <span className="text-xs text-gray-500">•</span>
+                        <span className="text-xs text-gray-500">3 tickets</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="font-bold text-lg text-gray-900">6,000 RWF</p>
+                    <p className="text-xs text-gray-500">4 hrs ago</p>
+                    <div className="flex items-center gap-1 mt-1">
+                      <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                      <span className="text-xs text-yellow-600">Pending</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Transaction 4 */}
+                <div className="flex items-center justify-between p-4 bg-gradient-to-r from-orange-50 to-amber-50 border border-orange-200 rounded-xl hover:shadow-md transition-all duration-200">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center shadow-lg">
+                      <Ticket className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-sm text-gray-900">#TKT10042</p>
+                      <p className="text-sm text-gray-600">General Admission</p>
+                      <div className="flex items-center gap-2 mt-1">
+                        <Badge variant="secondary" className="text-xs bg-green-100 text-green-700">Completed</Badge>
+                        <span className="text-xs text-gray-500">•</span>
+                        <span className="text-xs text-gray-500">5 tickets</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="font-bold text-lg text-gray-900">5,000 RWF</p>
+                    <p className="text-xs text-gray-500">6 hrs ago</p>
+                    <div className="flex items-center gap-1 mt-1">
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <span className="text-xs text-green-600">Paid</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Summary Stats */}
+              <div className="mt-6 pt-4 border-t border-gray-200">
+                <div className="grid grid-cols-3 gap-4 text-center">
+                  <div>
+                    <p className="text-2xl font-bold text-green-600">28,000</p>
+                    <p className="text-xs text-gray-500">Total Revenue</p>
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold text-blue-600">11</p>
+                    <p className="text-xs text-gray-500">Tickets Sold</p>
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold text-purple-600">3</p>
+                    <p className="text-xs text-gray-500">Pending</p>
+                  </div>
+                </div>
+            </div>
+          </CardContent>
+        </Card>
+        </div>
+
+        {/* Quick Stats and Activity Feed */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Quick Stats */}
+          <Card className="bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200 shadow-lg">
+            <CardHeader>
+              <CardTitle className="text-lg font-bold text-gray-900">Quick Stats</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                      <CheckCircle className="h-4 w-4 text-green-600" />
+                    </div>
+                    <span className="text-sm text-gray-600">Success Rate</span>
+                  </div>
+                  <span className="font-bold text-green-600">98.5%</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                      <Clock className="h-4 w-4 text-blue-600" />
+                    </div>
+                    <span className="text-sm text-gray-600">Avg. Response Time</span>
+                  </div>
+                  <span className="font-bold text-blue-600">2.3s</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
+                      <Activity className="h-4 w-4 text-purple-600" />
+                    </div>
+                    <span className="text-sm text-gray-600">System Uptime</span>
+                  </div>
+                  <span className="font-bold text-purple-600">99.9%</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
+                      <Users className="h-4 w-4 text-orange-600" />
+                    </div>
+                    <span className="text-sm text-gray-600">Active Sessions</span>
+                  </div>
+                  <span className="font-bold text-orange-600">1,247</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Recent Activity */}
+          <Card className="bg-white border border-gray-200 shadow-lg">
+            <CardHeader>
+              <CardTitle className="text-lg font-bold text-gray-900">Recent Activity</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                  <div>
+                    <p className="text-sm font-medium text-gray-900">New user registered</p>
+                    <p className="text-xs text-gray-500">Marie Claire joined 5 minutes ago</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                  <div>
+                    <p className="text-sm font-medium text-gray-900">Ticket sold</p>
+                    <p className="text-xs text-gray-500">#TKT10045 - Tribune East</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-purple-500 rounded-full mt-2"></div>
+                  <div>
+                    <p className="text-sm font-medium text-gray-900">Payment processed</p>
+                    <p className="text-xs text-gray-500">15,000 RWF - VVIP ticket</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-orange-500 rounded-full mt-2"></div>
+                  <div>
+                    <p className="text-sm font-medium text-gray-900">Event created</p>
+                    <p className="text-xs text-gray-500">APR vs Rayon Sports - Oct 26</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
+                  <div>
+                    <p className="text-sm font-medium text-gray-900">System alert</p>
+                    <p className="text-xs text-gray-500">High server load detected</p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Top Performing Events */}
+          <Card className="bg-white border border-gray-200 shadow-lg">
+            <CardHeader>
+              <CardTitle className="text-lg font-bold text-gray-900">Top Events</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div className="flex items-center justify-between p-3 bg-gradient-to-r from-yellow-50 to-amber-50 rounded-lg border border-yellow-200">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-yellow-500 rounded-lg flex items-center justify-center">
+                      <Trophy className="h-4 w-4 text-white" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-sm text-gray-900">APR vs Rayon Sports</p>
+                      <p className="text-xs text-gray-500">Oct 26, 2024</p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="font-bold text-sm text-gray-900">850</p>
+                    <p className="text-xs text-gray-500">tickets</p>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between p-3 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg border border-blue-200">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+                      <Trophy className="h-4 w-4 text-white" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-sm text-gray-900">REG vs Patriots</p>
+                      <p className="text-xs text-gray-500">Oct 20, 2024</p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="font-bold text-sm text-gray-900">420</p>
+                    <p className="text-xs text-gray-500">tickets</p>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between p-3 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg border border-green-200">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center">
+                      <Trophy className="h-4 w-4 text-white" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-sm text-gray-900">Police vs Mukura</p>
+                      <p className="text-xs text-gray-500">Oct 15, 2024</p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="font-bold text-sm text-gray-900">320</p>
+                    <p className="text-xs text-gray-500">tickets</p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full grid-cols-2 lg:grid-cols-6 h-auto">

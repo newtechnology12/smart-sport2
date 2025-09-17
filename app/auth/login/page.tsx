@@ -246,9 +246,12 @@ export default function LoginPage() {
                 Demo Credentials:
               </p>
               <div className="text-xs space-y-1 text-muted-foreground apple-caption">
-                <div><strong>Admin:</strong> admin / admin</div>
-                <div><strong>Client:</strong> client / client</div>
-                <div><strong>Team:</strong> team / team</div>
+                <div><strong>Admin:</strong> admin@admin.com / 123456</div>
+                <div><strong>Admin (alt):</strong> admin / admin</div>
+                <div><strong>Client:</strong> client@client.com / 123456</div>
+                <div><strong>Client (alt):</strong> client / client</div>
+                <div><strong>Team:</strong> team@team.com / 123456</div>
+                <div><strong>Team (alt):</strong> team / team</div>
               </div>
             </div>
           </CardContent>
