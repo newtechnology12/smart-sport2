@@ -6,6 +6,8 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     const { phoneNumber, amount, description } = body
 
+    console.log('Payment request received:', { phoneNumber, amount, description })
+
     // Validate required fields
     if (!phoneNumber || !amount) {
       return NextResponse.json(
@@ -14,7 +16,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Validate phone number format
+    // Validate phone number format using InTouch service
     if (!intouchApiService.validatePhoneNumber(phoneNumber)) {
       return NextResponse.json(
         { success: false, message: 'Invalid Rwandan phone number format' },
@@ -37,6 +39,8 @@ export async function POST(request: NextRequest) {
       amount: numericAmount,
       description
     })
+
+    console.log('InTouch API payment response:', paymentResponse)
 
     if (paymentResponse.success) {
       return NextResponse.json({

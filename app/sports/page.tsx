@@ -5,6 +5,8 @@ import { Trophy, Users, Calendar, Search } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { sportsData } from "@/lib/dummy-data"
 import { FootballIcon, BasketballIcon, VolleyballIcon, EventIcon } from "@/components/icons/sport-icons"
+import { PartnersSection } from "@/components/sections/partners-section"
+import { Footer } from "@/components/sections/footer"
 
 export default function SportsPage() {
   return (
@@ -97,6 +99,12 @@ export default function SportsPage() {
           </div>
         </section>
       </div>
+
+      {/* Partners Section */}
+      <PartnersSection />
+
+      {/* Footer */}
+      <Footer />
     </div>
   )
 }

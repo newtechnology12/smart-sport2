@@ -36,7 +36,7 @@ export default function RootLayout({
       <body className={`font-sans ${playfairDisplay.variable} ${sourceSans.variable}`} suppressHydrationWarning>
         <AuthProvider>
           <AppNavigation />
-          <main className="pt-16 pb-20 md:pt-16 md:pb-0">
+          <main className="pt-20 pb-20 md:pt-20 md:pb-0">
             <Suspense fallback={null}>{children}</Suspense>
           </main>
         </AuthProvider>

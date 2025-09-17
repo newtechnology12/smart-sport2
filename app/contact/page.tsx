@@ -17,6 +17,8 @@ import {
   Send,
   CheckCircle
 } from "lucide-react"
+import { PartnersSection } from "@/components/sections/partners-section"
+import { Footer } from "@/components/sections/footer"
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -231,6 +233,12 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
+
+      {/* Partners Section */}
+      <PartnersSection />
+
+      {/* Footer */}
+      <Footer />
     </div>
   )
 }

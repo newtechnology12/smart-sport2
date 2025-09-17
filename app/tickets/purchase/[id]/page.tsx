@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
 import { IntouchPaymentModal } from "@/components/payment/IntouchPaymentModal"
+import { validateRwandanPhoneNumber, formatPhoneNumber } from "@/lib/utils/phone-validation"
 
 import { ArrowLeft, Calendar, Clock, MapPin, CreditCard, Smartphone, DollarSign, Minus, Plus } from "lucide-react"
 import { matches } from "@/lib/dummy-data"
@@ -56,20 +57,42 @@ export default function TicketPurchasePage({ params }: TicketPurchasePageProps) 
   const finalTotal = totalPrice + serviceFee + vatAmount
 
   const handlePurchase = async () => {
-    if (!phoneNumber || !fullName) {
-      alert("Please fill in all required fields (Name and Phone Number)")
+    // Validate required fields
+    if (!fullName.trim()) {
+      alert("Please enter your full name")
       return
     }
 
-    // Validate phone number format
-    const cleanPhone = phoneNumber.replace(/\D/g, '')
-    if (!/^250\d{9}$/.test(cleanPhone)) {
-      alert("Please enter a valid Rwandan phone number (12 digits starting with 250)")
+    if (!phoneNumber.trim()) {
+      alert("Please enter your phone number")
       return
     }
 
-    // Show payment modal for mobile money payment
-    setShowPaymentModal(true)
+    if (!paymentMethod) {
+      alert("Please select a payment method")
+      return
+    }
+
+    // Validate phone number format using the new validation utility
+    const validation = validateRwandanPhoneNumber(phoneNumber)
+    if (!validation.isValid) {
+      alert(validation.message)
+      return
+    }
+
+    // Handle different payment methods
+    if (paymentMethod === 'mobile_money') {
+      // Show payment modal for mobile money payment
+      setShowPaymentModal(true)
+    } else if (paymentMethod === 'bank_transfer') {
+      // For bank transfer, show instructions or redirect to bank payment page
+      alert("Bank transfer payment will be implemented soon. Please use Mobile Money for now.")
+    } else if (paymentMethod === 'credit_card') {
+      // For credit card, show card payment form or redirect to card payment page
+      alert("Credit card payment will be implemented soon. Please use Mobile Money for now.")
+    } else {
+      alert("Please select a valid payment method")
+    }
   }
 
   const handlePaymentComplete = (paymentData: any) => {
@@ -83,9 +106,10 @@ export default function TicketPurchasePage({ params }: TicketPurchasePageProps) 
   }
 
   const handlePaymentError = (error: string) => {
-    console.error('Payment failed:', error)
-    alert(`Payment failed: ${error}`)
-    setShowPaymentModal(false)
+    console.error('❌ Payment failed:', error)
+    // Don't close the modal automatically - let user see the error and retry
+    // The modal has a "Try Again" button for retrying the payment
+    console.log('Payment failed, modal remains open for retry')
   }
 
   return (
@@ -105,183 +129,196 @@ export default function TicketPurchasePage({ params }: TicketPurchasePageProps) 
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Match Details */}
+          {/* Left Side - Match Details and Ground Image */}
           <div className="lg:col-span-2">
-            <Card className="mb-6">
-              <div className="h-48 bg-gradient-to-br from-primary/20 to-secondary/20 relative">
-                <img
-                  src={match.image || "/football-stadium-crowd.png"}
-                  alt={`${match.home_team} vs ${match.away_team}`}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black/40"></div>
-                <div className="absolute bottom-4 left-4 text-white">
-                  <Badge variant="secondary" className="bg-white/90 text-black mb-2">
-                    {match.league}
-                  </Badge>
-                  <h2 className="text-2xl font-bold">
-                    {match.home_team} vs {match.away_team}
-                  </h2>
+            <Card className="mb-4 overflow-hidden">
+              <div className="flex">
+                {/* Left Side - Match Image */}
+                <div className="w-1/3">
+                  <img 
+                    src={match.image || "/ground.jpg"} 
+                    alt={`${match.home_team} vs ${match.away_team}`}
+                    className="w-full h-48 object-cover"
+                  />
                 </div>
-              </div>
-
-              <CardContent className="pt-6">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                  <div className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4 text-muted-foreground" />
-                    <div>
-                      <div className="font-semibold">
+                
+                {/* Right Side - Match Details */}
+                <div className="w-2/3 p-6 bg-white">
+                  <div className="mb-2">
+                    <Badge variant="secondary" className="bg-gray-100 text-gray-600 text-xs mb-2">
+                      {match.league}
+                    </Badge>
+                    <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                      {match.home_team} vs {match.away_team} Tickets
+                    </h2>
+                  </div>
+                  
+                  <div className="space-y-3 mb-4">
+                    <div className="flex items-center gap-3">
+                      <Calendar className="h-5 w-5 text-gray-500" />
+                      <span className="text-gray-700">
                         {new Date(match.date).toLocaleDateString("en-US", {
                           weekday: "long",
-                          month: "long",
                           day: "numeric",
-                        })}
-                      </div>
-                      <div className="text-muted-foreground">{match.date}</div>
+                          month: "long",
+                          year: "numeric"
+                        })} {match.time}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <MapPin className="h-5 w-5 text-gray-500" />
+                      <span className="text-gray-700">{match.location}</span>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Clock className="h-4 w-4 text-muted-foreground" />
-                    <div>
-                      <div className="font-semibold">{match.time}</div>
-                      <div className="text-muted-foreground">Kick-off</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <MapPin className="h-4 w-4 text-muted-foreground" />
-                    <div>
-                      <div className="font-semibold">{match.location}</div>
-                      <div className="text-muted-foreground">Venue</div>
-                    </div>
-                  </div>
+                  
                 </div>
-              </CardContent>
+              </div>
             </Card>
 
+            {/* Ground Image */}
+            <Card className="mb-6 overflow-hidden">
+              <img 
+                src="/ground.png" 
+                alt="Stadium Ground"
+                className="w-full h-48 object-cover"
+              />
+            </Card>
+          </div>
+
+          {/* Right Side - Ticket Selection and Customer Info */}
+          <div className="lg:col-span-1">
             {/* Ticket Selection */}
             <Card className="mb-6">
               <CardHeader>
                 <CardTitle>Select Tickets</CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
-                {/* Ticket Type */}
-                <div>
-                  <Label className="text-base font-semibold mb-4 block">Ticket Type</Label>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <Card
-                      className={`cursor-pointer transition-all ${ticketType === "regular" ? "ring-2 ring-primary" : ""}`}
-                      onClick={() => setTicketType("regular")}
-                    >
-                      <CardContent className="pt-4">
-                        <div className="flex justify-between items-center">
-                          <div>
-                            <h3 className="font-semibold">Regular</h3>
-                            <p className="text-sm text-muted-foreground">Standard seating</p>
-                          </div>
-                          <div className="text-right">
-                            <div className="font-bold text-lg">{match.price.toLocaleString()}</div>
-                            <div className="text-sm text-muted-foreground">RWF</div>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
+                {/* Ticket Selection - Compact */}
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <Label className="text-sm font-medium">Ticket Type</Label>
+                    <div className="flex gap-2">
+                      <button
+                        type="button"
+                        className={`px-3 py-1 text-xs rounded-full border transition-all ${
+                          ticketType === "regular"
+                            ? "bg-primary text-primary-foreground border-primary"
+                            : "bg-background border-border hover:border-primary/50"
+                        }`}
+                        onClick={() => setTicketType("regular")}
+                      >
+                        Regular ({match.price.toLocaleString()} RWF)
+                      </button>
+                      <button
+                        type="button"
+                        className={`px-3 py-1 text-xs rounded-full border transition-all ${
+                          ticketType === "vip"
+                            ? "bg-primary text-primary-foreground border-primary"
+                            : "bg-background border-border hover:border-primary/50"
+                        }`}
+                        onClick={() => setTicketType("vip")}
+                      >
+                        VIP ({match.vip_price.toLocaleString()} RWF)
+                      </button>
+                    </div>
+                  </div>
 
-                    <Card
-                      className={`cursor-pointer transition-all ${ticketType === "vip" ? "ring-2 ring-primary" : ""}`}
-                      onClick={() => setTicketType("vip")}
-                    >
-                      <CardContent className="pt-4">
-                        <div className="flex justify-between items-center">
-                          <div>
-                            <h3 className="font-semibold">VIP</h3>
-                            <p className="text-sm text-muted-foreground">Premium seating</p>
-                          </div>
-                          <div className="text-right">
-                            <div className="font-bold text-lg">{match.vip_price.toLocaleString()}</div>
-                            <div className="text-sm text-muted-foreground">RWF</div>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
+                  <div className="flex items-center justify-between">
+                    <Label className="text-sm font-medium">Quantity</Label>
+                    <div className="flex items-center gap-2">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="h-8 w-8 p-0"
+                        onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                        disabled={quantity <= 1}
+                      >
+                        <Minus className="h-3 w-3" />
+                      </Button>
+                      <span className="text-sm font-medium w-8 text-center">{quantity}</span>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="h-8 w-8 p-0"
+                        onClick={() => setQuantity(Math.min(10, quantity + 1))}
+                        disabled={quantity >= 10}
+                      >
+                        <Plus className="h-3 w-3" />
+                      </Button>
+                    </div>
                   </div>
                 </div>
 
-                {/* Quantity */}
-                <div>
-                  <Label className="text-base font-semibold mb-4 block">Quantity</Label>
-                  <div className="flex items-center gap-4">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      disabled={quantity <= 1}
-                    >
-                      <Minus className="h-4 w-4" />
-                    </Button>
-                    <span className="text-xl font-semibold w-12 text-center">{quantity}</span>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => setQuantity(Math.min(10, quantity + 1))}
-                      disabled={quantity >= 10}
-                    >
-                      <Plus className="h-4 w-4" />
-                    </Button>
-                    <span className="text-sm text-muted-foreground">Max 10 tickets</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+                <hr className="border-border" />
 
-            {/* Customer Information */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Customer Information</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="fullName">Full Name *</Label>
-                    <Input
-                      id="fullName"
-                      placeholder="Enter your full name"
-                      value={fullName}
-                      onChange={(e) => setFullName(e.target.value)}
-                    />
+                {/* Customer Information - Compact */}
+                <div className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div>
+                      <Label htmlFor="fullName" className="text-sm">Full Name *</Label>
+                      <Input
+                        id="fullName"
+                        placeholder="Enter your full name"
+                        value={fullName}
+                        onChange={(e) => setFullName(e.target.value)}
+                        className="mt-1"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="email" className="text-sm">Email (Optional)</Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder="your@email.com"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="mt-1"
+                      />
+                    </div>
                   </div>
-                  <div>
-                    <Label htmlFor="email">Email Address (Optional)</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="your@email.com (optional)"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                  </div>
-                </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="phone">Phone Number *</Label>
+                    <Label htmlFor="phone" className="text-sm">Phone Number *</Label>
                     <Input
                       id="phone"
-                      placeholder="07XXXXXXXX"
+                      placeholder="078 XXX XXX or 250 78X XXX XXX"
                       value={phoneNumber}
-                      onChange={(e) => setPhoneNumber(e.target.value)}
+                      onChange={(e) => {
+                        const formatted = formatPhoneNumber(e.target.value)
+                        setPhoneNumber(formatted)
+                      }}
+                      className="mt-1"
                     />
+                    <p className="text-xs text-muted-foreground mt-1">
+                      MTN: 078, 079 | Airtel: 072, 073
+                    </p>
                   </div>
+
                   <div>
-                    <Label htmlFor="payment-method">Payment Method *</Label>
+                    <Label htmlFor="payment-method" className="text-sm">Payment Method *</Label>
                     <Select value={paymentMethod} onValueChange={setPaymentMethod}>
-                      <SelectTrigger>
+                      <SelectTrigger className="mt-1">
                         <SelectValue placeholder="Select payment method" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="mobile_money">
                           <div className="flex items-center gap-2">
                             <Smartphone className="h-4 w-4" />
-                            Mobile Money (MTN/Airtel)
+                             (MTN/Airtel)
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="bank_transfer" disabled>
+                          <div className="flex items-center gap-2">
+                            <CreditCard className="h-4 w-4" />
+                            Bank Transfer
+                            <span className="text-xs text-muted-foreground">(Coming Soon)</span>
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="credit_card" disabled>
+                          <div className="flex items-center gap-2">
+                            <CreditCard className="h-4 w-4" />
+                            Credit/Debit Card
+                            <span className="text-xs text-muted-foreground">(Coming Soon)</span>
                           </div>
                         </SelectItem>
                       </SelectContent>
@@ -290,48 +327,50 @@ export default function TicketPurchasePage({ params }: TicketPurchasePageProps) 
                 </div>
               </CardContent>
             </Card>
-          </div>
 
-          {/* Order Summary */}
-          <div>
+            {/* Order Summary */}
             <Card className="sticky top-6">
-              <CardHeader>
-                <CardTitle>Order Summary</CardTitle>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-lg">Order Summary</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  <div className="flex justify-between">
-                    <span>
-                      {quantity}x {ticketType.toUpperCase()} Ticket{quantity > 1 ? "s" : ""}
-                    </span>
+                <div className="space-y-1.5">
+                  <div className="flex justify-between text-sm">
+                    <span>{quantity}x {ticketType.toUpperCase()}</span>
                     <span>{totalPrice.toLocaleString()} RWF</span>
                   </div>
-                  <div className="flex justify-between text-sm text-muted-foreground">
+                  <div className="flex justify-between text-xs text-muted-foreground">
                     <span>Service Fee (5%)</span>
                     <span>{serviceFee.toLocaleString()} RWF</span>
                   </div>
-                  <div className="flex justify-between text-sm text-muted-foreground">
-                    <span>VAT (18% - EBM)</span>
+                  <div className="flex justify-between text-xs text-muted-foreground">
+                    <span>VAT (18%)</span>
                     <span>{vatAmount.toLocaleString()} RWF</span>
                   </div>
-                  <div className="border-t pt-2">
-                    <div className="flex justify-between font-bold text-lg">
+                  <div className="border-t pt-2 mt-2">
+                    <div className="flex justify-between font-bold">
                       <span>Total</span>
                       <span>{finalTotal.toLocaleString()} RWF</span>
                     </div>
                   </div>
                 </div>
 
-                <Button onClick={handlePurchase} className="w-full h-12 text-lg">
-                  <CreditCard className="mr-2 h-5 w-5" />
-                  Complete Purchase
+                <Button
+                  onClick={handlePurchase}
+                  className="w-full h-10"
+                  disabled={!paymentMethod || !fullName.trim() || !phoneNumber.trim()}
+                >
+                  <CreditCard className="mr-2 h-4 w-4" />
+                  {!paymentMethod ? 'Select Payment Method' :
+                   !fullName.trim() ? 'Enter Full Name' :
+                   !phoneNumber.trim() ? 'Enter Phone Number' :
+                   'Pay Now'}
                 </Button>
 
-                <div className="text-xs text-muted-foreground space-y-1">
-                  <p>• Digital tickets will be sent to your {email ? 'email' : 'phone number'}</p>
-                  <p>• EBM VAT receipt included for tax purposes</p>
-                  <p>• Tickets are non-refundable</p>
-                  <p>• Present QR code at venue entrance</p>
+                <div className="text-xs text-muted-foreground space-y-0.5">
+                  <p>• Tickets sent to {email ? 'email' : 'phone'}</p>
+                  <p>• EBM receipt included</p>
+                  <p>• Non-refundable</p>
                 </div>
               </CardContent>
             </Card>
@@ -344,6 +383,7 @@ export default function TicketPurchasePage({ params }: TicketPurchasePageProps) 
         isOpen={showPaymentModal}
         onClose={() => setShowPaymentModal(false)}
         amount={finalTotal}
+        phoneNumber={phoneNumber}
         description={`${quantity}x ${ticketType.toUpperCase()} ticket${quantity > 1 ? 's' : ''} for ${match.home_team} vs ${match.away_team}`}
         onPaymentComplete={handlePaymentComplete}
         onPaymentError={handlePaymentError}
