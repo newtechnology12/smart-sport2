@@ -29,31 +29,12 @@ export default function LoginPage() {
     setError("")
 
     try {
-      // Auto-detect role based on email or use default 'client'
-      let detectedRole = 'client'
-      if (formData.email.includes('admin')) {
-        detectedRole = 'admin'
-      } else if (formData.email.includes('team')) {
-        detectedRole = 'team'
-      }
-
-      const success = await login(formData.email, formData.password, detectedRole)
+      // Only admin role is supported
+      const success = await login(formData.email, formData.password, 'admin')
 
       if (success) {
-        // Redirect based on detected role
-        switch (detectedRole) {
-          case 'admin':
-            router.push('/admin')
-            break
-          case 'client':
-            router.push('/dashboard')
-            break
-          case 'team':
-            router.push('/team-dashboard')
-            break
-          default:
-            router.push('/')
-        }
+        // Redirect to admin dashboard
+        router.push('/dashboard')
       } else {
         setError("Invalid credentials. Please check your email and password.")
       }
@@ -78,7 +59,7 @@ export default function LoginPage() {
     try {
       // For now, we'll simulate Google login
       // In a real app, you'd integrate with Google OAuth
-      const success = await login("google.user@gmail.com", "google_auth", "client")
+      const success = await login("google.user@gmail.com", "google_auth", "admin")
       
       if (success) {
         router.push('/dashboard')
@@ -248,10 +229,6 @@ export default function LoginPage() {
               <div className="text-xs space-y-1 text-muted-foreground apple-caption">
                 <div><strong>Admin:</strong> admin@admin.com / 123456</div>
                 <div><strong>Admin (alt):</strong> admin / admin</div>
-                <div><strong>Client:</strong> client@client.com / 123456</div>
-                <div><strong>Client (alt):</strong> client / client</div>
-                <div><strong>Team:</strong> team@team.com / 123456</div>
-                <div><strong>Team (alt):</strong> team / team</div>
               </div>
             </div>
           </CardContent>

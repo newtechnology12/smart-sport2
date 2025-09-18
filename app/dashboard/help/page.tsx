@@ -9,16 +9,14 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { HelpCircle, Search, MessageCircle, Phone, Mail, BookOpen, Video, FileText, Send, Star, Ticket, Calendar, Wallet } from "lucide-react"
+import { HelpCircle, Search, MessageCircle, Phone, Mail, BookOpen, Video, FileText, Send, Star } from "lucide-react"
 import { FloatingChat } from "@/components/ui/floating-chat"
 
-function ClientHelp() {
+function AdminHelp() {
   const [searchTerm, setSearchTerm] = useState("")
   const [ticketSubject, setTicketSubject] = useState("")
   const [ticketMessage, setTicketMessage] = useState("")
-  const [activeTab, setActiveTab] = useState("faq")
   const [isChatOpen, setIsChatOpen] = useState(false)
-
 
   // Mock help data
   const faqCategories = [
@@ -27,78 +25,52 @@ function ClientHelp() {
       icon: BookOpen,
       questions: [
         {
-          question: "How do I create an account?",
-          answer: "Click on 'Sign Up' in the top right corner, fill in your details, and verify your email address to complete registration."
+          question: "How do I create a new event?",
+          answer: "To create a new event, go to Events > Create Event and fill in the required information including event name, date, venue, and ticket details."
         },
         {
-          question: "How do I browse events?",
-          answer: "Go to 'Browse Matches' to see all available events. You can filter by sport, date, or venue to find events you're interested in."
+          question: "How do I manage user accounts?",
+          answer: "Navigate to User Management to view, edit, or suspend user accounts. You can also send notifications to specific users."
         },
         {
-          question: "How do I purchase tickets?",
-          answer: "Select an event, choose your seats, and proceed to checkout. You can pay using mobile money, credit card, or bank transfer."
+          question: "How do I view platform analytics?",
+          answer: "Go to Reports & Analytics to view detailed reports on ticket sales, revenue, user activity, and other key metrics."
         }
       ]
     },
     {
-      name: "Tickets & Events",
-      icon: Ticket,
+      name: "Payment & Billing",
+      icon: FileText,
       questions: [
         {
-          question: "How do I view my tickets?",
-          answer: "Go to 'My Tickets' to see all your purchased tickets. You can view QR codes and event details here."
+          question: "How do I configure payment methods?",
+          answer: "Go to General Settings > Payment to enable/disable payment methods like Stripe, Mobile Money, and Bank Transfer."
         },
         {
-          question: "Can I cancel my tickets?",
-          answer: "Yes, you can cancel tickets up to 24 hours before the event. A small cancellation fee may apply."
+          question: "How do I process refunds?",
+          answer: "Navigate to Transactions, find the specific transaction, and click the refund button. Refunds are processed within 3-5 business days."
         },
         {
-          question: "How do I use my QR code?",
-          answer: "Present your QR code at the venue entrance. It will be scanned for entry to the event."
-        },
-        {
-          question: "What if I lose my ticket?",
-          answer: "Don't worry! Your tickets are stored in your account. You can re-download them from 'My Tickets' anytime."
+          question: "How do I view financial reports?",
+          answer: "Go to Reports & Analytics > Financial Reports to view revenue, expenses, and profit/loss statements."
         }
       ]
     },
     {
-      name: "Payments & Wallet",
-      icon: Wallet,
-      questions: [
-        {
-          question: "What payment methods do you accept?",
-          answer: "We accept mobile money (MTN, Airtel, Orange), credit cards, and bank transfers."
-        },
-        {
-          question: "How do I add money to my wallet?",
-          answer: "Go to 'Wallet' and click 'Add Funds'. Choose your preferred payment method and enter the amount."
-        },
-        {
-          question: "How do I get a refund?",
-          answer: "Refunds are processed automatically for cancelled events. For other cases, contact our support team."
-        },
-        {
-          question: "Is my payment information secure?",
-          answer: "Yes, we use industry-standard encryption to protect all payment information."
-        }
-      ]
-    },
-    {
-      name: "Account & Profile",
+      name: "Technical Support",
       icon: HelpCircle,
       questions: [
         {
-          question: "How do I update my profile?",
-          answer: "Go to 'Profile' to update your personal information, contact details, and preferences."
+          question: "How do I backup the database?",
+          answer: "Go to General Settings > Maintenance and click 'Backup Database'. Regular backups are recommended."
         },
         {
-          question: "How do I change my password?",
-          answer: "In your profile settings, go to 'Security' and click 'Change Password' to update your password."
+          question: "How do I enable maintenance mode?",
+          answer: "In General Settings > Maintenance, toggle the 'Maintenance Mode' switch to temporarily disable public access."
         },
         {
-          question: "How do I delete my account?",
-          answer: "Contact our support team to request account deletion. We'll process your request within 48 hours."
+          question: "How do I clear the cache?",
+          answer: "Go to General Settings > Maintenance and click 'Clear Cache' to refresh the system cache."
         }
       ]
     }
@@ -107,7 +79,7 @@ function ClientHelp() {
   const supportTickets = [
     {
       id: "TICKET-001",
-      subject: "Unable to purchase tickets",
+      subject: "Unable to process payments",
       status: "open",
       priority: "high",
       created: "2024-03-15",
@@ -115,19 +87,19 @@ function ClientHelp() {
     },
     {
       id: "TICKET-002",
-      subject: "QR code not working",
+      subject: "User registration issues",
       status: "in-progress",
       priority: "medium",
       created: "2024-03-14",
-      category: "Tickets"
+      category: "User Management"
     },
     {
       id: "TICKET-003",
-      subject: "Event cancellation refund",
+      subject: "Email notifications not working",
       status: "resolved",
       priority: "low",
       created: "2024-03-13",
-      category: "Refunds"
+      category: "Technical"
     }
   ]
 
@@ -164,7 +136,7 @@ function ClientHelp() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Help Center</h1>
-            <p className="text-gray-600 mt-1">Find answers and get support for your account</p>
+            <p className="text-gray-600 mt-1">Get support and find answers to common questions</p>
           </div>
         </div>
 
@@ -174,34 +146,10 @@ function ClientHelp() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">My Tickets</p>
-                  <p className="text-2xl font-bold text-gray-900">12</p>
-                </div>
-                <Ticket className="h-8 w-8 text-blue-600" />
-              </div>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-gray-600">Events Attended</p>
-                  <p className="text-2xl font-bold text-gray-900">8</p>
-                </div>
-                <Calendar className="h-8 w-8 text-green-600" />
-              </div>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-gray-600">Support Tickets</p>
+                  <p className="text-sm font-medium text-gray-600">Open Tickets</p>
                   <p className="text-2xl font-bold text-gray-900">3</p>
                 </div>
-                <MessageCircle className="h-8 w-8 text-purple-600" />
+                <MessageCircle className="h-8 w-8 text-blue-600" />
               </div>
             </CardContent>
           </Card>
@@ -210,19 +158,43 @@ function ClientHelp() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-gray-600">Wallet Balance</p>
-                  <p className="text-2xl font-bold text-gray-900">25,000 RWF</p>
+                  <p className="text-sm font-medium text-gray-600">Resolved Today</p>
+                  <p className="text-2xl font-bold text-gray-900">5</p>
                 </div>
-                <Wallet className="h-8 w-8 text-orange-600" />
+                <Star className="h-8 w-8 text-green-600" />
+              </div>
+            </CardContent>
+          </Card>
+          
+          <Card>
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-gray-600">Avg. Response Time</p>
+                  <p className="text-2xl font-bold text-gray-900">2.5h</p>
+                </div>
+                <HelpCircle className="h-8 w-8 text-purple-600" />
+              </div>
+            </CardContent>
+          </Card>
+          
+          <Card>
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-gray-600">Knowledge Base</p>
+                  <p className="text-2xl font-bold text-gray-900">24</p>
+                </div>
+                <BookOpen className="h-8 w-8 text-orange-600" />
               </div>
             </CardContent>
           </Card>
         </div>
 
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
+        <Tabs defaultValue="faq" className="space-y-6">
           <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="faq">FAQ</TabsTrigger>
-            <TabsTrigger value="tickets">My Tickets</TabsTrigger>
+            <TabsTrigger value="tickets">Support Tickets</TabsTrigger>
             <TabsTrigger value="contact">Contact Support</TabsTrigger>
             <TabsTrigger value="resources">Resources</TabsTrigger>
           </TabsList>
@@ -263,13 +235,12 @@ function ClientHelp() {
             </Card>
           </TabsContent>
 
-
-          {/* My Tickets */}
+          {/* Support Tickets */}
           <TabsContent value="tickets" className="space-y-6">
             <Card>
               <CardHeader>
-                <CardTitle>My Support Tickets</CardTitle>
-                <CardDescription>Track your support requests and get help</CardDescription>
+                <CardTitle>Support Tickets</CardTitle>
+                <CardDescription>Manage and track support requests</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
@@ -376,16 +347,16 @@ function ClientHelp() {
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <div className="space-y-2">
-                    <h4 className="font-medium">How to Buy Tickets</h4>
-                    <p className="text-sm text-gray-500">Step-by-step guide to purchasing tickets</p>
+                    <h4 className="font-medium">Getting Started Guide</h4>
+                    <p className="text-sm text-gray-500">Learn the basics of managing your platform</p>
                   </div>
                   <div className="space-y-2">
-                    <h4 className="font-medium">Using Your QR Code</h4>
-                    <p className="text-sm text-gray-500">How to access and use your digital tickets</p>
+                    <h4 className="font-medium">Event Management</h4>
+                    <p className="text-sm text-gray-500">How to create and manage events</p>
                   </div>
                   <div className="space-y-2">
-                    <h4 className="font-medium">Managing Your Wallet</h4>
-                    <p className="text-sm text-gray-500">Adding funds and managing payments</p>
+                    <h4 className="font-medium">Payment Processing</h4>
+                    <p className="text-sm text-gray-500">Setting up and managing payments</p>
                   </div>
                 </CardContent>
               </Card>
@@ -394,21 +365,21 @@ function ClientHelp() {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <FileText className="h-5 w-5" />
-                    User Guides
+                    Documentation
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <div className="space-y-2">
-                    <h4 className="font-medium">Getting Started Guide</h4>
-                    <p className="text-sm text-gray-500">Complete beginner's guide to the platform</p>
+                    <h4 className="font-medium">API Documentation</h4>
+                    <p className="text-sm text-gray-500">Complete API reference guide</p>
                   </div>
                   <div className="space-y-2">
-                    <h4 className="font-medium">Account Management</h4>
-                    <p className="text-sm text-gray-500">Managing your profile and settings</p>
+                    <h4 className="font-medium">User Manual</h4>
+                    <p className="text-sm text-gray-500">Detailed user guide and instructions</p>
                   </div>
                   <div className="space-y-2">
-                    <h4 className="font-medium">Troubleshooting</h4>
-                    <p className="text-sm text-gray-500">Common issues and solutions</p>
+                    <h4 className="font-medium">Developer Guide</h4>
+                    <p className="text-sm text-gray-500">Integration and customization guide</p>
                   </div>
                 </CardContent>
               </Card>
@@ -426,4 +397,4 @@ function ClientHelp() {
   )
 }
 
-export default withAuth(ClientHelp)
+export default withAuth(AdminHelp)

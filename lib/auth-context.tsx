@@ -7,7 +7,7 @@ import { LogoutModal } from '@/components/ui/logout-modal'
 export interface User {
   id: string
   email: string
-  role: 'admin' | 'client' | 'team'
+  role: 'admin'
   name: string
   firstName?: string
   lastName?: string
@@ -15,8 +15,6 @@ export interface User {
   emailVerified?: boolean
   phoneVerified?: boolean
   avatar?: string
-  teamId?: string
-  teamName?: string
 }
 
 export interface AuthContextType {
@@ -76,11 +74,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       // Default credentials check
       const defaultCredentials = {
         admin: { email: "admin", password: "admin", role: "admin" },
-        adminEmail: { email: "admin@admin.com", password: "123456", role: "admin" },
-        client: { email: "client", password: "client", role: "client" },
-        clientEmail: { email: "client@client.com", password: "123456", role: "client" },
-        team: { email: "team", password: "team", role: "team" },
-        teamEmail: { email: "team@team.com", password: "123456", role: "team" }
+        adminEmail: { email: "admin@admin.com", password: "123456", role: "admin" }
       }
 
       const credential = Object.values(defaultCredentials).find(
@@ -93,19 +87,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         const userData: User = {
           id: Math.random().toString(36).substr(2, 9),
           email: email,
-          role: role as 'admin' | 'client' | 'team',
-          name: role.charAt(0).toUpperCase() + role.slice(1) + " User",
-          firstName: role.charAt(0).toUpperCase() + role.slice(1),
+          role: 'admin',
+          name: "Admin User",
+          firstName: "Admin",
           lastName: "User",
           emailVerified: true,
           phoneVerified: true,
           avatar: `/placeholder-user.jpg`
-        }
-
-        // Add team-specific data for team users
-        if (role === 'team') {
-          userData.teamId = 'team-' + Math.random().toString(36).substr(2, 6)
-          userData.teamName = 'Demo Team FC'
         }
 
         setUser(userData)
@@ -132,7 +120,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const newUser: User = {
         id: Math.random().toString(36).substr(2, 9),
         email: userData.email,
-        role: userData.role as 'admin' | 'client' | 'team',
+        role: 'admin',
         name: `${userData.firstName} ${userData.lastName}`,
         firstName: userData.firstName,
         lastName: userData.lastName,
@@ -140,12 +128,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         emailVerified: false,
         phoneVerified: false,
         avatar: `/placeholder-user.jpg`
-      }
-
-      // Add team-specific data for team users
-      if (userData.role === 'team') {
-        newUser.teamId = 'team-' + Math.random().toString(36).substr(2, 6)
-        newUser.teamName = `${userData.firstName} ${userData.lastName} Team`
       }
 
       setUser(newUser)
@@ -220,7 +202,7 @@ export function useAuth() {
 // Higher-order component for protected routes
 export function withAuth<P extends object>(
   Component: React.ComponentType<P>,
-  allowedRoles?: ('admin' | 'client' | 'team')[]
+  allowedRoles?: ['admin']
 ) {
   return function AuthenticatedComponent(props: P) {
     const { user, isLoading } = useAuth()
@@ -260,24 +242,20 @@ export function withAuth<P extends object>(
 export function useRoleAccess() {
   const { user } = useAuth()
 
-  const hasRole = (role: 'admin' | 'client' | 'team') => {
+  const hasRole = (role: 'admin') => {
     return user?.role === role
   }
 
-  const hasAnyRole = (roles: ('admin' | 'client' | 'team')[]) => {
+  const hasAnyRole = (roles: ['admin']) => {
     return user ? roles.includes(user.role) : false
   }
 
   const isAdmin = () => hasRole('admin')
-  const isClient = () => hasRole('client')
-  const isTeam = () => hasRole('team')
 
   return {
     hasRole,
     hasAnyRole,
     isAdmin,
-    isClient,
-    isTeam,
     userRole: user?.role
   }
 }

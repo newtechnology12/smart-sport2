@@ -1,119 +1,83 @@
 "use client"
 
-import React, { useState } from 'react'
-import { useParams, useRouter } from 'next/navigation'
-import { DashboardLayout } from '@/components/dashboard/dashboard-layout'
-import { withAuth } from '@/lib/auth-context'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Separator } from '@/components/ui/separator'
-import {
-  Calendar,
-  MapPin,
-  Clock,
-  Trophy,
-  Users,
-  Ticket,
-  CreditCard,
-  Smartphone,
-  Building,
-  Wallet,
+import { useState, useEffect } from "react"
+import { DashboardLayout } from "@/components/dashboard/dashboard-layout"
+import { withAuth } from "@/lib/auth-context"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { 
+  Calendar, 
+  Clock, 
+  MapPin, 
+  Users, 
+  DollarSign,
   ArrowLeft,
-  Plus,
-  Minus,
-  Shield,
-  CheckCircle
-} from 'lucide-react'
-import { matches } from '@/lib/dummy-data'
-import Link from 'next/link'
-import Image from 'next/image'
+  Edit,
+  Trash2,
+  BarChart3,
+  Ticket,
+  TrendingUp,
+  Activity,
+  Eye,
+  Share2
+} from "lucide-react"
+import Link from "next/link"
+import { useParams, useRouter } from "next/navigation"
+import Image from "next/image"
 
-function TicketPurchasePage() {
+function ViewMatchPage() {
   const params = useParams()
   const router = useRouter()
-  const matchId = parseInt(params.id as string)
-  const match = matches.find(m => m.id === matchId)
+  const matchId = params.id
+  const [isLoading, setIsLoading] = useState(true)
+  const [match, setMatch] = useState<any>(null)
 
-  const [ticketType, setTicketType] = useState('regular')
-  const [quantity, setQuantity] = useState(1)
-  const [paymentMethod, setPaymentMethod] = useState('')
-  const [isProcessing, setIsProcessing] = useState(false)
-
-  if (!match) {
-    return (
-      <DashboardLayout>
-        <div className="p-6">
-          <Card>
-            <CardContent className="text-center py-12">
-              <Trophy className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Match not found</h3>
-              <p className="text-muted-foreground mb-4">
-                The match you're looking for doesn't exist.
-              </p>
-              <Link href="/dashboard/matches">
-                <Button>Back to Matches</Button>
-              </Link>
-            </CardContent>
-          </Card>
-        </div>
-      </DashboardLayout>
-    )
-  }
-
-  const ticketPrices = {
-    regular: match.price,
-    vip: match.vip_price
-  }
-
-  const totalPrice = ticketPrices[ticketType as keyof typeof ticketPrices] * quantity
-
-  const handlePurchase = async () => {
-    if (!paymentMethod) {
-      alert('Please select a payment method')
-      return
+  useEffect(() => {
+    const loadMatchData = async () => {
+      setIsLoading(true)
+      try {
+        // Simulate API call to fetch match data
+        await new Promise(resolve => setTimeout(resolve, 1000))
+        
+        // Mock data - in real app, this would come from API
+        setMatch({
+          id: matchId,
+          homeTeam: "APR FC",
+          awayTeam: "Rayon Sports",
+          date: "2024-03-20",
+          time: "16:00",
+          venue: "Amahoro Stadium",
+          competition: "Rwanda Premier League",
+          sport: "football",
+          status: "upcoming",
+          ticketPrice: 5000,
+          totalCapacity: 30000,
+          ticketsSold: 12000,
+          expectedRevenue: 60000000,
+          description: "Exciting match between two top teams in the Rwanda Premier League",
+          image: "/placeholder.jpg",
+          organizer: "Rwanda Football Federation"
+        })
+      } catch (error) {
+        console.error("Error loading match:", error)
+      } finally {
+        setIsLoading(false)
+      }
     }
 
-    setIsProcessing(true)
-    
-    try {
-      // Simulate payment processing
-      await new Promise(resolve => setTimeout(resolve, 2000))
-      
-      // Generate QR codes for each ticket
-      const qrCodes = Array.from({ length: quantity }, (_, i) => ({
-        id: `QR${Date.now()}${i}`,
-        ticketNumber: `TKT${Date.now()}${i}`,
-        seatNumber: `${String.fromCharCode(65 + Math.floor(Math.random() * 5))}${Math.floor(Math.random() * 50) + 1}`
-      }))
-      
-      // Store purchase data (in real app, this would be sent to backend)
-      const purchaseData = {
-        matchId: match.id,
-        ticketType,
-        quantity,
-        totalPrice,
-        paymentMethod,
-        qrCodes,
-        purchaseDate: new Date().toISOString(),
-        status: 'confirmed'
-      }
-      
-      // Store in localStorage for demo
-      const existingPurchases = JSON.parse(localStorage.getItem('userPurchases') || '[]')
-      existingPurchases.push(purchaseData)
-      localStorage.setItem('userPurchases', JSON.stringify(existingPurchases))
-      
-      // Redirect to success page
-      router.push(`/dashboard/tickets/success?purchase=${Date.now()}`)
-      
-    } catch (error) {
-      alert('Payment failed. Please try again.')
-    } finally {
-      setIsProcessing(false)
+    if (matchId) {
+      loadMatchData()
+    }
+  }, [matchId])
+
+  const getStatusBadge = (status: string) => {
+    switch (status) {
+      case 'upcoming': return <Badge className="bg-blue-100 text-blue-800 border-blue-200">Upcoming</Badge>
+      case 'completed': return <Badge className="bg-green-100 text-green-800 border-green-200">Completed</Badge>
+      case 'cancelled': return <Badge className="bg-red-100 text-red-800 border-red-200">Cancelled</Badge>
+      case 'live': return <Badge className="bg-orange-100 text-orange-800 border-orange-200">Live</Badge>
+      default: return <Badge variant="secondary">{status}</Badge>
     }
   }
 
@@ -127,284 +91,256 @@ function TicketPurchasePage() {
     }
   }
 
+  if (isLoading) {
+    return (
+      <DashboardLayout>
+        <div className="p-6">
+          <div className="flex items-center justify-center h-64">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600"></div>
+          </div>
+        </div>
+      </DashboardLayout>
+    )
+  }
+
+  if (!match) {
+    return (
+      <DashboardLayout>
+        <div className="p-6">
+          <div className="text-center py-12">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Match not found</h3>
+            <p className="text-gray-600 mb-4">The match you're looking for doesn't exist.</p>
+            <Link href="/dashboard/matches">
+              <Button className="bg-green-600 hover:bg-green-700 text-white">
+                Back to Matches
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </DashboardLayout>
+    )
+  }
+
   return (
     <DashboardLayout>
-      <div className="p-6 space-y-8">
-        {/* Back Button */}
-        <Link href="/dashboard/matches">
-          <Button variant="ghost" className="apple-button">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Matches
-          </Button>
-        </Link>
+      <div className="p-6 space-y-6">
+        {/* Header */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <Link href="/dashboard/matches">
+              <Button variant="outline" size="sm" className="bg-white border-gray-200 hover:bg-gray-50">
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back to Matches
+              </Button>
+            </Link>
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">Match Details</h1>
+              <p className="text-gray-600 mt-1">
+                View and manage match information
+              </p>
+            </div>
+          </div>
+          <div className="flex gap-3">
+            <Button variant="outline" className="bg-white border-gray-200 hover:bg-gray-50">
+              <Share2 className="h-4 w-4 mr-2" />
+              Share
+            </Button>
+            <Link href={`/dashboard/matches/${match.id}/edit`}>
+              <Button className="bg-green-600 hover:bg-green-700 text-white">
+                <Edit className="h-4 w-4 mr-2" />
+                Edit Match
+              </Button>
+            </Link>
+          </div>
+        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Match Details */}
-          <div className="lg:col-span-2 space-y-6">
-            <Card className="apple-card overflow-hidden">
-              <div className="relative h-64">
-                <Image
-                  src={match.image}
-                  alt={`${match.home_team} vs ${match.away_team}`}
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute top-4 left-4">
-                  <Badge className="bg-black/50 text-white border-0">
+        {/* Match Header */}
+        <Card className="bg-white border border-gray-100 shadow-sm overflow-hidden">
+          <div className="relative h-64">
+            <Image
+              src={match.image}
+              alt={`${match.homeTeam} vs ${match.awayTeam}`}
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-black/40" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="text-center text-white">
+                <h2 className="text-4xl font-bold mb-2">
+                  {match.homeTeam} vs {match.awayTeam}
+                </h2>
+                <p className="text-xl text-gray-200">{match.competition}</p>
+                <div className="mt-4 flex items-center justify-center gap-4">
+                  <Badge className="bg-white/20 text-white border-white/30">
                     {getSportIcon(match.sport)} {match.sport}
                   </Badge>
+                  {getStatusBadge(match.status)}
                 </div>
               </div>
-              
-              <CardContent className="p-6">
-                <div className="space-y-4">
-                  <div>
-                    <h1 className="text-2xl font-bold apple-title mb-2">
-                      {match.home_team} vs {match.away_team}
-                    </h1>
-                    <p className="text-muted-foreground apple-body">
-                      {match.league}
-                    </p>
-                  </div>
+            </div>
+          </div>
+        </Card>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className="flex items-center gap-2">
-                      <Calendar className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-sm">{match.date}</span>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Match Information */}
+          <div className="lg:col-span-2 space-y-6">
+            <Card className="bg-white border border-gray-100 shadow-sm">
+              <CardHeader className="bg-white">
+                <CardTitle className="text-gray-900">Match Information</CardTitle>
+                <CardDescription className="text-gray-600">
+                  Basic details about the match
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="bg-white space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="flex items-center gap-3">
+                    <Calendar className="h-5 w-5 text-gray-400" />
+                    <div>
+                      <p className="text-sm text-gray-600">Date</p>
+                      <p className="font-medium text-gray-900">{match.date}</p>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Clock className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-sm">{match.time}</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Clock className="h-5 w-5 text-gray-400" />
+                    <div>
+                      <p className="text-sm text-gray-600">Time</p>
+                      <p className="font-medium text-gray-900">{match.time}</p>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <MapPin className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-sm">{match.location}</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <MapPin className="h-5 w-5 text-gray-400" />
+                    <div>
+                      <p className="text-sm text-gray-600">Venue</p>
+                      <p className="font-medium text-gray-900">{match.venue}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Users className="h-5 w-5 text-gray-400" />
+                    <div>
+                      <p className="text-sm text-gray-600">Capacity</p>
+                      <p className="font-medium text-gray-900">{match.totalCapacity.toLocaleString()}</p>
                     </div>
                   </div>
                 </div>
+                
+                {match.description && (
+                  <div className="pt-4 border-t border-gray-200">
+                    <p className="text-sm text-gray-600 mb-2">Description</p>
+                    <p className="text-gray-900">{match.description}</p>
+                  </div>
+                )}
               </CardContent>
             </Card>
 
-            {/* Ticket Selection */}
-            <Card className="apple-card">
-              <CardHeader>
-                <CardTitle className="apple-subtitle">Select Tickets</CardTitle>
-                <CardDescription>Choose your ticket type and quantity</CardDescription>
+            {/* Ticket Information */}
+            <Card className="bg-white border border-gray-100 shadow-sm">
+              <CardHeader className="bg-white">
+                <CardTitle className="text-gray-900">Ticket Information</CardTitle>
+                <CardDescription className="text-gray-600">
+                  Pricing and availability details
+                </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-6">
-                {/* Ticket Type */}
-                <div className="space-y-3">
-                  <Label className="apple-caption font-medium">Ticket Type</Label>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div 
-                      className={`p-4 border-2 rounded-lg cursor-pointer transition-colors ${
-                        ticketType === 'regular' ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/50'
-                      }`}
-                      onClick={() => setTicketType('regular')}
-                    >
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <div className="font-semibold">Regular</div>
-                          <div className="text-sm text-muted-foreground">Standard seating</div>
-                        </div>
-                        <div className="text-right">
-                          <div className="font-bold text-primary">
-                            {match.price.toLocaleString()} RWF
-                          </div>
-                        </div>
-                      </div>
+              <CardContent className="bg-white space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="flex items-center gap-3">
+                    <DollarSign className="h-5 w-5 text-gray-400" />
+                    <div>
+                      <p className="text-sm text-gray-600">Ticket Price</p>
+                      <p className="text-2xl font-bold text-green-600">{match.ticketPrice.toLocaleString()} RWF</p>
                     </div>
-
-                    <div 
-                      className={`p-4 border-2 rounded-lg cursor-pointer transition-colors ${
-                        ticketType === 'vip' ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/50'
-                      }`}
-                      onClick={() => setTicketType('vip')}
-                    >
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <div className="font-semibold flex items-center gap-2">
-                            VIP <Trophy className="h-4 w-4 text-yellow-500" />
-                          </div>
-                          <div className="text-sm text-muted-foreground">Premium seating</div>
-                        </div>
-                        <div className="text-right">
-                          <div className="font-bold text-primary">
-                            {match.vip_price.toLocaleString()} RWF
-                          </div>
-                        </div>
-                      </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Ticket className="h-5 w-5 text-gray-400" />
+                    <div>
+                      <p className="text-sm text-gray-600">Tickets Sold</p>
+                      <p className="text-2xl font-bold text-gray-900">{match.ticketsSold.toLocaleString()}</p>
                     </div>
                   </div>
                 </div>
-
-                {/* Quantity */}
-                <div className="space-y-3">
-                  <Label className="apple-caption font-medium">Quantity</Label>
-                  <div className="flex items-center gap-4">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      disabled={quantity <= 1}
-                      className="apple-button"
-                    >
-                      <Minus className="h-4 w-4" />
-                    </Button>
-                    <span className="text-lg font-semibold w-8 text-center">{quantity}</span>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => setQuantity(Math.min(10, quantity + 1))}
-                      disabled={quantity >= 10}
-                      className="apple-button"
-                    >
-                      <Plus className="h-4 w-4" />
-                    </Button>
-                    <span className="text-sm text-muted-foreground">
-                      (Maximum 10 tickets per purchase)
+                
+                <div className="pt-4 border-t border-gray-200">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm text-gray-600">Attendance Rate</span>
+                    <span className="text-sm font-medium text-gray-900">
+                      {Math.round((match.ticketsSold / match.totalCapacity) * 100)}%
                     </span>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Payment Method */}
-            <Card className="apple-card">
-              <CardHeader>
-                <CardTitle className="apple-subtitle">Payment Method</CardTitle>
-                <CardDescription>Choose how you'd like to pay</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div 
-                    className={`p-4 border-2 rounded-lg cursor-pointer transition-colors ${
-                      paymentMethod === 'mtn' ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/50'
-                    }`}
-                    onClick={() => setPaymentMethod('mtn')}
-                  >
-                    <div className="flex items-center gap-3">
-                      <Smartphone className="h-6 w-6 text-yellow-600" />
-                      <div>
-                        <div className="font-semibold">MTN Rwanda</div>
-                        <div className="text-sm text-muted-foreground">Mobile Money</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div 
-                    className={`p-4 border-2 rounded-lg cursor-pointer transition-colors ${
-                      paymentMethod === 'airtel' ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/50'
-                    }`}
-                    onClick={() => setPaymentMethod('airtel')}
-                  >
-                    <div className="flex items-center gap-3">
-                      <Smartphone className="h-6 w-6 text-red-600" />
-                      <div>
-                        <div className="font-semibold">Airtel Rwanda</div>
-                        <div className="text-sm text-muted-foreground">Mobile Money</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div 
-                    className={`p-4 border-2 rounded-lg cursor-pointer transition-colors ${
-                      paymentMethod === 'bank' ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/50'
-                    }`}
-                    onClick={() => setPaymentMethod('bank')}
-                  >
-                    <div className="flex items-center gap-3">
-                      <Building className="h-6 w-6 text-blue-600" />
-                      <div>
-                        <div className="font-semibold">Bank Transfer</div>
-                        <div className="text-sm text-muted-foreground">Direct transfer</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div 
-                    className={`p-4 border-2 rounded-lg cursor-pointer transition-colors ${
-                      paymentMethod === 'wallet' ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/50'
-                    }`}
-                    onClick={() => setPaymentMethod('wallet')}
-                  >
-                    <div className="flex items-center gap-3">
-                      <Wallet className="h-6 w-6 text-purple-600" />
-                      <div>
-                        <div className="font-semibold">SmartSports Wallet</div>
-                        <div className="text-sm text-muted-foreground">Balance: 45,000 RWF</div>
-                      </div>
-                    </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div 
+                      className="bg-green-600 h-2 rounded-full" 
+                      style={{ width: `${(match.ticketsSold / match.totalCapacity) * 100}%` }}
+                    ></div>
                   </div>
                 </div>
               </CardContent>
             </Card>
           </div>
 
-          {/* Order Summary */}
+          {/* Sidebar */}
           <div className="space-y-6">
-            <Card className="apple-card sticky top-6">
-              <CardHeader>
-                <CardTitle className="apple-subtitle">Order Summary</CardTitle>
+            {/* Quick Actions */}
+            <Card className="bg-white border border-gray-100 shadow-sm">
+              <CardHeader className="bg-white">
+                <CardTitle className="text-gray-900">Quick Actions</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-3">
-                  <div className="flex justify-between">
-                    <span className="text-sm">Ticket Type</span>
-                    <span className="text-sm font-medium capitalize">{ticketType}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-sm">Quantity</span>
-                    <span className="text-sm font-medium">{quantity}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-sm">Price per ticket</span>
-                    <span className="text-sm font-medium">
-                      {ticketPrices[ticketType as keyof typeof ticketPrices].toLocaleString()} RWF
-                    </span>
-                  </div>
-                  <Separator />
-                  <div className="flex justify-between">
-                    <span className="font-semibold">Total</span>
-                    <span className="font-bold text-primary text-lg">
-                      {totalPrice.toLocaleString()} RWF
-                    </span>
-                  </div>
-                </div>
-
-                <div className="space-y-3 pt-4">
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Shield className="h-4 w-4" />
-                    <span>Secure payment processing</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <CheckCircle className="h-4 w-4" />
-                    <span>Instant QR code delivery</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Ticket className="h-4 w-4" />
-                    <span>Mobile ticket access</span>
-                  </div>
-                </div>
-
-                <Button 
-                  className="w-full apple-button" 
-                  size="lg"
-                  onClick={handlePurchase}
-                  disabled={!paymentMethod || isProcessing}
-                >
-                  {isProcessing ? (
-                    <>
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                      Processing...
-                    </>
-                  ) : (
-                    <>
-                      <CreditCard className="mr-2 h-4 w-4" />
-                      Complete Purchase
-                    </>
-                  )}
+              <CardContent className="bg-white space-y-3">
+                <Link href={`/dashboard/matches/${match.id}/edit`} className="block">
+                  <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+                    <Edit className="h-4 w-4 mr-2" />
+                    Edit Match
+                  </Button>
+                </Link>
+                <Button variant="outline" className="w-full bg-white border-gray-200 hover:bg-gray-50">
+                  <BarChart3 className="h-4 w-4 mr-2" />
+                  View Analytics
                 </Button>
+                <Button variant="outline" className="w-full bg-white border-gray-200 hover:bg-gray-50">
+                  <Activity className="h-4 w-4 mr-2" />
+                  Match Stats
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Revenue Information */}
+            <Card className="bg-white border border-gray-100 shadow-sm">
+              <CardHeader className="bg-white">
+                <CardTitle className="text-gray-900">Revenue</CardTitle>
+              </CardHeader>
+              <CardContent className="bg-white space-y-4">
+                <div className="text-center">
+                  <p className="text-sm text-gray-600">Expected Revenue</p>
+                  <p className="text-3xl font-bold text-green-600">
+                    {(match.expectedRevenue / 1000000).toFixed(1)}M RWF
+                  </p>
+                </div>
+                <div className="pt-4 border-t border-gray-200">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-600">Tickets Sold</span>
+                    <span className="font-medium">{match.ticketsSold.toLocaleString()}</span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-600">Price per Ticket</span>
+                    <span className="font-medium">{match.ticketPrice.toLocaleString()} RWF</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Match Status */}
+            <Card className="bg-white border border-gray-100 shadow-sm">
+              <CardHeader className="bg-white">
+                <CardTitle className="text-gray-900">Status</CardTitle>
+              </CardHeader>
+              <CardContent className="bg-white">
+                <div className="text-center">
+                  {getStatusBadge(match.status)}
+                  <p className="text-sm text-gray-600 mt-2">
+                    {match.status === 'upcoming' && 'Match is scheduled'}
+                    {match.status === 'live' && 'Match is currently live'}
+                    {match.status === 'completed' && 'Match has ended'}
+                    {match.status === 'cancelled' && 'Match was cancelled'}
+                  </p>
+                </div>
               </CardContent>
             </Card>
           </div>
@@ -414,4 +350,4 @@ function TicketPurchasePage() {
   )
 }
 
-export default withAuth(TicketPurchasePage, ['client'])
+export default withAuth(ViewMatchPage, ['admin'])

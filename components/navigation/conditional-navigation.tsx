@@ -9,9 +9,7 @@ export function ConditionalNavigation() {
   const { user, isLoading } = useAuth()
 
   // Check if current path is a dashboard path
-  const isDashboardPath = pathname.startsWith('/admin') || 
-                         pathname.startsWith('/dashboard') || 
-                         pathname.startsWith('/team-dashboard')
+  const isDashboardPath = pathname.startsWith('/dashboard')
 
   // If we're on a dashboard path and user is logged in, don't show public navigation
   if (isDashboardPath && user) {

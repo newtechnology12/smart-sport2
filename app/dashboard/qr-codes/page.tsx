@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import {
   QrCode,
   Download,
@@ -19,14 +20,22 @@ import {
   Eye,
   Filter,
   CheckCircle,
-  AlertCircle
+  AlertCircle,
+  Plus,
+  Edit,
+  Trash2,
+  Scan,
+  Users,
+  BarChart3,
+  RefreshCw
 } from 'lucide-react'
 import { userTickets } from '@/lib/dummy-data'
 
-function QRCodesPage() {
+function AdminQRCodesPage() {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedStatus, setSelectedStatus] = useState('all')
   const [qrCodes, setQrCodes] = useState<any[]>([])
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     // Generate QR codes for existing tickets
@@ -40,189 +49,154 @@ function QRCodesPage() {
         status: ticket.status,
         qrData: `TICKET:${ticket.id}:${seat}:${ticket.match.id}`,
         purchaseDate: ticket.purchase_date,
-        isUsed: Math.random() > 0.7 // Randomly mark some as used for demo
+        isUsed: Math.random() > 0.7, // Randomly mark some as used for demo
+        customer: `Customer ${Math.floor(Math.random() * 1000)}`,
+        email: `customer${Math.floor(Math.random() * 1000)}@example.com`
       }))
     )
     setQrCodes(generatedQRCodes)
   }, [])
 
+  const handleRefresh = async () => {
+    setIsLoading(true)
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000))
+    } catch (error) {
+      console.error('Error refreshing QR codes:', error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   const filteredQRCodes = qrCodes.filter(qr => {
     const matchesSearch = qr.match.home_team.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          qr.match.away_team.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         qr.ticketNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         qr.seatNumber.toLowerCase().includes(searchTerm.toLowerCase())
+                         qr.customer.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         qr.ticketNumber.toLowerCase().includes(searchTerm.toLowerCase())
     
     const matchesStatus = selectedStatus === 'all' || 
-                         (selectedStatus === 'active' && !qr.isUsed) ||
-                         (selectedStatus === 'used' && qr.isUsed)
+                         (selectedStatus === 'used' && qr.isUsed) ||
+                         (selectedStatus === 'unused' && !qr.isUsed)
     
     return matchesSearch && matchesStatus
   })
 
-  const generateQRCodeImage = (qrCode: any) => {
-    const canvas = document.createElement('canvas')
-    const ctx = canvas.getContext('2d')
-    canvas.width = 400
-    canvas.height = 500
-    
-    if (ctx) {
-      // Background
-      ctx.fillStyle = '#ffffff'
-      ctx.fillRect(0, 0, 400, 500)
-      
-      // Header
-      ctx.fillStyle = '#ff6b35'
-      ctx.fillRect(0, 0, 400, 80)
-      
-      // Title
-      ctx.fillStyle = '#ffffff'
-      ctx.font = 'bold 20px Arial'
-      ctx.textAlign = 'center'
-      ctx.fillText('SmartSports RW', 200, 30)
-      ctx.font = '14px Arial'
-      ctx.fillText('Digital Ticket', 200, 55)
-      
-      // QR Code area (simplified pattern)
-      ctx.fillStyle = '#000000'
-      const qrSize = 200
-      const qrX = (400 - qrSize) / 2
-      const qrY = 100
-      
-      // Create QR pattern
-      for (let i = 0; i < 20; i++) {
-        for (let j = 0; j < 20; j++) {
-          if (Math.random() > 0.5) {
-            ctx.fillRect(qrX + i * 10, qrY + j * 10, 10, 10)
-          }
-        }
-      }
-      
-      // Ticket details
-      ctx.fillStyle = '#000000'
-      ctx.font = 'bold 16px Arial'
-      ctx.textAlign = 'left'
-      ctx.fillText(`${qrCode.match.home_team} vs ${qrCode.match.away_team}`, 20, 340)
-      
-      ctx.font = '14px Arial'
-      ctx.fillText(`Date: ${qrCode.match.date} ${qrCode.match.time}`, 20, 365)
-      ctx.fillText(`Location: ${qrCode.match.location}`, 20, 385)
-      ctx.fillText(`Seat: ${qrCode.seatNumber}`, 20, 405)
-      ctx.fillText(`Ticket: ${qrCode.ticketNumber}`, 20, 425)
-      
-      // Footer
-      ctx.font = '12px Arial'
-      ctx.textAlign = 'center'
-      ctx.fillStyle = '#666666'
-      ctx.fillText('Present this QR code at the venue entrance', 200, 460)
-      ctx.fillText('Valid for single use only', 200, 480)
-    }
-    
-    return canvas
-  }
-
-  const downloadQRCode = (qrCode: any) => {
-    const canvas = generateQRCodeImage(qrCode)
-    const link = document.createElement('a')
-    link.download = `ticket-${qrCode.ticketNumber}.png`
-    link.href = canvas.toDataURL()
-    link.click()
-  }
-
-  const shareQRCode = async (qrCode: any) => {
-    if (navigator.share) {
-      try {
-        const canvas = generateQRCodeImage(qrCode)
-        canvas.toBlob(async (blob) => {
-          if (blob) {
-            const file = new File([blob], `ticket-${qrCode.ticketNumber}.png`, { type: 'image/png' })
-            await navigator.share({
-              title: `Ticket: ${qrCode.match.home_team} vs ${qrCode.match.away_team}`,
-              text: `My ticket for ${qrCode.match.home_team} vs ${qrCode.match.away_team}`,
-              files: [file]
-            })
-          }
-        })
-      } catch (error) {
-        console.error('Error sharing:', error)
-      }
+  const getStatusBadge = (isUsed: boolean) => {
+    if (isUsed) {
+      return <Badge className="bg-green-100 text-green-800 border-green-200">Used</Badge>
     } else {
-      // Fallback: copy to clipboard
-      navigator.clipboard.writeText(qrCode.qrData)
-      alert('QR code data copied to clipboard!')
+      return <Badge className="bg-blue-100 text-blue-800 border-blue-200">Active</Badge>
     }
   }
 
-  const previewQRCode = (qrCode: any) => {
-    const canvas = generateQRCodeImage(qrCode)
-    const newWindow = window.open('', '_blank')
-    if (newWindow) {
-      newWindow.document.write(`
-        <html>
-          <head><title>Ticket Preview - ${qrCode.ticketNumber}</title></head>
-          <body style="margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #f5f5f5;">
-            <div style="text-align: center;">
-              <h2>Ticket Preview</h2>
-              ${canvas.outerHTML}
-              <p style="margin-top: 20px; color: #666;">
-                <button onclick="window.print()" style="padding: 10px 20px; background: #ff6b35; color: white; border: none; border-radius: 5px; cursor: pointer;">Print Ticket</button>
-              </p>
-            </div>
-          </body>
-        </html>
-      `)
-    }
-  }
+  const usedQRCodes = qrCodes.filter(qr => qr.isUsed)
+  const activeQRCodes = qrCodes.filter(qr => !qr.isUsed)
 
   return (
     <DashboardLayout>
-      <div className="p-6 space-y-8">
+      <div className="p-6 space-y-6">
         {/* Header */}
-        <div>
-          <h1 className="text-3xl font-bold apple-title mb-2">My QR Codes</h1>
-          <p className="text-muted-foreground apple-body">
-            Download, share, and manage your ticket QR codes
-          </p>
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">QR Code Management</h1>
+            <p className="text-gray-600 mt-1">
+              Manage and monitor all QR codes for ticket validation and entry
+            </p>
+          </div>
+          <div className="flex gap-3">
+            <Button 
+              variant="outline" 
+              onClick={handleRefresh}
+              disabled={isLoading}
+              className="bg-white border-gray-200 hover:bg-gray-50"
+            >
+              {isLoading ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-600 mr-2"></div>
+                  Refreshing...
+                </>
+              ) : (
+                <>
+                  <QrCode className="h-4 w-4 mr-2" />
+                  Refresh
+                </>
+              )}
+            </Button>
+            <Button className="bg-green-600 hover:bg-green-700 text-white">
+              <Plus className="h-4 w-4 mr-2" />
+              Generate QR Codes
+            </Button>
+            <Button variant="outline" className="bg-white border-gray-200 hover:bg-gray-50">
+              <Download className="h-4 w-4 mr-2" />
+              Export All
+            </Button>
+            <Button variant="outline" className="bg-white border-gray-200 hover:bg-gray-50">
+              <Scan className="h-4 w-4 mr-2" />
+              Scanner Mode
+            </Button>
+          </div>
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card className="apple-card">
-            <CardContent className="pt-6">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                  <QrCode className="h-6 w-6 text-blue-600" />
-                </div>
+        {/* Stats Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <Card className="bg-white border border-gray-100 shadow-sm">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-2xl font-bold">{qrCodes.length}</div>
-                  <div className="text-sm text-muted-foreground">Total QR Codes</div>
+                  <p className="text-sm text-gray-600 font-medium">Total QR Codes</p>
+                  <p className="text-3xl font-bold text-gray-900">{qrCodes.length}</p>
+                  <p className="text-xs text-green-600 mt-1">+12% from last week</p>
+                </div>
+                <div className="h-12 w-12 bg-green-100 rounded-lg flex items-center justify-center">
+                  <QrCode className="h-6 w-6 text-green-600" />
                 </div>
               </div>
             </CardContent>
           </Card>
-
-          <Card className="apple-card">
-            <CardContent className="pt-6">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                  <CheckCircle className="h-6 w-6 text-green-600" />
-                </div>
+          
+          <Card className="bg-white border border-gray-100 shadow-sm">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-2xl font-bold">{qrCodes.filter(qr => !qr.isUsed).length}</div>
-                  <div className="text-sm text-muted-foreground">Active Codes</div>
+                  <p className="text-sm text-gray-600 font-medium">Active QR Codes</p>
+                  <p className="text-3xl font-bold text-gray-900">{activeQRCodes.length}</p>
+                  <p className="text-xs text-blue-600 mt-1">Ready for use</p>
+                </div>
+                <div className="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                  <CheckCircle className="h-6 w-6 text-blue-600" />
                 </div>
               </div>
             </CardContent>
           </Card>
-
-          <Card className="apple-card">
-            <CardContent className="pt-6">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
-                  <AlertCircle className="h-6 w-6 text-gray-600" />
-                </div>
+          
+          <Card className="bg-white border border-gray-100 shadow-sm">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-2xl font-bold">{qrCodes.filter(qr => qr.isUsed).length}</div>
-                  <div className="text-sm text-muted-foreground">Used Codes</div>
+                  <p className="text-sm text-gray-600 font-medium">Used QR Codes</p>
+                  <p className="text-3xl font-bold text-gray-900">{usedQRCodes.length}</p>
+                  <p className="text-xs text-purple-600 mt-1">Successfully scanned</p>
+                </div>
+                <div className="h-12 w-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                  <Users className="h-6 w-6 text-purple-600" />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          
+          <Card className="bg-white border border-gray-100 shadow-sm">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-gray-600 font-medium">Usage Rate</p>
+                  <p className="text-3xl font-bold text-gray-900">
+                    {Math.round((usedQRCodes.length / qrCodes.length) * 100)}%
+                  </p>
+                  <p className="text-xs text-orange-600 mt-1">Conversion rate</p>
+                </div>
+                <div className="h-12 w-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                  <BarChart3 className="h-6 w-6 text-orange-600" />
                 </div>
               </div>
             </CardContent>
@@ -230,118 +204,121 @@ function QRCodesPage() {
         </div>
 
         {/* Filters */}
-        <Card className="apple-card">
-          <CardHeader>
-            <CardTitle className="apple-subtitle flex items-center gap-2">
-              <Filter className="h-5 w-5" />
-              Search & Filter
+        <Card className="bg-white border border-gray-100 shadow-sm">
+          <CardHeader className="bg-white">
+            <CardTitle className="flex items-center gap-2 text-gray-900">
+              <Filter className="h-5 w-5 text-green-600" />
+              Filters & Search
             </CardTitle>
+            <CardDescription className="text-gray-600">Filter and search through QR codes</CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="flex flex-col md:flex-row gap-4">
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+          <CardContent className="bg-white">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="relative">
+                <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                 <Input
-                  placeholder="Search by match, ticket number, or seat..."
+                  placeholder="Search QR codes, events, or customers..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 apple-focus"
+                  className="pl-10 bg-white border-gray-200 focus:border-green-500 focus:ring-green-500"
                 />
               </div>
               
-              <div className="flex gap-2">
-                <Button
-                  variant={selectedStatus === 'all' ? 'default' : 'outline'}
-                  onClick={() => setSelectedStatus('all')}
-                  className="apple-button"
-                >
-                  All
-                </Button>
-                <Button
-                  variant={selectedStatus === 'active' ? 'default' : 'outline'}
-                  onClick={() => setSelectedStatus('active')}
-                  className="apple-button"
-                >
-                  Active
-                </Button>
-                <Button
-                  variant={selectedStatus === 'used' ? 'default' : 'outline'}
-                  onClick={() => setSelectedStatus('used')}
-                  className="apple-button"
-                >
-                  Used
-                </Button>
-              </div>
+              <Select value={selectedStatus} onValueChange={setSelectedStatus}>
+                <SelectTrigger className="bg-white border-gray-200 focus:border-green-500 focus:ring-green-500">
+                  <SelectValue placeholder="All Status" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Status</SelectItem>
+                  <SelectItem value="unused">Active</SelectItem>
+                  <SelectItem value="used">Used</SelectItem>
+                </SelectContent>
+              </Select>
+
+              <Button 
+                variant="outline" 
+                onClick={() => {
+                  setSearchTerm('')
+                  setSelectedStatus('all')
+                }}
+                className="bg-white border-gray-200 hover:bg-gray-50"
+              >
+                Clear Filters
+              </Button>
             </div>
           </CardContent>
         </Card>
 
         {/* QR Codes Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredQRCodes.map((qrCode) => (
-            <Card key={qrCode.id} className="apple-card">
-              <CardContent className="p-6">
-                <div className="space-y-4">
-                  {/* QR Code Visual */}
-                  <div className="relative">
-                    <div className="w-full h-32 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg flex items-center justify-center">
-                      <QrCode className="h-16 w-16 text-primary" />
-                    </div>
-                    <div className="absolute top-2 right-2">
-                      <Badge variant={qrCode.isUsed ? 'secondary' : 'default'}>
-                        {qrCode.isUsed ? 'Used' : 'Active'}
-                      </Badge>
-                    </div>
-                  </div>
-
-                  {/* Match Info */}
+          {filteredQRCodes.map((qr) => (
+            <Card key={qr.id} className="bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden group">
+              <CardHeader className="bg-white pb-4">
+                <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="font-bold apple-subtitle mb-1">
-                      {qrCode.match.home_team} vs {qrCode.match.away_team}
-                    </h3>
-                    <div className="space-y-1 text-sm text-muted-foreground">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="h-3 w-3" />
-                        {qrCode.match.date} {qrCode.match.time}
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <MapPin className="h-3 w-3" />
-                        {qrCode.match.location}
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Ticket className="h-3 w-3" />
-                        Seat {qrCode.seatNumber} • {qrCode.ticketNumber}
-                      </div>
+                    <CardTitle className="text-lg text-gray-900">{qr.ticketNumber}</CardTitle>
+                    <CardDescription className="text-gray-600">{qr.customer}</CardDescription>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    {getStatusBadge(qr.isUsed)}
+                    <div className="flex gap-1">
+                      <Button size="sm" variant="outline" className="h-8 w-8 p-0 bg-white border-gray-200 hover:bg-gray-50">
+                        <Eye className="h-4 w-4" />
+                      </Button>
+                      <Button size="sm" variant="outline" className="h-8 w-8 p-0 bg-white border-gray-200 hover:bg-gray-50">
+                        <Edit className="h-4 w-4" />
+                      </Button>
+                      <Button size="sm" variant="destructive" className="h-8 w-8 p-0 bg-red-500 hover:bg-red-600">
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
                     </div>
                   </div>
-
-                  {/* Actions */}
-                  <div className="flex gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => previewQRCode(qrCode)}
-                      className="flex-1 apple-button"
-                    >
-                      <Eye className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => downloadQRCode(qrCode)}
-                      className="flex-1 apple-button"
-                    >
-                      <Download className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => shareQRCode(qrCode)}
-                      className="flex-1 apple-button"
-                    >
-                      <Share className="h-4 w-4" />
-                    </Button>
+                </div>
+              </CardHeader>
+              
+              <CardContent className="bg-white space-y-4">
+                {/* QR Code Display */}
+                <div className="flex justify-center">
+                  <div className="w-32 h-32 bg-gray-50 border-2 border-gray-200 rounded-lg flex items-center justify-center">
+                    <QrCode className="h-16 w-16 text-gray-400" />
                   </div>
+                </div>
+
+                {/* Match Info */}
+                <div className="space-y-2">
+                  <h3 className="font-semibold text-sm text-gray-900">
+                    {qr.match.home_team} vs {qr.match.away_team}
+                  </h3>
+                  <div className="space-y-1 text-xs text-gray-600">
+                    <div className="flex items-center gap-2">
+                      <Calendar className="h-3 w-3 text-gray-400" />
+                      {qr.match.date}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Clock className="h-3 w-3 text-gray-400" />
+                      {qr.match.time}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <MapPin className="h-3 w-3 text-gray-400" />
+                      {qr.match.venue}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Ticket className="h-3 w-3 text-gray-400" />
+                      Seat: {qr.seatNumber}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Actions */}
+                <div className="flex gap-2 pt-4 border-t border-gray-200">
+                  <Button size="sm" variant="outline" className="flex-1 bg-white border-gray-200 hover:bg-gray-50">
+                    <Download className="h-4 w-4 mr-2" />
+                    Download
+                  </Button>
+                  <Button size="sm" variant="outline" className="flex-1 bg-white border-gray-200 hover:bg-gray-50">
+                    <Share className="h-4 w-4 mr-2" />
+                    Share
+                  </Button>
                 </div>
               </CardContent>
             </Card>
@@ -350,28 +327,58 @@ function QRCodesPage() {
 
         {/* No Results */}
         {filteredQRCodes.length === 0 && (
-          <Card className="apple-card">
+          <Card className="bg-white border border-gray-100 shadow-sm">
             <CardContent className="text-center py-12">
-              <QrCode className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-              <h3 className="text-lg font-semibold apple-subtitle mb-2">No QR codes found</h3>
-              <p className="text-muted-foreground apple-body mb-4">
-                {searchTerm || selectedStatus !== 'all' 
-                  ? 'Try adjusting your search or filters'
-                  : 'Purchase some tickets to see your QR codes here'
-                }
+              <div className="h-16 w-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <QrCode className="h-8 w-8 text-gray-400" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">No QR codes found</h3>
+              <p className="text-gray-600 mb-4">
+                Try adjusting your filters or search terms
               </p>
-              {searchTerm || selectedStatus !== 'all' ? (
-                <Button 
-                  variant="outline" 
-                  onClick={() => {
-                    setSearchTerm('')
-                    setSelectedStatus('all')
-                  }}
-                  className="apple-button"
-                >
-                  Clear Filters
-                </Button>
-              ) : null}
+              <Button 
+                variant="outline" 
+                onClick={() => {
+                  setSearchTerm('')
+                  setSelectedStatus('all')
+                }}
+                className="bg-white border-gray-200 hover:bg-gray-50"
+              >
+                Clear All Filters
+              </Button>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Bulk Actions */}
+        {filteredQRCodes.length > 0 && (
+          <Card className="bg-white border border-gray-100 shadow-sm">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <p className="text-sm text-gray-600 font-medium">
+                    {filteredQRCodes.length} QR codes selected
+                  </p>
+                  <Button size="sm" variant="outline" className="bg-white border-gray-200 hover:bg-gray-50">
+                    <Download className="h-4 w-4 mr-2" />
+                    Bulk Download
+                  </Button>
+                  <Button size="sm" variant="outline" className="bg-white border-gray-200 hover:bg-gray-50">
+                    <Share className="h-4 w-4 mr-2" />
+                    Bulk Share
+                  </Button>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Button size="sm" variant="outline" className="bg-white border-gray-200 hover:bg-gray-50">
+                    <BarChart3 className="h-4 w-4 mr-2" />
+                    Analytics
+                  </Button>
+                  <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white">
+                    <Plus className="h-4 w-4 mr-2" />
+                    Generate More
+                  </Button>
+                </div>
+              </div>
             </CardContent>
           </Card>
         )}
@@ -380,4 +387,4 @@ function QRCodesPage() {
   )
 }
 
-export default withAuth(QRCodesPage, ['client'])
+export default withAuth(AdminQRCodesPage, ['admin'])

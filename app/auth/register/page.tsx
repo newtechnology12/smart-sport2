@@ -63,11 +63,8 @@ export default function RegisterPage() {
         return
       }
 
-      // Auto-detect role based on email or default to 'client'
-      let detectedRole: 'client' | 'team' = 'client'
-      if (formData.email.includes('team')) {
-        detectedRole = 'team'
-      }
+      // Only admin role is supported
+      let detectedRole: 'admin' = 'admin'
 
       // Handle registration logic here
       const success = await register({
@@ -76,11 +73,11 @@ export default function RegisterPage() {
         email: formData.email,
         phone: formData.phone,
         password: formData.password,
-        role: detectedRole
+        role: 'admin'
       })
 
       if (success) {
-        router.push('/auth/login?registered=true')
+        router.push('/dashboard')
       } else {
         setError("Registration failed. Please try again.")
       }
@@ -117,8 +114,7 @@ export default function RegisterPage() {
         email: "google.user@gmail.com",
         phone: "+250788000000",
         password: "google_auth",
-        confirmPassword: "google_auth",
-        agreeToTerms: true
+        role: 'admin'
       })
       
       if (success) {
@@ -160,7 +156,7 @@ export default function RegisterPage() {
               Create Account
             </h1>
             <p className="text-muted-foreground apple-body text-lg">
-              Join SmartSports RW to buy tickets and support your favorite teams
+              Join SmartSports RW Admin to manage events, teams, and users
             </p>
           </div>
         </div>

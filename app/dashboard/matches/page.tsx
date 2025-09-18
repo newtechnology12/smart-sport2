@@ -18,17 +18,33 @@ import {
   Star,
   Users,
   Ticket,
-  ArrowRight
+  ArrowRight,
+  Plus,
+  Edit,
+  Trash2,
+  Eye,
+  MoreHorizontal,
+  RefreshCw,
+  TrendingUp,
+  DollarSign,
+  Activity,
+  CheckCircle,
+  AlertTriangle,
+  Play,
+  Pause,
+  StopCircle
 } from 'lucide-react'
 import { matches } from '@/lib/dummy-data'
 import Link from 'next/link'
 import Image from 'next/image'
 
-function MatchesPage() {
+function AdminMatchesPage() {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedSport, setSelectedSport] = useState('all')
   const [selectedLocation, setSelectedLocation] = useState('all')
   const [sortBy, setSortBy] = useState('date')
+  const [viewMode, setViewMode] = useState('grid')
+  const [isLoading, setIsLoading] = useState(false)
 
   const filteredMatches = matches.filter(match => {
     const matchesSearch = match.home_team.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -67,47 +83,162 @@ function MatchesPage() {
 
   const getSportColor = (sport: string) => {
     switch (sport.toLowerCase()) {
-      case 'football': return 'bg-green-100 text-green-800'
-      case 'basketball': return 'bg-orange-100 text-orange-800'
-      case 'volleyball': return 'bg-blue-100 text-blue-800'
-      case 'events': return 'bg-purple-100 text-purple-800'
-      default: return 'bg-gray-100 text-gray-800'
+      case 'football': return 'bg-green-100 text-green-800 border-green-200'
+      case 'basketball': return 'bg-orange-100 text-orange-800 border-orange-200'
+      case 'volleyball': return 'bg-blue-100 text-blue-800 border-blue-200'
+      case 'events': return 'bg-purple-100 text-purple-800 border-purple-200'
+      default: return 'bg-gray-100 text-gray-800 border-gray-200'
+    }
+  }
+
+  const getStatusColor = (status: string) => {
+    switch (status.toLowerCase()) {
+      case 'live': return 'bg-red-100 text-red-800 border-red-200'
+      case 'upcoming': return 'bg-blue-100 text-blue-800 border-blue-200'
+      case 'completed': return 'bg-green-100 text-green-800 border-green-200'
+      case 'cancelled': return 'bg-gray-100 text-gray-800 border-gray-200'
+      default: return 'bg-gray-100 text-gray-800 border-gray-200'
+    }
+  }
+
+  const handleRefresh = async () => {
+    setIsLoading(true)
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000))
+    } catch (error) {
+      console.error('Error refreshing matches:', error)
+    } finally {
+      setIsLoading(false)
     }
   }
 
   return (
     <DashboardLayout>
-      <div className="p-6 space-y-8">
+      <div className="p-6 space-y-6">
         {/* Header */}
-        <div>
-          <h1 className="text-3xl font-bold apple-title mb-2">Browse Matches</h1>
-          <p className="text-muted-foreground apple-body">
-            Discover and book tickets for upcoming sports events
-          </p>
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Admin Matches</h1>
+            <p className="text-gray-600 mt-1">
+              Manage and monitor all sports events and matches
+            </p>
+          </div>
+          <div className="flex gap-3">
+            <Button 
+              variant="outline" 
+              onClick={handleRefresh}
+              disabled={isLoading}
+              className="bg-white border-gray-200 hover:bg-gray-50"
+            >
+              {isLoading ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-600 mr-2"></div>
+                  Refreshing...
+                </>
+              ) : (
+                <>
+                  <RefreshCw className="h-4 w-4 mr-2" />
+                  Refresh
+                </>
+              )}
+            </Button>
+            <Link href="/dashboard/matches/create">
+              <Button className="bg-green-600 hover:bg-green-700 text-white">
+                <Plus className="h-4 w-4 mr-2" />
+                Create Match
+              </Button>
+            </Link>
+            <Button variant="outline" className="bg-white border-gray-200 hover:bg-gray-50">
+              <Calendar className="h-4 w-4 mr-2" />
+              Calendar View
+            </Button>
+          </div>
+        </div>
+
+        {/* Stats Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <Card className="bg-white border border-gray-100 shadow-sm">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-gray-600 font-medium">Total Matches</p>
+                  <p className="text-3xl font-bold text-gray-900">{matches.length}</p>
+                  <p className="text-xs text-green-600 mt-1">+12% from last month</p>
+                </div>
+                <div className="h-12 w-12 bg-green-100 rounded-lg flex items-center justify-center">
+                  <Trophy className="h-6 w-6 text-green-600" />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          <Card className="bg-white border border-gray-100 shadow-sm">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-gray-600 font-medium">Live Matches</p>
+                  <p className="text-3xl font-bold text-gray-900">{matches.filter(m => m.status === 'Live').length}</p>
+                  <p className="text-xs text-blue-600 mt-1">Currently active</p>
+                </div>
+                <div className="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                  <Play className="h-6 w-6 text-blue-600" />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          <Card className="bg-white border border-gray-100 shadow-sm">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-gray-600 font-medium">Total Revenue</p>
+                  <p className="text-3xl font-bold text-gray-900">2.4M RWF</p>
+                  <p className="text-xs text-green-600 mt-1">+8% from last month</p>
+                </div>
+                <div className="h-12 w-12 bg-green-100 rounded-lg flex items-center justify-center">
+                  <DollarSign className="h-6 w-6 text-green-600" />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          <Card className="bg-white border border-gray-100 shadow-sm">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-gray-600 font-medium">Avg. Attendance</p>
+                  <p className="text-3xl font-bold text-gray-900">85%</p>
+                  <p className="text-xs text-green-600 mt-1">+5% from last month</p>
+                </div>
+                <div className="h-12 w-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+                  <TrendingUp className="h-6 w-6 text-yellow-600" />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Filters */}
-        <Card className="apple-card">
-          <CardHeader>
-            <CardTitle className="apple-subtitle flex items-center gap-2">
-              <Filter className="h-5 w-5" />
+        <Card className="bg-white border border-gray-100 shadow-sm">
+          <CardHeader className="bg-white">
+            <CardTitle className="flex items-center gap-2 text-gray-900">
+              <Filter className="h-5 w-5 text-green-600" />
               Filters & Search
             </CardTitle>
+            <CardDescription className="text-gray-600">Filter and search through matches</CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="bg-white">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
               <div className="relative">
-                <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                 <Input
                   placeholder="Search matches..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 apple-focus"
+                  className="pl-10 bg-white border-gray-200 focus:border-green-500 focus:ring-green-500"
                 />
               </div>
               
               <Select value={selectedSport} onValueChange={setSelectedSport}>
-                <SelectTrigger className="apple-focus">
+                <SelectTrigger className="bg-white border-gray-200 focus:border-green-500 focus:ring-green-500">
                   <SelectValue placeholder="All Sports" />
                 </SelectTrigger>
                 <SelectContent>
@@ -121,7 +252,7 @@ function MatchesPage() {
               </Select>
 
               <Select value={selectedLocation} onValueChange={setSelectedLocation}>
-                <SelectTrigger className="apple-focus">
+                <SelectTrigger className="bg-white border-gray-200 focus:border-green-500 focus:ring-green-500">
                   <SelectValue placeholder="All Locations" />
                 </SelectTrigger>
                 <SelectContent>
@@ -135,7 +266,7 @@ function MatchesPage() {
               </Select>
 
               <Select value={sortBy} onValueChange={setSortBy}>
-                <SelectTrigger className="apple-focus">
+                <SelectTrigger className="bg-white border-gray-200 focus:border-green-500 focus:ring-green-500">
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
                 <SelectContent>
@@ -153,7 +284,7 @@ function MatchesPage() {
                   setSelectedLocation('all')
                   setSortBy('date')
                 }}
-                className="apple-button"
+                className="bg-white border-gray-200 hover:bg-gray-50"
               >
                 Clear Filters
               </Button>
@@ -163,26 +294,46 @@ function MatchesPage() {
 
         {/* Results Count */}
         <div className="flex items-center justify-between">
-          <p className="text-muted-foreground apple-body">
-            Showing {filteredMatches.length} of {matches.length} matches
-          </p>
+          <div className="flex items-center gap-4">
+            <p className="text-gray-600 font-medium">
+              Showing {filteredMatches.length} of {matches.length} matches
+            </p>
+            <div className="flex items-center gap-2">
+              <Badge className="bg-green-100 text-green-800 border-green-200">
+                {filteredMatches.filter(m => m.sport === 'Football').length} Football
+              </Badge>
+              <Badge className="bg-orange-100 text-orange-800 border-orange-200">
+                {filteredMatches.filter(m => m.sport === 'Basketball').length} Basketball
+              </Badge>
+              <Badge className="bg-blue-100 text-blue-800 border-blue-200">
+                {filteredMatches.filter(m => m.sport === 'Volleyball').length} Volleyball
+              </Badge>
+            </div>
+          </div>
           <div className="flex items-center gap-2">
-            <Badge variant="secondary" className="apple-caption">
-              {filteredMatches.filter(m => m.sport === 'Football').length} Football
-            </Badge>
-            <Badge variant="secondary" className="apple-caption">
-              {filteredMatches.filter(m => m.sport === 'Basketball').length} Basketball
-            </Badge>
-            <Badge variant="secondary" className="apple-caption">
-              {filteredMatches.filter(m => m.sport === 'Volleyball').length} Volleyball
-            </Badge>
+            <Button
+              variant={viewMode === 'grid' ? 'default' : 'outline'}
+              size="sm"
+              onClick={() => setViewMode('grid')}
+              className={viewMode === 'grid' ? 'bg-green-600 hover:bg-green-700 text-white' : 'bg-white border-gray-200 hover:bg-gray-50'}
+            >
+              Grid
+            </Button>
+            <Button
+              variant={viewMode === 'list' ? 'default' : 'outline'}
+              size="sm"
+              onClick={() => setViewMode('list')}
+              className={viewMode === 'list' ? 'bg-green-600 hover:bg-green-700 text-white' : 'bg-white border-gray-200 hover:bg-gray-50'}
+            >
+              List
+            </Button>
           </div>
         </div>
 
         {/* Matches Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' : 'space-y-4'}>
           {filteredMatches.map((match) => (
-            <Card key={match.id} className="apple-card overflow-hidden group">
+            <Card key={match.id} className="bg-white border border-gray-100 shadow-sm overflow-hidden group hover:shadow-md transition-shadow duration-200">
               <div className="relative h-48 overflow-hidden">
                 <Image
                   src={match.image}
@@ -191,56 +342,81 @@ function MatchesPage() {
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute top-4 left-4">
-                  <Badge className={getSportColor(match.sport)}>
+                  <Badge className={`${getSportColor(match.sport)} border`}>
                     {getSportIcon(match.sport)} {match.sport}
                   </Badge>
                 </div>
                 <div className="absolute top-4 right-4">
-                  <Badge variant="secondary" className="bg-black/50 text-white border-0">
+                  <Badge className={`${getStatusColor(match.status)} border`}>
                     {match.status}
                   </Badge>
+                </div>
+                <div className="absolute bottom-4 right-4">
+                  <div className="flex gap-2">
+                    <Link href={`/dashboard/matches/${match.id}`}>
+                      <Button size="sm" variant="secondary" className="h-8 w-8 p-0 bg-white/90 hover:bg-white">
+                        <Eye className="h-4 w-4" />
+                      </Button>
+                    </Link>
+                    <Link href={`/dashboard/matches/${match.id}/edit`}>
+                      <Button size="sm" variant="secondary" className="h-8 w-8 p-0 bg-white/90 hover:bg-white">
+                        <Edit className="h-4 w-4" />
+                      </Button>
+                    </Link>
+                    <Button size="sm" variant="destructive" className="h-8 w-8 p-0 bg-red-500/90 hover:bg-red-600">
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </div>
                 </div>
               </div>
               
               <CardContent className="p-6">
                 <div className="space-y-4">
                   <div>
-                    <h3 className="font-bold text-lg apple-subtitle mb-1">
+                    <h3 className="font-bold text-lg text-gray-900 mb-1">
                       {match.home_team} vs {match.away_team}
                     </h3>
-                    <p className="text-sm text-muted-foreground apple-caption">
+                    <p className="text-sm text-gray-600">
                       {match.league}
                     </p>
                   </div>
 
                   <div className="space-y-2">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Calendar className="h-4 w-4" />
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <Calendar className="h-4 w-4 text-gray-400" />
                       {match.date}
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Clock className="h-4 w-4" />
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <Clock className="h-4 w-4 text-gray-400" />
                       {match.time}
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <MapPin className="h-4 w-4" />
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <MapPin className="h-4 w-4 text-gray-400" />
                       {match.location}
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between pt-4 border-t">
+                  <div className="flex items-center justify-between pt-4 border-t border-gray-200">
                     <div>
-                      <div className="text-sm text-muted-foreground">Starting from</div>
-                      <div className="text-xl font-bold text-primary">
+                      <div className="text-sm text-gray-600">Starting from</div>
+                      <div className="text-xl font-bold text-green-600">
                         {match.price.toLocaleString()} RWF
                       </div>
                     </div>
-                    <Link href={`/dashboard/matches/${match.id}`}>
-                      <Button className="apple-button">
-                        Buy Tickets
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Button>
-                    </Link>
+                    <div className="flex gap-2">
+                      <Link href={`/admin/matches/${match.id}`}>
+                        <Button variant="outline" size="sm" className="bg-white border-gray-200 hover:bg-gray-50">
+                          <Eye className="h-4 w-4 mr-2" />
+                          View
+                        </Button>
+                      </Link>
+                      <Link href={`/dashboard/matches/${match.id}/edit`}>
+                        <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white">
+                          <Edit className="h-4 w-4 mr-2" />
+                          Edit
+                        </Button>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </CardContent>
@@ -250,11 +426,13 @@ function MatchesPage() {
 
         {/* No Results */}
         {filteredMatches.length === 0 && (
-          <Card className="apple-card">
+          <Card className="bg-white border border-gray-100 shadow-sm">
             <CardContent className="text-center py-12">
-              <Trophy className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-              <h3 className="text-lg font-semibold apple-subtitle mb-2">No matches found</h3>
-              <p className="text-muted-foreground apple-body mb-4">
+              <div className="h-16 w-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Trophy className="h-8 w-8 text-gray-400" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">No matches found</h3>
+              <p className="text-gray-600 mb-4">
                 Try adjusting your filters or search terms
               </p>
               <Button 
@@ -264,7 +442,7 @@ function MatchesPage() {
                   setSelectedSport('all')
                   setSelectedLocation('all')
                 }}
-                className="apple-button"
+                className="bg-white border-gray-200 hover:bg-gray-50"
               >
                 Clear All Filters
               </Button>
@@ -276,4 +454,4 @@ function MatchesPage() {
   )
 }
 
-export default withAuth(MatchesPage, ['client'])
+export default withAuth(AdminMatchesPage, ['admin'])
