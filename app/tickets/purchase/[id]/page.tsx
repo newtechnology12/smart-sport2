@@ -21,8 +21,10 @@ interface TicketPurchasePageProps {
 }
 
 export default function TicketPurchasePage({ params }: TicketPurchasePageProps) {
-  const [ticketType, setTicketType] = useState("regular")
-  const [quantity, setQuantity] = useState(1)
+  const [regularQuantity, setRegularQuantity] = useState(0)
+  const [vipQuantity, setVipQuantity] = useState(0)
+  const [regularTicketNames, setRegularTicketNames] = useState<string[]>([])
+  const [vipTicketNames, setVipTicketNames] = useState<string[]>([])
   const [paymentMethod, setPaymentMethod] = useState("mobile_money")
   const [phoneNumber, setPhoneNumber] = useState("")
   const [email, setEmail] = useState("")
@@ -50,13 +52,66 @@ export default function TicketPurchasePage({ params }: TicketPurchasePageProps) 
     )
   }
 
-  const ticketPrice = ticketType === "vip" ? match.vip_price : match.price
-  const totalPrice = ticketPrice * quantity
+  const regularTotal = match.price * regularQuantity
+  const vipTotal = match.vip_price * vipQuantity
+  const totalPrice = regularTotal + vipTotal
+  const totalQuantity = regularQuantity + vipQuantity
   const serviceFee = Math.round(totalPrice * 0.05) // 5% service fee
   const vatAmount = Math.round((totalPrice + serviceFee) * 0.18) // 18% VAT (EBM)
   const finalTotal = totalPrice + serviceFee + vatAmount
 
+  // Update ticket names when quantity changes
+  const updateRegularQuantity = (newQuantity: number) => {
+    setRegularQuantity(newQuantity)
+    // Adjust names array to match new quantity
+    const newNames = [...regularTicketNames]
+    if (newQuantity > regularTicketNames.length) {
+      // Add empty names for new tickets
+      for (let i = regularTicketNames.length; i < newQuantity; i++) {
+        newNames.push("")
+      }
+    } else if (newQuantity < regularTicketNames.length) {
+      // Remove excess names
+      newNames.splice(newQuantity)
+    }
+    setRegularTicketNames(newNames)
+  }
+
+  const updateVipQuantity = (newQuantity: number) => {
+    setVipQuantity(newQuantity)
+    // Adjust names array to match new quantity
+    const newNames = [...vipTicketNames]
+    if (newQuantity > vipTicketNames.length) {
+      // Add empty names for new tickets
+      for (let i = vipTicketNames.length; i < newQuantity; i++) {
+        newNames.push("")
+      }
+    } else if (newQuantity < vipTicketNames.length) {
+      // Remove excess names
+      newNames.splice(newQuantity)
+    }
+    setVipTicketNames(newNames)
+  }
+
+  const updateRegularTicketName = (index: number, name: string) => {
+    const newNames = [...regularTicketNames]
+    newNames[index] = name
+    setRegularTicketNames(newNames)
+  }
+
+  const updateVipTicketName = (index: number, name: string) => {
+    const newNames = [...vipTicketNames]
+    newNames[index] = name
+    setVipTicketNames(newNames)
+  }
+
   const handlePurchase = async () => {
+    // Validate ticket selection
+    if (totalQuantity === 0) {
+      alert("Please select at least one ticket")
+      return
+    }
+
     // Validate required fields
     if (!fullName.trim()) {
       alert("Please enter your full name")
@@ -102,7 +157,7 @@ export default function TicketPurchasePage({ params }: TicketPurchasePageProps) 
     const paymentRef = paymentData.transactionId || `SSR${Date.now()}${Math.floor(Math.random() * 1000)}`
 
     // Redirect to success page with payment reference
-    window.location.href = `/tickets/success?ref=${paymentRef}&event=${encodeURIComponent(match.home_team + ' vs ' + match.away_team)}&quantity=${quantity}&total=${finalTotal}&txn=${paymentData.intouchpayTransactionId || ''}`
+    window.location.href = `/tickets/success?ref=${paymentRef}&event=${encodeURIComponent(match.home_team + ' vs ' + match.away_team)}&quantity=${totalQuantity}&total=${finalTotal}&txn=${paymentData.intouchpayTransactionId || ''}`
   }
 
   const handlePaymentError = (error: string) => {
@@ -115,7 +170,7 @@ export default function TicketPurchasePage({ params }: TicketPurchasePageProps) 
   return (
     <div className="min-h-screen bg-background">
 
-      <div className="container max-w-6xl mx-auto px-4 py-6">
+      <div className="w-full px-4 py-6">
         <div className="mb-8 text-center">
           <h1 className="font-serif text-3xl font-bold mb-2">Purchase Tickets</h1>
           <p className="text-muted-foreground mb-6">Complete your ticket purchase for the match</p>
@@ -130,131 +185,305 @@ export default function TicketPurchasePage({ params }: TicketPurchasePageProps) 
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Left Side - Match Details and Ground Image */}
-          <div className="lg:col-span-1">
-            <Card className="mb-4 overflow-hidden">
-              <div className="flex">
-                {/* Left Side - Match Image */}
-                <div className="w-1/3">
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
+          {/* Left Side - Match Details */}
+          <div className="xl:col-span-1">
+            <Card className="mb-6 overflow-hidden shadow-lg border-0">
+              <div className="relative">
+                {/* Match Image - Full Width */}
+                <div className="h-48 relative overflow-hidden">
                   <img 
                     src={match.image || "/ground.jpg"} 
                     alt={`${match.home_team} vs ${match.away_team}`}
-                    className="w-full h-48 object-cover"
+                    className="w-full h-full object-cover"
                   />
-                </div>
-                
-                {/* Right Side - Match Details */}
-                <div className="w-2/3 p-6 bg-white">
-                  <div className="mb-2">
-                    <Badge variant="secondary" className="bg-gray-100 text-gray-600 text-xs mb-2">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                  
+                  {/* League Badge */}
+                  <div className="absolute top-4 left-4">
+                    <Badge className="bg-white/90 text-gray-900 font-semibold text-xs px-3 py-1.5 shadow-lg">
                       {match.league}
                     </Badge>
-                    <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                      {match.home_team} vs {match.away_team} Tickets
+                  </div>
+                  
+                  {/* Match Title Overlay */}
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <h2 className="text-white font-bold text-xl mb-2 drop-shadow-lg">
+                      {match.home_team} vs {match.away_team}
                     </h2>
+                    <p className="text-white/90 text-sm font-medium">Tickets</p>
                   </div>
-                  
-                  <div className="space-y-3 mb-4">
+                </div>
+                
+                {/* Match Details */}
+                <div className="p-6 bg-white">
+                  <div className="space-y-4">
                     <div className="flex items-center gap-3">
-                      <Calendar className="h-5 w-5 text-gray-500" />
-                      <span className="text-gray-700">
-                        {new Date(match.date).toLocaleDateString("en-US", {
-                          weekday: "long",
-                          day: "numeric",
-                          month: "long",
-                          year: "numeric"
-                        })} {match.time}
-                      </span>
+                      <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center">
+                        <Calendar className="h-5 w-5 text-orange-600" />
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-500">Date & Time</p>
+                        <p className="font-semibold text-gray-900">
+                          {new Date(match.date).toLocaleDateString("en-US", {
+                            weekday: "long",
+                            day: "numeric",
+                            month: "long",
+                            year: "numeric"
+                          })}
+                        </p>
+                        <p className="text-sm text-gray-600">{match.time}</p>
+                      </div>
                     </div>
+                    
                     <div className="flex items-center gap-3">
-                      <MapPin className="h-5 w-5 text-gray-500" />
-                      <span className="text-gray-700">{match.location}</span>
+                      <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                        <MapPin className="h-5 w-5 text-blue-600" />
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-500">Venue</p>
+                        <p className="font-semibold text-gray-900">{match.location}</p>
+                      </div>
                     </div>
                   </div>
-                  
                 </div>
               </div>
             </Card>
 
-            {/* Ground Image */}
-            <Card className="mb-6 overflow-hidden">
-              <img 
-                src="/ground.png" 
-                alt="Stadium Ground"
-                className="w-full h-48 object-cover"
-              />
-            </Card>
-          </div>
-
-          {/* Right Side - Ticket Selection and Customer Info */}
-          <div className="lg:col-span-1">
-            {/* Ticket Selection */}
-            <Card className="mb-6">
-              <CardHeader>
-                <CardTitle>Select Tickets</CardTitle>
+            {/* Order Summary - Below the team card */}
+            <Card className="mb-6 shadow-lg border-0">
+              <CardHeader className="pb-4 bg-gradient-to-r from-orange-50 to-orange-100">
+                <CardTitle className="text-lg font-bold text-gray-900 flex items-center gap-2">
+                  <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+                  Order Summary
+                </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-6">
-                {/* Ticket Selection - Compact */}
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <Label className="text-sm font-medium">Ticket Type</Label>
-                    <div className="flex gap-2">
-                      <button
-                        type="button"
-                        className={`px-3 py-1 text-xs rounded-full border transition-all ${
-                          ticketType === "regular"
-                            ? "bg-primary text-primary-foreground border-primary"
-                            : "bg-background border-border hover:border-primary/50"
-                        }`}
-                        onClick={() => setTicketType("regular")}
-                      >
-                        Regular ({match.price.toLocaleString()} RWF)
-                      </button>
-                      <button
-                        type="button"
-                        className={`px-3 py-1 text-xs rounded-full border transition-all ${
-                          ticketType === "vip"
-                            ? "bg-primary text-primary-foreground border-primary"
-                            : "bg-background border-border hover:border-primary/50"
-                        }`}
-                        onClick={() => setTicketType("vip")}
-                      >
-                        VIP ({match.vip_price.toLocaleString()} RWF)
-                      </button>
+              <CardContent className="space-y-4">
+                {/* Tickets Table */}
+                <div className="space-y-3">
+                  <div className="text-sm font-medium text-gray-700 mb-2">Tickets</div>
+                  <div className="space-y-2">
+                    {totalQuantity === 0 ? (
+                      <div className="text-center py-4 text-gray-500 text-sm">
+                        No tickets selected
+                      </div>
+                    ) : (
+                      <>
+                        {/* Regular Tickets */}
+                        {Array.from({ length: regularQuantity }, (_, index) => (
+                          <div key={`regular-${index}`} className="flex justify-between items-center py-2 px-3 bg-gray-50 rounded-lg">
+                            <div className="flex items-center gap-2">
+                              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                              <div className="flex flex-col">
+                                <span className="text-sm font-medium">Ticket #{String(index + 1).padStart(2, '0')}</span>
+                                <span className="text-xs text-gray-500">(REGULAR)</span>
+                                {regularTicketNames[index] && (
+                                  <span className="text-xs text-blue-600 font-medium">{regularTicketNames[index]}</span>
+                                )}
+                              </div>
+                            </div>
+                            <span className="text-sm font-semibold">{match.price.toLocaleString()} RWF</span>
+                          </div>
+                        ))}
+                        
+                        {/* VIP Tickets */}
+                        {Array.from({ length: vipQuantity }, (_, index) => (
+                          <div key={`vip-${index}`} className="flex justify-between items-center py-2 px-3 bg-orange-50 rounded-lg border border-orange-200">
+                            <div className="flex items-center gap-2">
+                              <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+                              <div className="flex flex-col">
+                                <span className="text-sm font-medium">Ticket #{String(regularQuantity + index + 1).padStart(2, '0')}</span>
+                                <span className="text-xs text-orange-600 font-medium">(VIP)</span>
+                                {vipTicketNames[index] && (
+                                  <span className="text-xs text-orange-700 font-medium">{vipTicketNames[index]}</span>
+                                )}
+                              </div>
+                            </div>
+                            <span className="text-sm font-semibold text-orange-700">{match.vip_price.toLocaleString()} RWF</span>
+                          </div>
+                        ))}
+                      </>
+                    )}
+                  </div>
+                  
+                  {/* Additional Fees */}
+                  <div className="space-y-1 pt-2 border-t">
+                    <div className="flex justify-between text-xs text-gray-600">
+                      <span>Service Fee (5%)</span>
+                      <span>{serviceFee.toLocaleString()} RWF</span>
+                    </div>
+                    <div className="flex justify-between text-xs text-gray-600">
+                      <span>VAT (18%)</span>
+                      <span>{vatAmount.toLocaleString()} RWF</span>
                     </div>
                   </div>
-
-                  <div className="flex items-center justify-between">
-                    <Label className="text-sm font-medium">Quantity</Label>
-                    <div className="flex items-center gap-2">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="h-8 w-8 p-0"
-                        onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                        disabled={quantity <= 1}
-                      >
-                        <Minus className="h-3 w-3" />
-                      </Button>
-                      <span className="text-sm font-medium w-8 text-center">{quantity}</span>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="h-8 w-8 p-0"
-                        onClick={() => setQuantity(Math.min(10, quantity + 1))}
-                        disabled={quantity >= 10}
-                      >
-                        <Plus className="h-3 w-3" />
-                      </Button>
+                  
+                  {/* Total */}
+                  <div className="border-t pt-2 mt-2">
+                    <div className="flex justify-between font-bold text-base">
+                      <span>Total</span>
+                      <span>{finalTotal.toLocaleString()} RWF</span>
                     </div>
                   </div>
                 </div>
 
-                <hr className="border-border" />
+                <Button
+                  onClick={handlePurchase}
+                  className="w-full h-10"
+                  disabled={!paymentMethod || !fullName.trim() || !phoneNumber.trim() || totalQuantity === 0}
+                >
+                  <CreditCard className="mr-2 h-4 w-4" />
+                  {totalQuantity === 0 ? 'Select Tickets' :
+                   !paymentMethod ? 'Select Payment Method' :
+                   !fullName.trim() ? 'Enter Full Name' :
+                   !phoneNumber.trim() ? 'Enter Phone Number' :
+                   'Pay Now'}
+                </Button>
 
-                {/* Customer Information - Compact */}
-                <div className="space-y-4">
+                <div className="text-xs text-muted-foreground space-y-0.5">
+                  <p>• Tickets sent to {email ? 'email' : 'phone'}</p>
+                  <p>• EBM receipt included</p>
+                  <p>• Non-refundable</p>
+                </div>
+              </CardContent>
+            </Card>
+
+          </div>
+
+          {/* Right Side - Ticket Selection and Customer Info */}
+          <div className="xl:col-span-2">
+            {/* Ticket Selection */}
+            <Card className="mb-6 shadow-lg border-0">
+              <CardHeader className="pb-4 bg-gradient-to-r from-blue-50 to-blue-100">
+                <CardTitle className="text-lg font-bold text-gray-900 flex items-center gap-2">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  Select Tickets
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {/* Ticket Selection - Mixed Types */}
+                <div className="space-y-6">
+                  {/* Regular Tickets */}
+                  <div className="space-y-3 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <div className="flex items-center justify-between">
+                      <Label className="text-sm font-semibold text-gray-800">Regular Tickets</Label>
+                      <span className="text-sm font-bold text-blue-600">{match.price.toLocaleString()} RWF each</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="h-10 w-10 p-0 rounded-full border-2 hover:bg-orange-50 hover:border-orange-300"
+                        onClick={() => updateRegularQuantity(Math.max(0, regularQuantity - 1))}
+                        disabled={regularQuantity <= 0}
+                      >
+                        <Minus className="h-4 w-4" />
+                      </Button>
+                      <div className="flex items-center justify-center w-16 h-10 border-2 border-gray-200 rounded-lg bg-white">
+                        <span className="text-lg font-semibold text-gray-900">{regularQuantity}</span>
+                      </div>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="h-10 w-10 p-0 rounded-full border-2 hover:bg-orange-50 hover:border-orange-300"
+                        onClick={() => updateRegularQuantity(Math.min(10, regularQuantity + 1))}
+                        disabled={regularQuantity >= 10 || totalQuantity >= 10}
+                      >
+                        <Plus className="h-4 w-4" />
+                      </Button>
+                    </div>
+                    {regularQuantity > 0 && (
+                      <div className="text-xs text-gray-600">
+                        Subtotal: {regularTotal.toLocaleString()} RWF
+                      </div>
+                    )}
+                    
+                    {/* Regular Ticket Names */}
+                    {regularQuantity > 0 && (
+                      <div className="space-y-2 mt-3">
+                        <Label className="text-xs font-medium text-gray-700">Ticket Holder Names</Label>
+                        {Array.from({ length: regularQuantity }, (_, index) => (
+                          <div key={`regular-name-${index}`} className="flex items-center gap-2">
+                            <span className="text-xs text-gray-500 w-8">#{String(index + 1).padStart(2, '0')}</span>
+                            <Input
+                              placeholder={`Enter name for ticket #${String(index + 1).padStart(2, '0')}`}
+                              value={regularTicketNames[index] || ""}
+                              onChange={(e) => updateRegularTicketName(index, e.target.value)}
+                              className="text-xs h-8"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* VIP Tickets */}
+                  <div className="space-y-3 p-4 bg-orange-50 rounded-lg border border-orange-200">
+                    <div className="flex items-center justify-between">
+                      <Label className="text-sm font-semibold text-gray-800">VIP Tickets</Label>
+                      <span className="text-sm font-bold text-orange-600">{match.vip_price.toLocaleString()} RWF each</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="h-10 w-10 p-0 rounded-full border-2 hover:bg-orange-50 hover:border-orange-300"
+                        onClick={() => updateVipQuantity(Math.max(0, vipQuantity - 1))}
+                        disabled={vipQuantity <= 0}
+                      >
+                        <Minus className="h-4 w-4" />
+                      </Button>
+                      <div className="flex items-center justify-center w-16 h-10 border-2 border-gray-200 rounded-lg bg-white">
+                        <span className="text-lg font-semibold text-gray-900">{vipQuantity}</span>
+                      </div>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="h-10 w-10 p-0 rounded-full border-2 hover:bg-orange-50 hover:border-orange-300"
+                        onClick={() => updateVipQuantity(Math.min(10, vipQuantity + 1))}
+                        disabled={vipQuantity >= 10 || totalQuantity >= 10}
+                      >
+                        <Plus className="h-4 w-4" />
+                      </Button>
+                    </div>
+                    {vipQuantity > 0 && (
+                      <div className="text-xs text-gray-600">
+                        Subtotal: {vipTotal.toLocaleString()} RWF
+                      </div>
+                    )}
+                    
+                    {/* VIP Ticket Names */}
+                    {vipQuantity > 0 && (
+                      <div className="space-y-2 mt-3">
+                        <Label className="text-xs font-medium text-gray-700">Ticket Holder Names</Label>
+                        {Array.from({ length: vipQuantity }, (_, index) => (
+                          <div key={`vip-name-${index}`} className="flex items-center gap-2">
+                            <span className="text-xs text-gray-500 w-8">#{String(regularQuantity + index + 1).padStart(2, '0')}</span>
+                            <Input
+                              placeholder={`Enter name for ticket #${String(regularQuantity + index + 1).padStart(2, '0')}`}
+                              value={vipTicketNames[index] || ""}
+                              onChange={(e) => updateVipTicketName(index, e.target.value)}
+                              className="text-xs h-8"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Total Quantity Warning */}
+                  {totalQuantity === 0 && (
+                    <div className="text-center py-4 text-gray-500 text-sm">
+                      Select at least one ticket to continue
+                    </div>
+                  )}
+                </div>
+
+                <hr className="border-gray-200 my-6" />
+
+                {/* Customer Information */}
+                <div className="space-y-4 p-4 bg-gray-50 rounded-lg">
+                  <h3 className="text-sm font-semibold text-gray-800 mb-4">Customer Information</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
                       <Label htmlFor="fullName" className="text-sm">Full Name *</Label>
@@ -299,14 +528,19 @@ export default function TicketPurchasePage({ params }: TicketPurchasePageProps) 
                   <div>
                     <Label htmlFor="payment-method" className="text-sm">Payment Method *</Label>
                     <Select value={paymentMethod} onValueChange={setPaymentMethod}>
-                      <SelectTrigger className="mt-1">
-                        <SelectValue placeholder="Select payment method" />
+                      <SelectTrigger className="mt-1 h-12 border-2 border-gray-200 rounded-lg">
+                        <SelectValue placeholder="Select payment method">
+                          <div className="flex items-center gap-2">
+                            <Smartphone className="h-5 w-5 text-gray-500" />
+                            <span className="text-gray-700">(MTN/Airtel)</span>
+                          </div>
+                        </SelectValue>
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="mobile_money">
                           <div className="flex items-center gap-2">
                             <Smartphone className="h-4 w-4" />
-                             (MTN/Airtel)
+                            <span>(MTN/Airtel)</span>
                           </div>
                         </SelectItem>
                         <SelectItem value="bank_transfer" disabled>
@@ -330,54 +564,9 @@ export default function TicketPurchasePage({ params }: TicketPurchasePageProps) 
               </CardContent>
             </Card>
 
-            {/* Order Summary */}
-            <Card className="sticky top-6">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-lg">Order Summary</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-1.5">
-                  <div className="flex justify-between text-sm">
-                    <span>{quantity}x {ticketType.toUpperCase()}</span>
-                    <span>{totalPrice.toLocaleString()} RWF</span>
-                  </div>
-                  <div className="flex justify-between text-xs text-muted-foreground">
-                    <span>Service Fee (5%)</span>
-                    <span>{serviceFee.toLocaleString()} RWF</span>
-                  </div>
-                  <div className="flex justify-between text-xs text-muted-foreground">
-                    <span>VAT (18%)</span>
-                    <span>{vatAmount.toLocaleString()} RWF</span>
-                  </div>
-                  <div className="border-t pt-2 mt-2">
-                    <div className="flex justify-between font-bold">
-                      <span>Total</span>
-                      <span>{finalTotal.toLocaleString()} RWF</span>
-                    </div>
-                  </div>
-                </div>
-
-                <Button
-                  onClick={handlePurchase}
-                  className="w-full h-10"
-                  disabled={!paymentMethod || !fullName.trim() || !phoneNumber.trim()}
-                >
-                  <CreditCard className="mr-2 h-4 w-4" />
-                  {!paymentMethod ? 'Select Payment Method' :
-                   !fullName.trim() ? 'Enter Full Name' :
-                   !phoneNumber.trim() ? 'Enter Phone Number' :
-                   'Pay Now'}
-                </Button>
-
-                <div className="text-xs text-muted-foreground space-y-0.5">
-                  <p>• Tickets sent to {email ? 'email' : 'phone'}</p>
-                  <p>• EBM receipt included</p>
-                  <p>• Non-refundable</p>
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </div>
+
       </div>
 
       {/* InTouch Payment Modal */}
@@ -386,7 +575,7 @@ export default function TicketPurchasePage({ params }: TicketPurchasePageProps) 
         onClose={() => setShowPaymentModal(false)}
         amount={finalTotal}
         phoneNumber={phoneNumber}
-        description={`${quantity}x ${ticketType.toUpperCase()} ticket${quantity > 1 ? 's' : ''} for ${match.home_team} vs ${match.away_team}`}
+        description={`${totalQuantity} ticket${totalQuantity > 1 ? 's' : ''} (${regularQuantity} Regular, ${vipQuantity} VIP) for ${match.home_team} vs ${match.away_team}`}
         onPaymentComplete={handlePaymentComplete}
         onPaymentError={handlePaymentError}
       />
