@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
 
-import { ArrowLeft, Calendar, Clock, MapPin, Users, ShoppingCart } from "lucide-react"
+import { ArrowLeft, Calendar, Clock, MapPin, Users, ShoppingCart, Edit, Trash2 } from "lucide-react"
 import { matches } from "@/lib/dummy-data"
 
 interface TeamMatchesPageProps {
@@ -85,18 +85,8 @@ export default function TeamMatchesPage({ params }: TeamMatchesPageProps) {
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {/* Header Section */}
         <div className="mb-6 sm:mb-8">
-          <Link href="/sports">
-            <Button variant="ghost" className="mb-4 sm:mb-6 group hover:bg-primary/5 transition-colors">
-              <ArrowLeft className="mr-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
-              Back to Sports
-            </Button>
-          </Link>
-
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center shadow-lg">
-              <Users className="h-8 w-8 sm:h-10 sm:w-10 text-primary" />
-            </div>
-            <div className="flex-1">
+          <div className="flex flex-col items-center text-center gap-4 sm:gap-6 mb-4 sm:mb-6">
+            <div>
               <h1 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text">
                 {teamName} Matches
               </h1>
@@ -105,72 +95,156 @@ export default function TeamMatchesPage({ params }: TeamMatchesPageProps) {
               </p>
             </div>
           </div>
+
+          <div className="flex justify-center">
+            <Link href="/sports">
+              <Button className="group bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white font-bold px-6 py-3 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg">
+                <ArrowLeft className="mr-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
+                Back to Sports
+              </Button>
+            </Link>
+          </div>
         </div>
 
         {/* Selection Summary */}
         {selectedMatches.length > 0 && (
-          <Card className="mb-6 sm:mb-8 border-primary/20 bg-gradient-to-r from-primary/5 to-primary/10 shadow-lg">
-            <CardContent className="p-4 sm:p-6">
-              <div className="flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-6">
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="w-2 h-2 bg-primary rounded-full"></div>
-                    <h3 className="font-semibold text-lg">Selected Matches: {selectedMatches.length}</h3>
-                  </div>
-                  <div className="space-y-2 max-h-32 overflow-y-auto">
+          <div className="mb-6 sm:mb-8">
+            {/* Header with title and button */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-4">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-primary rounded-full"></div>
+                <h3 className="font-semibold text-lg text-primary">Selected Matches: {selectedMatches.length}</h3>
+              </div>
+              <Link href={`/tickets/purchase/multiple?matches=${selectedMatches.join(",")}&team=${encodeURIComponent(teamName)}`}>
+                <Button size="lg" className="w-full sm:w-auto bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary shadow-lg hover:shadow-xl transition-all duration-300">
+                  <ShoppingCart className="mr-2 h-4 w-4" />
+                  Book Selected Tickets
+                </Button>
+              </Link>
+            </div>
+            
+            {/* Table Format - Full Width */}
+            <div className="bg-white border border-gray-200 overflow-hidden w-full">
+              <div className="max-h-48 overflow-y-auto overflow-x-auto">
+                <table className="w-full min-w-[800px]">
+                  <thead className="bg-gray-50 border-b border-gray-200">
+                    <tr>
+                      <th className="px-2 sm:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-gray-200 min-w-[120px]">Match</th>
+                      <th className="px-2 sm:px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-gray-200 min-w-[80px]">Home</th>
+                      <th className="px-2 sm:px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-gray-200 min-w-[80px]">Away</th>
+                      <th className="px-2 sm:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-gray-200 min-w-[100px]">Date & Time</th>
+                      <th className="px-2 sm:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-gray-200 min-w-[120px]">Venue</th>
+                      <th className="px-2 sm:px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-gray-200 min-w-[100px]">Price</th>
+                      <th className="px-2 sm:px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider min-w-[100px]">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
                     {selectedMatches.map((matchId) => {
                       const match = teamMatches.find((m) => m.id.toString() === matchId)
                       if (!match) return null
                       return (
-                        <div key={matchId} className="flex items-center justify-between bg-white/50 rounded-lg p-2 sm:p-3">
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-foreground truncate">
+                        <tr key={matchId} className="hover:bg-gray-50">
+                          <td className="px-2 sm:px-4 py-3 whitespace-nowrap border-r border-gray-200">
+                            <div className="text-xs sm:text-sm font-medium text-gray-900">
                               {match.home_team} vs {match.away_team}
-                            </p>
-                            <p className="text-xs text-muted-foreground">
+                            </div>
+                          </td>
+                          <td className="px-2 sm:px-4 py-3 whitespace-nowrap text-center border-r border-gray-200">
+                            <div className="flex items-center justify-center">
+                              {match.home_team === teamName ? (
+                                <span className="inline-flex items-center px-1.5 sm:px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                  ✓ Yes
+                                </span>
+                              ) : (
+                                <span className="inline-flex items-center px-1.5 sm:px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600">
+                                  ✗ No
+                                </span>
+                              )}
+                            </div>
+                          </td>
+                          <td className="px-2 sm:px-4 py-3 whitespace-nowrap text-center border-r border-gray-200">
+                            <div className="flex items-center justify-center">
+                              {match.away_team === teamName ? (
+                                <span className="inline-flex items-center px-1.5 sm:px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                  ✓ Yes
+                                </span>
+                              ) : (
+                                <span className="inline-flex items-center px-1.5 sm:px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600">
+                                  ✗ No
+                                </span>
+                              )}
+                            </div>
+                          </td>
+                          <td className="px-2 sm:px-4 py-3 whitespace-nowrap border-r border-gray-200">
+                            <div className="text-xs sm:text-sm text-gray-600">
                               {new Date(match.date).toLocaleDateString("en-US", {
                                 month: "short",
                                 day: "numeric",
                                 hour: "2-digit",
                                 minute: "2-digit"
                               })}
-                            </p>
-                          </div>
-                          <div className="text-sm font-semibold text-primary ml-2">
-                            {match.price.toLocaleString()} RWF
-                          </div>
-                        </div>
+                            </div>
+                          </td>
+                          <td className="px-2 sm:px-4 py-3 whitespace-nowrap border-r border-gray-200">
+                            <div className="text-xs sm:text-sm text-gray-600">
+                              {match.location}
+                            </div>
+                          </td>
+                          <td className="px-2 sm:px-4 py-3 whitespace-nowrap text-right border-r border-gray-200">
+                            <div className="text-xs sm:text-sm font-semibold text-primary">
+                              {match.price.toLocaleString()} RWF
+                            </div>
+                          </td>
+                          <td className="px-2 sm:px-4 py-3 whitespace-nowrap text-center">
+                            <div className="flex items-center justify-center gap-1 sm:gap-2">
+                              <button
+                                onClick={() => {
+                                  // Edit functionality - could open a modal or navigate to edit page
+                                  console.log('Edit match:', matchId)
+                                }}
+                                className="p-1 sm:p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors duration-200"
+                                title="Edit match"
+                              >
+                                <Edit className="h-3 w-3 sm:h-4 sm:w-4" />
+                              </button>
+                              <button
+                                onClick={() => handleMatchSelection(matchId)}
+                                className="p-1 sm:p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-md transition-colors duration-200"
+                                title="Remove match"
+                              >
+                                <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
                       )
                     })}
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-primary/20">
-                    <p className="text-base font-bold text-primary">
-                      Total: {getTotalPrice().toLocaleString()} RWF
-                    </p>
-                  </div>
-                </div>
-                <div className="flex-shrink-0">
-                  <Link href={`/tickets/purchase/multiple?matches=${selectedMatches.join(",")}`}>
-                    <Button size="lg" className="w-full sm:w-auto bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary shadow-lg hover:shadow-xl transition-all duration-300">
-                      <ShoppingCart className="mr-2 h-4 w-4" />
-                      Book Selected Tickets
-                    </Button>
-                  </Link>
+                  </tbody>
+                </table>
+              </div>
+              
+              {/* Total Row */}
+              <div className="bg-primary/5 border-t border-primary/20 px-4 py-3">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm font-medium text-gray-700">Total:</span>
+                  <span className="text-lg font-bold text-primary">
+                    {getTotalPrice().toLocaleString()} RWF
+                  </span>
                 </div>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         )}
 
         {/* Matches Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
           {teamMatches.map((match) => (
-            <Card key={match.id} className="group overflow-hidden hover:shadow-xl transition-all duration-300 border-0 shadow-md hover:-translate-y-1 bg-white">
+            <Card key={match.id} className="overflow-hidden border-0 shadow-md bg-white">
               <div className="h-48 sm:h-52 bg-gradient-to-br from-primary/20 to-secondary/20 relative overflow-hidden">
                 <img
                   src={match.image || "/image.jpg"}
                   alt={`${match.home_team} vs ${match.away_team}`}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                 
@@ -268,10 +342,10 @@ export default function TeamMatchesPage({ params }: TeamMatchesPageProps) {
                   <Button
                     variant="outline"
                     size="sm"
-                    className={`flex-1 transition-all duration-200 ${
+                    className={`flex-1 ${
                       selectedMatches.includes(match.id.toString()) 
-                        ? "bg-red-50 border-red-200 text-red-700 hover:bg-red-100" 
-                        : "bg-transparent hover:bg-primary/5"
+                        ? "bg-red-50 border-red-200 text-red-700" 
+                        : "bg-transparent"
                     }`}
                     onClick={() => handleMatchSelection(match.id)}
                   >
@@ -280,7 +354,7 @@ export default function TeamMatchesPage({ params }: TeamMatchesPageProps) {
                   <Link href={`/tickets/purchase/${match.id}`} className="flex-1">
                     <Button 
                       size="sm" 
-                      className="w-full bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary shadow-md hover:shadow-lg transition-all duration-200"
+                      className="w-full bg-gradient-to-r from-primary to-primary/90 shadow-md"
                     >
                       Buy Now
                     </Button>

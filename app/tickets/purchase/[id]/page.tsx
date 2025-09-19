@@ -116,21 +116,23 @@ export default function TicketPurchasePage({ params }: TicketPurchasePageProps) 
     <div className="min-h-screen bg-background">
 
       <div className="container max-w-6xl mx-auto px-4 py-6">
-        <div className="mb-8">
+        <div className="mb-8 text-center">
+          <h1 className="font-serif text-3xl font-bold mb-2">Purchase Tickets</h1>
+          <p className="text-muted-foreground mb-6">Complete your ticket purchase for the match</p>
+          
           <Link href="/sports">
-            <Button variant="ghost" className="mb-4">
-              <ArrowLeft className="mr-2 h-4 w-4" />
+            <Button 
+              className="inline-flex items-center gap-2 px-8 py-3 text-sm font-bold text-white bg-orange-500 rounded-lg shadow-lg hover:bg-orange-600 hover:shadow-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+            >
+              <ArrowLeft className="h-4 w-4" />
               Back to Sports
             </Button>
           </Link>
-
-          <h1 className="font-serif text-3xl font-bold mb-2">Purchase Tickets</h1>
-          <p className="text-muted-foreground">Complete your ticket purchase for the match</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left Side - Match Details and Ground Image */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-1">
             <Card className="mb-4 overflow-hidden">
               <div className="flex">
                 {/* Left Side - Match Image */}

@@ -3,8 +3,9 @@
 import { usePathname } from "next/navigation"
 import { useAuth } from "@/lib/auth-context"
 import { AppNavigation } from "./app-navigation"
+import { memo } from "react"
 
-export function ConditionalNavigation() {
+const ConditionalNavigation = memo(function ConditionalNavigation() {
   const pathname = usePathname()
   const { user, isLoading } = useAuth()
 
@@ -23,4 +24,6 @@ export function ConditionalNavigation() {
 
   // Show public navigation for all other cases (including home page)
   return <AppNavigation />
-}
+})
+
+export { ConditionalNavigation }

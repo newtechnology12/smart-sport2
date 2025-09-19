@@ -1,29 +1,60 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import { ArrowRight, Handshake, X, Building, Mail, Phone, User } from "lucide-react"
 
 const partners = [
   {
     name: "Rwanda Football Federation",
-    logo: "/image.jpg",
+    logo: "/parterner.jpg",
     website: "https://ferwafa.rw"
   },
   {
     name: "Kigali Arena", 
-    logo: "/image.jpg",
+    logo: "/npc.jpg",
     website: "https://kigaliarena.rw"
   },
   {
     name: "Rwanda Olympic Committee",
-    logo: "/image.jpg", 
+    logo: "/imdd.jpg", 
     website: "https://rwandaolympic.org"
+  },
+  {
+    name: "Rwanda Basketball Federation",
+    logo: "/RTTF.jpg",
+    website: "https://rbf.rw"
+  },
+  {
+    name: "Rwanda Volleyball Federation",
+    logo: "/parterner.jpg",
+    website: "https://rvf.rw"
+  },
+  {
+    name: "Amahoro Stadium",
+    logo: "/npc.jpg",
+    website: "https://amahorostadium.rw"
+  },
+  {
+    name: "BK Arena",
+    logo: "/imdd.jpg",
+    website: "https://bkarena.rw"
+  },
+  {
+    name: "Rwanda Sports Federation",
+    logo: "/RTTF.jpg",
+    website: "https://rsf.rw"
+  },
+  {
+    name: "Kigali Convention Centre",
+    logo: "/parterner.jpg",
+    website: "https://kcc.rw"
   }
 ]
 
 export function PartnersSection() {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [currentPage, setCurrentPage] = useState(0)
   const [formData, setFormData] = useState({
     companyName: '',
     contactName: '',
@@ -32,6 +63,26 @@ export function PartnersSection() {
     partnershipType: '',
     message: ''
   })
+
+  const partnersPerPage = 3
+  const totalPages = Math.ceil(partners.length / partnersPerPage)
+  const currentPartners = partners.slice(
+    currentPage * partnersPerPage,
+    (currentPage + 1) * partnersPerPage
+  )
+
+  const nextPage = () => {
+    setCurrentPage((prev) => (prev + 1) % totalPages)
+  }
+
+  // Auto-rotate partners every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentPage((prev) => (prev + 1) % totalPages)
+    }, 3000)
+
+    return () => clearInterval(interval)
+  }, [totalPages])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -56,19 +107,48 @@ export function PartnersSection() {
     })
   }
   return (
-    <section className="py-12 bg-gray-50">
+    <>
+      <style jsx>{`
+        @keyframes slideInFromRight {
+          from {
+            opacity: 0;
+            transform: translateX(50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        @keyframes slideInRight {
+          from {
+            opacity: 0;
+            transform: translateX(100%);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        .animate-slide-in {
+          animation: slideInFromRight 0.6s ease-out;
+        }
+        .animate-slide-in-right {
+          animation: slideInRight 0.5s ease-out;
+        }
+      `}</style>
+      <section className="py-12 bg-gray-50">
       <div className="container max-w-6xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           {/* Content */}
           <div className="space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 rounded-full border border-blue-200">
-              <Handshake className="h-3 w-3 text-blue-600" />
-              <span className="text-blue-800 text-xs font-medium">Partners</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-orange-50 rounded-full border border-orange-200">
+              <Handshake className="h-3 w-3 text-orange-600" />
+              <span className="text-orange-800 text-xs font-medium">Partners</span>
             </div>
             
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
               Partner with Rwanda's
-              <span className="block text-blue-600">Sports Platform</span>
+              <span className="block text-orange-600">Sports Platform</span>
             </h2>
             
             <p className="text-gray-600 text-sm leading-relaxed">
@@ -77,7 +157,7 @@ export function PartnersSection() {
 
             <button 
               onClick={() => setIsModalOpen(true)}
-              className="group inline-flex items-center gap-2 px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium text-sm transition-all duration-300"
+              className="group inline-flex items-center gap-2 px-6 py-2.5 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-medium text-sm transition-all duration-300"
             >
               <span>Become a Partner</span>
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
@@ -91,15 +171,15 @@ export function PartnersSection() {
             </div>
             
             <div className="grid grid-cols-3 gap-3">
-              {partners.map((partner, index) => (
+              {currentPartners.map((partner, index) => (
                 <a
-                  key={index}
+                  key={`${currentPage}-${index}`}
                   href={partner.website}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group"
+                  className="group animate-slide-in"
                 >
-                  <div className="aspect-square bg-white rounded-xl p-4 hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-blue-200">
+                  <div className="aspect-square bg-white rounded-xl p-4 hover:shadow-lg transition-all duration-300 border border-gray-100 hover:border-orange-200">
                     <div className="w-full h-full relative">
                       <Image
                         src={partner.logo}
@@ -116,18 +196,33 @@ export function PartnersSection() {
               ))}
             </div>
             
+            {/* Pagination */}
+            <div className="flex justify-center mt-4">
+              <div className="flex gap-1">
+                {Array.from({ length: totalPages }, (_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrentPage(i)}
+                    className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+                      i === currentPage ? 'bg-orange-600' : 'bg-gray-300'
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+            
             {/* Stats */}
             <div className="grid grid-cols-3 gap-2 pt-4 border-t border-gray-200">
               <div className="text-center">
-                <div className="text-lg font-bold text-blue-600">25+</div>
+                <div className="text-lg font-bold text-orange-600">25+</div>
                 <div className="text-gray-600 text-xs">Partners</div>
               </div>
               <div className="text-center">
-                <div className="text-lg font-bold text-blue-600">5+</div>
+                <div className="text-lg font-bold text-orange-600">5+</div>
                 <div className="text-gray-600 text-xs">Years</div>
               </div>
               <div className="text-center">
-                <div className="text-lg font-bold text-blue-600">100K+</div>
+                <div className="text-lg font-bold text-orange-600">100K+</div>
                 <div className="text-gray-600 text-xs">Reach</div>
               </div>
             </div>
@@ -137,8 +232,8 @@ export function PartnersSection() {
 
       {/* Partnership Form Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-stretch justify-end z-50">
+          <div className="bg-white max-w-md w-full h-full overflow-y-auto transform transition-transform duration-500 ease-out animate-slide-in-right">
             <div className="p-6">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-xl font-bold text-gray-900">Partnership Application</h3>
@@ -162,7 +257,7 @@ export function PartnersSection() {
                     value={formData.companyName}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm"
                     placeholder="Enter your company name"
                   />
                 </div>
@@ -178,7 +273,7 @@ export function PartnersSection() {
                     value={formData.contactName}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm"
                     placeholder="Your full name"
                   />
                 </div>
@@ -194,7 +289,7 @@ export function PartnersSection() {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm"
                     placeholder="your@email.com"
                   />
                 </div>
@@ -209,7 +304,7 @@ export function PartnersSection() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm"
                     placeholder="+250 xxx xxx xxx"
                   />
                 </div>
@@ -223,7 +318,7 @@ export function PartnersSection() {
                     value={formData.partnershipType}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm"
                   >
                     <option value="">Select partnership type</option>
                     <option value="sponsor">Sponsorship</option>
@@ -259,7 +354,7 @@ export function PartnersSection() {
                   </button>
                   <button
                     type="submit"
-                    className="flex-1 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium text-sm transition-colors"
+                    className="flex-1 px-4 py-2.5 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-medium text-sm transition-colors"
                   >
                     Submit Application
                   </button>
@@ -269,6 +364,7 @@ export function PartnersSection() {
           </div>
         </div>
       )}
-    </section>
+      </section>
+    </>
   )
 }

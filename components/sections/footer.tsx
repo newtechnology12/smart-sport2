@@ -43,7 +43,7 @@ export function Footer() {
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="h-3 w-3" />
-                <span>+250 788 123 456</span>
+                <span>+250 799393729</span>
               </div>
             </div>
           </div>
@@ -100,7 +100,7 @@ export function Footer() {
               &copy; 2024 SmartSports RW. All rights reserved.
             </p>
             <p className="text-xs text-gray-400">
-              Made with ❤️ in Rwanda
+              Made by Infinity tech solutions
             </p>
           </div>
         </div>

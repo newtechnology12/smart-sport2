@@ -1,12 +1,12 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useCallback } from "react"
 import { ChevronUp } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Trophy, Calendar, Wallet, Users, Star, ArrowRight, Search, Clock, MapPin, Heart } from "lucide-react"
+import { Trophy, Calendar, Wallet, Users, Star, ArrowRight, Search, Clock, MapPin, Heart, ShoppingCart, Check } from "lucide-react"
 import { matches } from "@/lib/dummy-data"
 import { getSportImage } from "@/lib/images"
 import { FootballIcon, BasketballIcon, VolleyballIcon, EventIcon, AllSportsIcon } from "@/components/icons/sport-icons"
@@ -16,34 +16,51 @@ import { PartnersSection } from "@/components/sections/partners-section"
 import { Footer } from "@/components/sections/footer"
 
 export default function HomePage() {
-  const [selectedSport, setSelectedSport] = useState("All")
   const [searchQuery, setSearchQuery] = useState("")
   const [showSearchSuggestions, setShowSearchSuggestions] = useState(false)
   const [currentPage, setCurrentPage] = useState(0)
   const [showBackToTop, setShowBackToTop] = useState(false)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
 
-  // Add scroll event listener
+  // Throttled scroll handlers to prevent forced reflows
   useEffect(() => {
     const container = scrollContainerRef.current
-    if (container) {
-      container.addEventListener('scroll', handleScroll)
-      return () => container.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
+    if (!container) return
 
-  // Back to top scroll listener
-  useEffect(() => {
-    const handleScrollToTop = () => {
-      if (window.scrollY > 300) {
-        setShowBackToTop(true)
-      } else {
-        setShowBackToTop(false)
+    let ticking = false
+    const throttledHandleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll()
+          ticking = false
+        })
+        ticking = true
       }
     }
 
-    window.addEventListener('scroll', handleScrollToTop)
-    return () => window.removeEventListener('scroll', handleScrollToTop)
+    container.addEventListener('scroll', throttledHandleScroll, { passive: true })
+    return () => container.removeEventListener('scroll', throttledHandleScroll)
+  }, [])
+
+  // Throttled back to top scroll listener
+  useEffect(() => {
+    let ticking = false
+    const throttledHandleScrollToTop = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          if (window.scrollY > 300) {
+            setShowBackToTop(true)
+          } else {
+            setShowBackToTop(false)
+          }
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    window.addEventListener('scroll', throttledHandleScrollToTop, { passive: true })
+    return () => window.removeEventListener('scroll', throttledHandleScrollToTop)
   }, [])
 
   // Back to top function
@@ -55,9 +72,7 @@ export default function HomePage() {
   }
 
 
-  const filteredMatches = selectedSport === "All"
-    ? matches.slice(0, 6)
-    : matches.filter(match => match.sport === selectedSport).slice(0, 6)
+  const filteredMatches = matches.slice(0, 8)
 
   const upcomingMatches = filteredMatches.slice(0, 3)
 
@@ -68,33 +83,44 @@ export default function HomePage() {
     console.log('Searching for:', query)
   }
 
-  // Handle scroll for pagination dots
-  const handleScroll = () => {
-    if (scrollContainerRef.current) {
-      const scrollLeft = scrollContainerRef.current.scrollLeft
-      const scrollWidth = scrollContainerRef.current.scrollWidth
-      const clientWidth = scrollContainerRef.current.clientWidth
-      
-      // Calculate which page we're on (0 or 1) - 2 pages total, 3 cards per page
-      const page = Math.round((scrollLeft / (scrollWidth - clientWidth)) * 1)
-      setCurrentPage(Math.min(page, 1))
-    }
-  }
+  // Optimized scroll handler - cache layout values
+  const handleScroll = useCallback(() => {
+    const container = scrollContainerRef.current
+    if (!container) return
 
-  // Handle dot click to scroll to specific page
-  const handleDotClick = (page: number) => {
-    if (scrollContainerRef.current) {
-      const scrollWidth = scrollContainerRef.current.scrollWidth
-      const clientWidth = scrollContainerRef.current.clientWidth
-      const maxScroll = scrollWidth - clientWidth
-      const scrollLeft = (page / 1) * maxScroll
-      
-      scrollContainerRef.current.scrollTo({
-        left: scrollLeft,
-        behavior: 'smooth'
-      })
-    }
-  }
+    // Cache layout values to prevent multiple reads
+    const scrollLeft = container.scrollLeft
+    const scrollWidth = container.scrollWidth
+    const clientWidth = container.clientWidth
+    
+    // Avoid division by zero and unnecessary calculations
+    const maxScroll = scrollWidth - clientWidth
+    if (maxScroll <= 0) return
+    
+    // Calculate which page we're on (0 or 1) - 2 pages total, 3 cards per page
+    const page = Math.round((scrollLeft / maxScroll) * 1)
+    setCurrentPage(Math.min(page, 1))
+  }, [])
+
+  // Optimized dot click handler - cache layout values
+  const handleDotClick = useCallback((page: number) => {
+    const container = scrollContainerRef.current
+    if (!container) return
+
+    // Cache layout values to prevent multiple reads
+    const scrollWidth = container.scrollWidth
+    const clientWidth = container.clientWidth
+    const maxScroll = scrollWidth - clientWidth
+    
+    if (maxScroll <= 0) return
+    
+    const scrollLeft = (page / 1) * maxScroll
+    
+    container.scrollTo({
+      left: scrollLeft,
+      behavior: 'smooth'
+    })
+  }, [])
 
   // Video backgrounds - commented out, using image instead
   // const heroVideos = [
@@ -134,7 +160,7 @@ export default function HomePage() {
         <div className="hero-content-centered container max-w-4xl mx-auto px-4">
           <div className="text-white">
             {/* Auto-typing Title */}
-            <h1 className="apple-title text-3xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8 min-h-[4rem] md:min-h-[6rem] lg:min-h-[8rem] flex items-center justify-center">
+            <h1 className="apple-title text-2xl md:text-3xl lg:text-4xl font-bold mb-6 md:mb-8 min-h-[3rem] md:min-h-[4rem] lg:min-h-[5rem] flex items-center justify-center">
               <AutoTyping
                 texts={typingTexts}
                 typeSpeed={80}
@@ -149,9 +175,9 @@ export default function HomePage() {
             <div className="mb-6 md:mb-8">
               <div className="relative max-w-2xl mx-auto">
                 <div className="relative">
-                  <div className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10">
-                    <div className="w-6 h-6 flex items-center justify-center">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <div className="absolute left-3 top-1/2 transform -translate-y-1/2 z-10">
+                    <div className="w-5 h-5 flex items-center justify-center">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                         <circle cx="11" cy="11" r="8"/>
                         <path d="m21 21-4.35-4.35"/>
                       </svg>
@@ -164,11 +190,11 @@ export default function HomePage() {
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onFocus={() => setShowSearchSuggestions(true)}
                     onBlur={() => setTimeout(() => setShowSearchSuggestions(false), 200)}
-                    className="w-full pl-12 pr-16 py-4 text-lg bg-white/95 backdrop-blur-sm border border-gray-200 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all duration-300 placeholder-gray-500 text-black"
+                    className="w-full pl-10 pr-12 py-3 text-base bg-white/95 backdrop-blur-sm border border-gray-200 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all duration-300 placeholder-gray-500 text-black"
                   />
-                  <div className="absolute inset-y-0 right-0 pr-4 flex items-center">
-                    <button className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200">
-                      <svg className="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="currentColor">
+                  <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
+                    <button className="p-1.5 hover:bg-gray-100 rounded-full transition-colors duration-200">
+                      <svg className="h-4 w-4 text-gray-500" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
                         <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
                       </svg>
@@ -404,10 +430,10 @@ export default function HomePage() {
 
 
       {/* Upcoming Matches */}
-      <section className="px-4 py-12 md:py-16 bg-gradient-to-br from-slate-50 to-gray-100">
+      <section className="px-4 py-6 md:py-8 bg-gradient-to-br from-slate-50 to-gray-100">
         <div className="container max-w-6xl mx-auto">
           {/* Header Section */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-6">
             <div className="mb-4">
               <h2 className="font-serif text-2xl md:text-3xl font-bold text-gray-900">Upcoming Sports & Events</h2>
             </div>
@@ -416,80 +442,14 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Filter Buttons */}
-          <div className="flex flex-wrap justify-center gap-3 mb-8">
-            <Button
-              variant={selectedSport === "All" ? "default" : "outline"}
-              size="lg"
-              className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 cursor-pointer border-2 ${
-                selectedSport === "All" 
-                  ? "bg-gradient-to-r from-primary to-secondary text-white shadow-lg hover:shadow-xl border-primary" 
-                  : "bg-white text-gray-700 border-2 border-gray-400 hover:border-primary hover:text-primary hover:bg-primary/5 shadow-sm hover:shadow-md"
-              }`}
-              onClick={() => setSelectedSport("All")}
-            >
-              All
-            </Button>
-            <Button
-              variant={selectedSport === "Football" ? "default" : "outline"}
-              size="lg"
-              className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 cursor-pointer border-2 ${
-                selectedSport === "Football" 
-                  ? "bg-gradient-to-r from-primary to-secondary text-white shadow-lg hover:shadow-xl border-primary" 
-                  : "bg-white text-gray-700 border-2 border-gray-400 hover:border-primary hover:text-primary hover:bg-primary/5 shadow-sm hover:shadow-md"
-              }`}
-              onClick={() => setSelectedSport("Football")}
-            >
-              <FootballIcon className="w-4 h-4 mr-2" />
-              Football
-            </Button>
-            <Button
-              variant={selectedSport === "Basketball" ? "default" : "outline"}
-              size="lg"
-              className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 cursor-pointer border-2 ${
-                selectedSport === "Basketball" 
-                  ? "bg-gradient-to-r from-primary to-secondary text-white shadow-lg hover:shadow-xl border-primary" 
-                  : "bg-white text-gray-700 border-2 border-gray-400 hover:border-primary hover:text-primary hover:bg-primary/5 shadow-sm hover:shadow-md"
-              }`}
-              onClick={() => setSelectedSport("Basketball")}
-            >
-              <BasketballIcon className="w-4 h-4 mr-2" />
-              Basketball
-            </Button>
-            <Button
-              variant={selectedSport === "Volleyball" ? "default" : "outline"}
-              size="lg"
-              className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 cursor-pointer border-2 ${
-                selectedSport === "Volleyball" 
-                  ? "bg-gradient-to-r from-primary to-secondary text-white shadow-lg hover:shadow-xl border-primary" 
-                  : "bg-white text-gray-700 border-2 border-gray-400 hover:border-primary hover:text-primary hover:bg-primary/5 shadow-sm hover:shadow-md"
-              }`}
-              onClick={() => setSelectedSport("Volleyball")}
-            >
-              <VolleyballIcon className="w-4 h-4 mr-2" />
-              Volleyball
-            </Button>
-            <Button
-              variant={selectedSport === "Events" ? "default" : "outline"}
-              size="lg"
-              className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 cursor-pointer border-2 ${
-                selectedSport === "Events" 
-                  ? "bg-gradient-to-r from-primary to-secondary text-white shadow-lg hover:shadow-xl border-primary" 
-                  : "bg-white text-gray-700 border-2 border-gray-400 hover:border-primary hover:text-primary hover:bg-primary/5 shadow-sm hover:shadow-md"
-              }`}
-              onClick={() => setSelectedSport("Events")}
-            >
-              Events
-            </Button>
-          </div>
 
           {/* View All Button */}
-          <div className="text-center mb-8">
+          <div className="text-center mb-4">
             <Link href="/sports">
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="bg-white hover:bg-primary hover:text-white border-primary text-primary hover:border-primary px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg cursor-pointer"
+                className="bg-white hover:bg-primary hover:text-white border-primary text-primary hover:border-primary px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg cursor-pointer hover:!bg-primary"
               >
                 Explore All
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -497,15 +457,15 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-3">
             {filteredMatches.map((match) => (
-              <Card key={match.id} className="group overflow-hidden !border-0 !rounded-none shadow-lg hover:shadow-2xl bg-white transition-all duration-500 hover:-translate-y-2">
-                <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/20 relative overflow-hidden">
+              <Card key={match.id} className="overflow-hidden !border-0 rounded-lg shadow-lg bg-white">
+                <div className="w-full h-[80px] bg-gradient-to-br from-primary/20 to-secondary/20 relative overflow-hidden">
                   <Image
                     src={match.image || getSportImage(match.sport)}
                     alt={`${match.home_team} vs ${match.away_team || "Event"}`}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="object-cover"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
@@ -514,29 +474,29 @@ export default function HomePage() {
                     {match.sport}
                   </div>
                 </div>
-                  <div className="absolute bottom-4 right-4">
-                    <div className="bg-primary text-white font-bold text-lg px-4 py-2 rounded-xl shadow-lg">
+                  <div className="absolute bottom-3 right-3">
+                    <div className="bg-primary text-white font-bold text-sm px-3 py-1.5 rounded-lg shadow-lg">
                       {match.price.toLocaleString()} RWF
                     </div>
                   </div>
-                  <div className="absolute top-4 right-4">
+                  <div className="absolute top-3 right-3">
                      <Link href={`/tickets/purchase/${match.id}`}>
                        <button
-                         className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 bg-white/90 backdrop-blur-sm text-gray-600 hover:bg-primary hover:text-white shadow-lg cursor-pointer"
+                         className="w-8 h-8 rounded-full flex items-center justify-center bg-white/90 backdrop-blur-sm text-gray-600 hover:text-red-500 hover:bg-red-50 shadow-lg cursor-pointer transition-all duration-300 hover:scale-110"
                          aria-label="Purchase ticket for this match"
                        >
-                         <Heart className="h-5 w-5" />
+                         <Heart className="h-4 w-4" />
                        </button>
                      </Link>
                   </div>
                 </div>
-                <CardHeader className="pb-4">
-                  <CardTitle className="text-xl font-bold text-gray-900 group-hover:text-primary transition-colors duration-300">
+                <CardHeader className="pb-1 px-2 pt-2">
+                  <CardTitle className="text-sm font-bold text-gray-900">
                     {match.away_team ? `${match.home_team} vs ${match.away_team}` : match.home_team}
                   </CardTitle>
-                  <CardDescription className="text-gray-600 text-sm">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Calendar className="h-4 w-4 text-primary" />
+                  <CardDescription className="text-gray-600 text-xs">
+                    <div className="flex items-center gap-1.5 mb-1">
+                      <Calendar className="h-3 w-3 text-primary" />
                       <span>
                     {new Date(match.date).toLocaleDateString("en-US", {
                       weekday: "long",
@@ -546,21 +506,35 @@ export default function HomePage() {
                         })}
                       </span>
                     </div>
-                    <div className="flex items-center gap-2 mb-2">
-                      <Clock className="h-4 w-4 text-primary" />
+                    <div className="flex items-center gap-1.5 mb-1">
+                      <Clock className="h-3 w-3 text-primary" />
                       <span>{match.time}</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <MapPin className="h-4 w-4 text-primary" />
+                    <div className="flex items-center gap-1.5 mb-1">
+                      <MapPin className="h-3 w-3 text-primary" />
                       <span>{match.location}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <Trophy className="h-3 w-3 text-primary" />
+                      <span className="text-xs font-medium text-gray-700">
+                        {match.id === 1 && "15/50 tickets"}
+                        {match.id === 2 && "8/30 tickets"}
+                        {match.id === 3 && "22/45 tickets"}
+                        {match.id === 4 && "12/25 tickets"}
+                        {match.id === 5 && "35/100 tickets"}
+                        {match.id === 6 && "18/40 tickets"}
+                        {match.id === 7 && "5/20 tickets"}
+                        {match.id === 8 && "14/35 tickets"}
+                      </span>
                     </div>
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="pt-0">
+                <CardContent className="pt-0 px-2 pb-2">
                   <Link href={`/tickets/purchase/${match.id}`} className="block">
-                    <Button className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white rounded-xl py-3 font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer">
+                    <Button className="w-full bg-gradient-to-r from-primary to-secondary hover:from-orange-600 hover:to-orange-700 text-white rounded-lg py-1.5 text-xs font-semibold cursor-pointer transition-colors duration-300 group">
                       Buy Ticket
-                      <ArrowRight className="ml-2 h-4 w-4" />
+                      <ShoppingCart className="ml-1 h-3 w-3 group-hover:hidden" />
+                      <Check className="ml-1 h-3 w-3 hidden group-hover:block" />
                     </Button>
                     </Link>
                 </CardContent>

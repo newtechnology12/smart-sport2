@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Home, Trophy, LogIn, Info, Phone, Calendar, User, Wallet } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/lightweight-button"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { useAuth } from "@/lib/auth-context"
 import { cn } from "@/lib/utils"

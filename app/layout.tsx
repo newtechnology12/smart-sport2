@@ -1,7 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Playfair_Display, Source_Sans_3 } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
+// import { Analytics } from "@vercel/analytics/next" // Removed for performance
 import { Suspense } from "react"
 import { ConditionalNavigation } from "@/components/navigation/conditional-navigation"
 import { AuthProvider } from "@/lib/auth-context"
@@ -34,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+        {/* <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" /> Removed for performance */}
       </head>
       <body className={`font-sans ${playfairDisplay.variable} ${sourceSans.variable}`} suppressHydrationWarning>
         <AuthProvider>
@@ -43,7 +43,7 @@ export default function RootLayout({
             <Suspense fallback={null}>{children}</Suspense>
           </main>
         </AuthProvider>
-        <Analytics />
+        {/* <Analytics /> Removed for performance */}
       </body>
     </html>
   )
